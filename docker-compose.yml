@@ -21,11 +21,6 @@ services:
             - '.:/var/www/html'
         networks:
             - sail
-        depends_on:
-            - mysql
-            - redis
-            - meilisearch
-            - selenium
 networks:
     sail:
         driver: bridge
