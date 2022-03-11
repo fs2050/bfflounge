@@ -31,19 +31,22 @@ Instalar as dependências do projeto
 composer install
 ```
 
-Please provide a valid cache path.
+Problem 1: Please provide a valid cache path.
 ```sh
 cd storage
 ```
 
+Crie as pastas "framework, sessions, views e cache"
 ```sh
 mkdir -p framework/{sessions,views,cache}
 ```
 
+Adicione permissão para a pasta "framework"
 ```sh
 chmod -R 777 framework
 ```
 
+Adicione permissão e crie um grupo de usuários para a pasta "framework"
 ```sh
 chown -R www-data:www-data framework
 ```
