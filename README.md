@@ -48,7 +48,7 @@ chmod -R 777 framework
 
 Adicione permissão e crie um grupo de usuários para a pasta "framework"
 ```sh
-chown -R www-data:www-data framework
+sudo chown -R www-data:www-data framework
 ```
 
 Gerar a key do projeto Laravel
