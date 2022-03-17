@@ -8,16 +8,20 @@ use App\Http\Livewire\{
     ================================================== */
     Auth\Login\Login, ## Login
 
+    /* Profile
+    ================================================== */
+    Profile\Profile, ## Profile
+
 };
 
 Route::group( [ ], function () {
 
-    /* Auth
+    /* Profile
     ================================================== */
     Route::get( '/login', Login::class ); ## Login
 
-}); //
+    /* Profile
+    ================================================== */
+    Route::get( '/profile', Profile::class )->name( 'profile.index' ); ## Profile
 
-Route::get('/', function () {
-    return view('welcome');
-});
+}); //
