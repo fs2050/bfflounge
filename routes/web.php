@@ -12,6 +12,10 @@ use App\Http\Livewire\{
     ================================================== */
     Profile\Profile, ## Profile
 
+    /* Settings
+    ================================================== */
+    Settings\Settings, ## Settings
+
 };
 
 Route::group( [ ], function () {
@@ -23,5 +27,9 @@ Route::group( [ ], function () {
     /* Profile
     ================================================== */
     Route::get( '/profile', Profile::class )->name( 'profile.index' ); ## Profile
+
+    /* Settings
+    ================================================== */
+    Route::get( '/settings', Settings::class )->name( 'settings.index' ); ## Settings
 
 }); //
