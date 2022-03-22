@@ -16,6 +16,10 @@ use App\Http\Livewire\{
     ================================================== */
     Profile\Profile, ## Profile
 
+    /* Cards
+    ================================================== */
+    Cards\Cards, ## Cards
+
     /* Settings
     ================================================== */
     Settings\Settings, ## Settings
@@ -35,6 +39,10 @@ Route::group( [ ], function () {
     /* Profile
     ================================================== */
     Route::get( '/profile', Profile::class )->name( 'profile.index' ); ## Profile
+
+    /* Cards
+    ================================================== */
+    Route::get( '/cards', Cards::class )->name( 'cards.index' ); ## Cards
 
     /* Settings
     ================================================== */

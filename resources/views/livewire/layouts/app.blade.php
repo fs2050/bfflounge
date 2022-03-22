@@ -126,7 +126,7 @@
                                 <li><a href="chat.html"><i class="far fa-paper-plane"></i> Mensagens</a></li>
                                 <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
                                 <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>
-                                <li><a href="cards.html"><i class="las la-credit-card"></i> Meus Cartões</a></li>
+                                <li><a href="{{ route( 'cards.index' ) }}"><i class="las la-credit-card"></i> Meus Cartões</a></li>
                                 <li><a href="bank.html"><i class="las la-dollar-sign"></i> Banco</a></li>
                                 <li><a href="#"><i class="lar la-heart"></i> Curtidos</a></li>
                                 <li><a href="#"><i class="las la-bookmark"></i> Salvos</a></li>
