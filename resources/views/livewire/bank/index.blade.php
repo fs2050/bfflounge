@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/earnings.css' ) }}">
+
 <div class="container_center h-100 pt-4 pt-lg-5">
     <h4 class="mt-0 mt-lg-5 mb-4 mb-lg-5 c-pink">
         Estimativa de Ganhos
