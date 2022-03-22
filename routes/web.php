@@ -36,6 +36,10 @@ use App\Http\Livewire\{
     ================================================== */
     Chargebacks\Chargebacks, ## Chargebacks
 
+    /* Indications
+    ================================================== */
+    Indications\Indications, ## Indications
+
 };
 
 Route::group( [ ], function () {
@@ -71,5 +75,9 @@ Route::group( [ ], function () {
     /* Chargebacks
     ================================================== */
     Route::get( '/chargebacks', Chargebacks::class )->name( 'chargebacks.index' ); ## Chargebacks
+
+    /* Indications
+    ================================================== */
+    Route::get( '/indications', Indications::class )->name( 'indications.index' ); ## Indications
 
 }); //
