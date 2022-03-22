@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\{
 
+    /* Home
+    ================================================== */
+    Home\Home, ## Home
+
     /* Auth
     ================================================== */
     Auth\Login\Login, ## Login
@@ -20,7 +24,11 @@ use App\Http\Livewire\{
 
 Route::group( [ ], function () {
 
-    /* Profile
+    /* Home
+    ================================================== */
+    Route::get( '/', Home::class )->name( 'home.index' ); ## Home
+
+    /* Login
     ================================================== */
     Route::get( '/login', Login::class ); ## Login
 

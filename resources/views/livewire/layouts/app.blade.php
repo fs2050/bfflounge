@@ -93,7 +93,7 @@
                         <i class="fas fa-ellipsis-h btn_menu"></i>
 
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" /></a>
+                            <a href="{{ route( 'home.index' ) }}"><img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" /></a>
                         </div>
                         <!--<div class="btn_new">
                             <i class="fas fa-plus-square"></i>
@@ -111,14 +111,14 @@
                     <div class="page d-block d-lg-flex h-lg-100 justify-content-between">
                         <div class="container_left h-100 bg-white p-5">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" /></a>
+                                <a href="{{ route( 'home.index' ) }}"><img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" /></a>
                             </div>
 
                             <button class="w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
 
                             <ul class="menu">
-                                <li><a href="index.html"><i class="las la-home"></i> Home</a></li>
-                                <li><a href="index.html"><i class="las la-newspaper"></i> Publicações</a></li>
+                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i> Home</a></li>
+                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
                                 <li><a href="chat.html"><i class="far fa-paper-plane"></i> Mensagens</a></li>
                                 <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
                                 <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>
