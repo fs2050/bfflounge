@@ -4,13 +4,17 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\{
 
+    /* Auth
+    ================================================== */
+    Auth\Login\Login, ## Login
+
     /* Home
     ================================================== */
     Home\Home, ## Home
 
-    /* Auth
+    /* Chat
     ================================================== */
-    Auth\Login\Login, ## Login
+    Chat\Chat, ## Chat
 
     /* Profile
     ================================================== */
@@ -48,13 +52,17 @@ use App\Http\Livewire\{
 
 Route::group( [ ], function () {
 
+    /* Login
+    ================================================== */
+    Route::get( '/login', Login::class ); ## Login
+
     /* Home
     ================================================== */
     Route::get( '/', Home::class )->name( 'home.index' ); ## Home
 
-    /* Login
+    /* Chat
     ================================================== */
-    Route::get( '/login', Login::class ); ## Login
+    Route::get( '/chat', Chat::class )->name( 'chat.index' ); ## Chat
 
     /* Profile
     ================================================== */
