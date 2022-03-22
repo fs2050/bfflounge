@@ -109,9 +109,13 @@
                     </div>
 
                     <div class="page d-block d-lg-flex h-lg-100 justify-content-between">
+
                         <div class="container_left h-100 bg-white p-5">
+
                             <div class="logo">
-                                <a href="{{ route( 'home.index' ) }}"><img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" /></a>
+                                <a href="{{ route( 'home.index' ) }}">
+                                    <img src="{{ asset( 'assets/images/logo.png' ) }}" alt="BFF Lounge" class="mw-100" />
+                                </a>
                             </div>
 
                             <button class="w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
@@ -140,97 +144,6 @@
                         </div>
 
                         {{ $slot }}
-
-                        <div class="container_right h-100">
-                            <h4 class="mb-4">Sugestões para você:</h4>
-
-                            <div class="cards_sugestion mb-5">
-                                <div class="card_sugestion">
-                                    <div class="cover" style="background-image:url(assets/images/covers/01.png);">
-                                        <div class="row">
-                                            <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
-                                                <i class="fas fa-ellipsis-v ml-2 text-white"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex py-3 px-4">
-                                                <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);"></div>
-                                                <div class="card_sugestion_name">
-                                                    <h5>Juliana Bordon</h5>
-                                                    <span>@julianabd</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card_sugestion">
-                                    <div class="cover" style="background-image:url(assets/images/covers/02.png);">
-                                        <div class="row">
-                                            <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
-                                                <i class="fas fa-ellipsis-v ml-2 text-white"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex py-3 px-4">
-                                                <div class="card_sugestion_photo" style="background-image:url(assets/images/users/04.png);"></div>
-                                                <div class="card_sugestion_name">
-                                                    <h5>Paula Cassy</h5>
-                                                    <span>@paulacass</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card_sugestion">
-                                    <div class="cover" style="background-image:url(assets/images/covers/03.png);">
-                                        <div class="row">
-                                            <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
-                                                <i class="fas fa-ellipsis-v ml-2 text-white"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex py-3 px-4">
-                                                <div class="card_sugestion_photo" style="background-image:url(assets/images/users/05.png);"></div>
-                                                <div class="card_sugestion_name">
-                                                    <h5>Katarina Mendez</h5>
-                                                    <span>@julianabd</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card_sugestion">
-                                    <div class="cover" style="background-image:url(assets/images/covers/01.png);">
-                                        <div class="row">
-                                            <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
-                                                <i class="fas fa-ellipsis-v ml-2 text-white"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="d-flex py-3 px-4">
-                                                <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);"></div>
-                                                <div class="card_sugestion_name">
-                                                    <h5>Juliana Bordon</h5>
-                                                    <span>@julianabd</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div> <!-- -->
 
