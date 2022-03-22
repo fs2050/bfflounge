@@ -66,7 +66,7 @@
 
                 <div class="menu_right">
                     <ul>
-                        <li><a href="chargebacks.html"><i class="las la-list"></i> Lista de Estornos</a></li>
+                        <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
                         <li><a href="indications.html"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
                         <li><a href="earnings.html"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
                         <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>

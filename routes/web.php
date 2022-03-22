@@ -32,6 +32,10 @@ use App\Http\Livewire\{
     ================================================== */
     Support\Support, ## Support
 
+    /* Chargebacks
+    ================================================== */
+    Chargebacks\Chargebacks, ## Chargebacks
+
 };
 
 Route::group( [ ], function () {
@@ -63,5 +67,9 @@ Route::group( [ ], function () {
     /* Support
     ================================================== */
     Route::get( '/support', Support::class )->name( 'support.index' ); ## Support
+
+    /* Chargebacks
+    ================================================== */
+    Route::get( '/chargebacks', Chargebacks::class )->name( 'chargebacks.index' ); ## Chargebacks
 
 }); //
