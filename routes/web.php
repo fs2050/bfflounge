@@ -48,6 +48,10 @@ use App\Http\Livewire\{
     ================================================== */
     Earnings\Earnings, ## Earnings
 
+    /* My Earnings
+    ================================================== */
+    MyEarnings\MyEarnings, ## My Earnings
+
 };
 
 Route::group( [ ], function () {
@@ -95,5 +99,9 @@ Route::group( [ ], function () {
     /* Earnings
     ================================================== */
     Route::get( '/earnings', Earnings::class )->name( 'earnings.index' ); ## Earnings
+
+    /* My Earnings
+    ================================================== */
+    Route::get( '/my-earnings', MyEarnings::class )->name( 'myEarnings.index' ); ## My Earnings
 
 }); //
