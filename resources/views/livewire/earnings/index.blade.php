@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/earnings.css' ) }}">
+
 <div class="container_center h-100 pt-4 pt-lg-5">
     <h4 class="mt-0 mt-lg-5 mb-4 mb-lg-5 c-pink">
         Estimativa de Ganhos
@@ -53,11 +55,11 @@
 
     <div class="menu_earnings">
         <ul>
-            <li><a href="chargebacks.html"><i class="las la-list"></i> Lista de Estornos</a></li>
-            <li><a href="indications.html"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
-            <li class="active"><a href="earnings.html"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
-            <li><a href="subscribers.html"><i class="las la-users"></i> Inscritos</a></li>
-            <li><a href="my-earnings.html"><i class="las la-dollar-sign"></i> Meus Ganhos</a></li>
+            <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
+            <li><a href="{{ route( 'indications.index' ) }}"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
+            <li class="active"><a href="{{ route( 'earnings.index' ) }}"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
+            <li><a href="{{ route( 'subscribers.index' ) }}"><i class="las la-users"></i> Inscritos</a></li>
+            <li><a href="{{ route( 'my-earnings.index' ) }}"><i class="las la-dollar-sign"></i> Meus Ganhos</a></li>
             <li><a href="#"><i class="las la-box"></i> Editar meus planos e pacotes</a></li>
         </ul>
     </div>

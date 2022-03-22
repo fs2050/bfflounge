@@ -106,7 +106,7 @@ Route::group( [ ], function () {
 
     /* My Earnings
     ================================================== */
-    Route::get( '/my-earnings', MyEarnings::class )->name( 'myEarnings.index' ); ## My Earnings
+    Route::get( '/my-earnings', MyEarnings::class )->name( 'my-earnings.index' ); ## My Earnings
 
     /* Subscribers
     ================================================== */
