@@ -28,6 +28,10 @@ use App\Http\Livewire\{
     ================================================== */
     Settings\Settings, ## Settings
 
+    /* Support
+    ================================================== */
+    Support\Support, ## Support
+
 };
 
 Route::group( [ ], function () {
@@ -55,5 +59,9 @@ Route::group( [ ], function () {
     /* Settings
     ================================================== */
     Route::get( '/settings', Settings::class )->name( 'settings.index' ); ## Settings
+
+    /* Support
+    ================================================== */
+    Route::get( '/support', Support::class )->name( 'support.index' ); ## Support
 
 }); //

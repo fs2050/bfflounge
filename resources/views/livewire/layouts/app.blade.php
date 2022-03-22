@@ -72,8 +72,8 @@
                         <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
                         <li class="pb-5"><a href="#"><i class="las la-box"></i> Editar meus planos e pacotes</a></li>
 
-                        <li class="mt-5 pt-5"><a href="settings.html"><i class="las la-cog"></i> Configurações</a></li>
-                        <li class="mt-5"><a href="support.html"><i class="lar la-question-circle"></i> Ajuda e Suporte</a></li>
+                        <li class="mt-5 pt-5"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i> Configurações</a></li>
+                        <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="lar la-question-circle"></i> Ajuda e Suporte</a></li>
                         <li><a href="#"><i class="las la-globe"></i> Idioma</a></li>
                     </ul>
                 </div>
@@ -130,8 +130,8 @@
                                 <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
                                 <li><a href="#"><i class="lar la-heart"></i> Curtidos</a></li>
                                 <li><a href="#"><i class="las la-bookmark"></i> Salvos</a></li>
-                                <li class="mt-5 active"><a href="settings.html"><i class="las la-cog"></i> Configurações</a></li>
-                                <li class="mt-5"><a href="support.html"><i class="las la-question-circle"></i> Ajuda e Suporte</a></li>
+                                <li class="mt-5 active"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i> Configurações</a></li>
+                                <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="las la-question-circle"></i> Ajuda e Suporte</a></li>
                                 <li><a href="#"><i class="las la-globe"></i> Idioma</a></li>
                             </ul>
 
