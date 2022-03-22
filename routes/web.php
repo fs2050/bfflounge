@@ -40,6 +40,10 @@ use App\Http\Livewire\{
     ================================================== */
     Indications\Indications, ## Indications
 
+    /* Earnings
+    ================================================== */
+    Earnings\Earnings, ## Earnings
+
 };
 
 Route::group( [ ], function () {
@@ -79,5 +83,9 @@ Route::group( [ ], function () {
     /* Indications
     ================================================== */
     Route::get( '/indications', Indications::class )->name( 'indications.index' ); ## Indications
+
+    /* Earnings
+    ================================================== */
+    Route::get( '/earnings', Earnings::class )->name( 'earnings.index' ); ## Earnings
 
 }); //

@@ -68,7 +68,7 @@
                     <ul>
                         <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
                         <li><a href="{{ route( 'indications.index' ) }}"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
-                        <li><a href="earnings.html"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
+                        <li><a href="{{ route( 'earnings.index' ) }}"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
                         <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
                         <li class="pb-5"><a href="#"><i class="las la-box"></i> Editar meus planos e pacotes</a></li>
 
