@@ -69,7 +69,7 @@
                         <li><a href="chargebacks.html"><i class="las la-list"></i> Lista de Estornos</a></li>
                         <li><a href="indications.html"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
                         <li><a href="earnings.html"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
-                        <li><a href="bank.html"><i class="las la-dollar-sign"></i> Banco</a></li>
+                        <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
                         <li class="pb-5"><a href="#"><i class="las la-box"></i> Editar meus planos e pacotes</a></li>
 
                         <li class="mt-5 pt-5"><a href="settings.html"><i class="las la-cog"></i> Configurações</a></li>
@@ -127,7 +127,7 @@
                                 <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
                                 <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>
                                 <li><a href="{{ route( 'cards.index' ) }}"><i class="las la-credit-card"></i> Meus Cartões</a></li>
-                                <li><a href="bank.html"><i class="las la-dollar-sign"></i> Banco</a></li>
+                                <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
                                 <li><a href="#"><i class="lar la-heart"></i> Curtidos</a></li>
                                 <li><a href="#"><i class="las la-bookmark"></i> Salvos</a></li>
                                 <li class="mt-5 active"><a href="settings.html"><i class="las la-cog"></i> Configurações</a></li>

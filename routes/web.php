@@ -20,6 +20,10 @@ use App\Http\Livewire\{
     ================================================== */
     Cards\Cards, ## Cards
 
+    /* Bank
+    ================================================== */
+    Bank\Bank, ## Bank
+
     /* Settings
     ================================================== */
     Settings\Settings, ## Settings
@@ -43,6 +47,10 @@ Route::group( [ ], function () {
     /* Cards
     ================================================== */
     Route::get( '/cards', Cards::class )->name( 'cards.index' ); ## Cards
+
+    /* Bank
+    ================================================== */
+    Route::get( '/bank', Bank::class )->name( 'bank.index' ); ## Bank
 
     /* Settings
     ================================================== */
