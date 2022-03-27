@@ -1,9 +1,10 @@
 # BFF Lounge - Front
 
 ### Instalação
+
 Clonar Projeto
 ```sh
-git clone -b develop https://github.com/luispaulotoniettefranca/bff-front
+git clone https://github.com/luispaulotoniettefranca/bff-front
 ```
 
 Acessar o projeto
@@ -11,12 +12,12 @@ Acessar o projeto
 cd bff-front
 ```
 
-Criar o Arquivo .env
+Copie .env.example para .env
 ```sh
 cp .env.example .env
 ```
 
-Subir os containers do projeto
+Suba os containers
 ```sh
 docker-compose up -d
 ```
@@ -26,12 +27,12 @@ Acessar o container
 docker-compose exec bff_lounge_front bash
 ```
 
-Instalar as dependências do projeto
+Instale as dependências
 ```sh
-composer install
+composer update
 ```
 
-Problem 1: Please provide a valid cache path.
+Saia do container e vá para a pasta "storage"
 ```sh
 cd storage
 ```
@@ -51,10 +52,20 @@ Adicione permissão e crie um grupo de usuários para a pasta "framework"
 sudo chown -R www-data:www-data framework
 ```
 
-Gerar a key do projeto Laravel
+Volte para a pasta raiz do projeto
+```sh
+cd ..
+```
+
+Acesse o container novamente
+```sh
+docker-compose exec bff_lounge_front bash
+```
+
+Gere a chave
 ```sh
 php artisan key:generate
 ```
 
-Acessar o projeto
-[http://localhost:8002](http://localhost:8002)
+Veja funcionando
+[http://localhost:8010](http://localhost:8010)

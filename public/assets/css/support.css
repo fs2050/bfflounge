@@ -1,0 +1,12 @@
+/*DEFAULT*/
+.page .container_center {max-width:80%;padding-bottom:70px;}
+.page .container_center .card {border-radius:4px;border:1px solid #ddd;}
+.page .container_center .card i {color:#E5B6D5;font-size:27px;}
+.page .container_center .form_cadastro .input select {width:328px;max-width:100%;background:transparent;border-color:var(--primary-color);}
+.page .container_center .form_cadastro .input textarea {height:150px;padding:20px;background:#E8E6EC;border-radius:10px;color:var(--primary-color);}
+
+/*MOBILE*/
+@media screen and (max-width:990px){
+    .page .container_center {max-width:100%;}
+    .page .container_center .form_cadastro .input select {width:100%;}
+}

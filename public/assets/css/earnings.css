@@ -1,0 +1,62 @@
+/*DEFAULT*/
+.page {width:100%;max-width:none;}
+.page .container_center {width:470px;flex:0 0 470px;overflow-x:hidden;max-width:calc(100% - 40px);}
+.page .container_right {width: 890px;flex: 0 0 890px;max-width: calc(100vw - 890px);padding-top:173px;}
+select {font-size: 16px;font-family: 'Montserrat';height: 45px;padding: 5px 12px;background: #fff;outline: none;border: 2px solid var(--primary-color);border-radius: 6px;margin-bottom: 6px;}
+
+/*MENU*/
+.menu_earnings ul {width:100%;padding-left:0;}
+.menu_earnings ul li {font-size:18px;margin-bottom:20px;}
+.menu_earnings ul li a {color:rgba(0,0,0,.5);font-family: 'IBM Plex Serif', serif;}
+.menu_earnings ul li a:hover {color:var(--primary-color);}
+.menu_earnings ul li a i {width:20px;margin-right:5px;text-align:center;}
+.menu_earnings ul li a i.las, .menu_earnings ul li a i.lar {font-size:20px;}
+.menu_earnings ul li.active a {color:var(--primary-color);}
+
+/*TABELA DE GANHOS*/
+.box_earnings {border:2px solid var(--primary-color);border-radius:6px;}
+.box_earnings .box_earnings_header {padding:8px 20px;border-radius:6px;position:relative;z-index:1;transition:background ease .5s;cursor:pointer;}
+.box_earnings .box_earnings_header[aria-expanded="true"] {background:#F4E2EE;}
+.box_earnings .box_earnings_header[aria-expanded="false"] .title_min {display:block;}
+.box_earnings .box_earnings_header[aria-expanded="false"] .title_max {display:none;}
+.box_earnings .box_earnings_header[aria-expanded="true"] .title_min {display:none;}
+.box_earnings .box_earnings_header[aria-expanded="true"] .title_max {display:block;}
+.box_earnings .box_earnings_body {padding:10px 20px;}
+.box_earnings .box_earnings_body table>tbody>tr>td {padding:10px 0;border-bottom:1px solid var(--primary-color);}
+.box_earnings .box_earnings_body table>tfoot>tr>td {padding:10px 0;}
+.box_earnings .box_earnings_body .chart {width:100%;height:250px;position:relative;top:-15px;}
+table.earnings>thead>tr>th {padding:10px 20px;background:#F4E2EE;border-bottom:none;height:50px;vertical-align:middle;}
+table.earnings>thead>tr>th:first-child {border-top-left-radius:10px;border-bottom-left-radius:10px;}
+table.earnings>thead>tr>th:last-child {border-top-right-radius:10px;border-bottom-right-radius:10px;}
+table.earnings>tbody>tr>td {padding:10px 20px;border-bottom:1px solid var(--primary-color);height:54px;}
+table.earnings>tbody>tr>td.small {font-size:14px;}
+table.earnings>tbody>tr>td .loader {width:20px;}
+
+/*MODAL BANCO*/
+[data-modal="banco"] .container_form {padding:30px 40px;width:700px;}
+[data-modal="banco"] .container_form select {color:#000;font-family:'Roboto';}
+@media screen and (min-width:990px){
+    [data-modal="banco"] .container_form .agencia {flex:0 0 30%;}
+    [data-modal="banco"] .container_form .conta {flex:0 0 50%;}
+    [data-modal="banco"] .container_form .digito {flex:0 0 20%;}
+}
+
+/*RESPONSIVO*/
+@media screen and (max-width:1580px){
+    .page .container_center {width:400px;flex:0 0 400px;}
+    .page .container_right {max-width:calc(100vw - 820px);}
+    table.earnings>thead>tr>th,
+    table.earnings>tbody>tr>td {padding:10px 10px;font-size:15px;}
+}
+
+@media screen and (max-width:1490px){
+    .page .container_center {width:360px;flex:0 0 360px;}
+    .page .container_right {max-width:calc(100vw - 790px);}
+    table.earnings>thead>tr>th,
+    table.earnings>tbody>tr>td {padding:10px 10px;font-size:15px;}
+}
+
+/*MOBILE*/
+@media screen and (max-width:990px){    
+    .page .container_right {max-width: calc(100% - 40px);padding-top:20px;}    
+}
