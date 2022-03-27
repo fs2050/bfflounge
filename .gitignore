@@ -14,8 +14,13 @@ yarn-error.log
 /.idea
 /.vscode
 
-
-# Project exclude paths
+## Project exclude paths
 /storage/
 composer.lock
 package-lock.json
+
+## Docker
+/.docker
+
+## Log
+*.log
