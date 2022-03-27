@@ -9,7 +9,7 @@
         <div class="px-3">
             <div class="d-flex align-items-center justify-content-center">
                 <i class="fas fa-star text-warning fs-24 mr-3"></i>
-                <p class="mb-0">Você está entre os top 9,7% Influenciers do BFF Lounge</p>
+                <p class="mb-0">Você está entre os top 9,7% Influencers do BFF Lounge</p>
             </div>
         </div>
     </div>
@@ -91,7 +91,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <button class="transparent btn_new_acount">
+            <button class="transparent btn_new_account">
                 <i class="fas fa-plus"></i> Adicionar nova conta bancária</button>
         </div>
     </div>

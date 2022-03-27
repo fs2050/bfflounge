@@ -46,26 +46,26 @@ $(function(){
 //CURTIR POST
 $(document).on('click','.post_reactions .btn_curtir',function(){
     var icon = $(this);
-    if($(icon).hasClass('far')){    
+    if($(icon).hasClass('far')){
         $(this).removeClass('far').addClass('fas');
-    }else{        
+    }else{
         $(this).removeClass('fas').addClass('far');
-    }    
+    }
 });
 
 //CURTIR RESPOSTA
 $(document).on('click','.comment_like',function(){
     var icon = $(this).find('i');
     var num = $(this).find('.num').html();
-    if($(icon).hasClass('far')){        
+    if($(icon).hasClass('far')){
         num++;
         $(this).find('i').removeClass('far').addClass('fas');
         $(this).find('.num').html(num);
-    }else{        
+    }else{
         num--;
         $(this).find('i').removeClass('fas').addClass('far');
         $(this).find('.num').html(num);
-    }    
+    }
 });
 
 //RESPONDER
@@ -120,7 +120,7 @@ $(function(){
 $(function(){
     $(document).on('click','.chat_list .chat_name, .chat_list .chat_user, .chat_list .chat_message_min',function(){
         $(this).parents('li').removeClass('chat_alert');
-        $(this).parents('li').find('.chat_date i').remove();        
+        $(this).parents('li').find('.chat_date i').remove();
         $('.chat_empty').hide();
         $('.chat_transmition').hide();
         $('.chat_message_transmition').hide();
@@ -157,13 +157,13 @@ $(function(){
 
 //SELECIONA USUÁRIOS TRANSMISSÃO
 $(function(){
-    $(document).on('change','.chat_list li [name="transmition"]',function(){        
+    $(document).on('change','.chat_list li [name="transmition"]',function(){
         $('.chat_transmition_users').find('ul').empty();
         $('.chat_list li').each(function(){
             if($(this).find('[name="transmition"]').is(':checked')){
                 $(this).clone().appendTo('.chat_transmition_users ul');
-            }     
-        });   
+            }
+        });
         var count = $('.chat_transmition_users').find('li').length;
         $('.chat_transmition_count').find('.num').html(count);
     });
@@ -237,7 +237,7 @@ $(function(){
 
 //NEW ACOUNT
 $(function(){
-    $(document).on('click','.btn_new_acount',function(){
+    $(document).on('click','.btn_new_account',function(){
         $('.modal_default[data-modal="banco"]').fadeIn('fast');
         setTimeout(function(){
             $('.modal_default').addClass('active');
@@ -250,7 +250,7 @@ $(function(){
     $(document).on('click','.modal_default .bg',function(){
         setTimeout(function(){
             $('.modal_default').fadeOut('fast');
-        },100);        
+        },100);
         $('.modal_default').removeClass('active');
     });
 });

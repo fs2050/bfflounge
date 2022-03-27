@@ -56,24 +56,11 @@
     <!-- Initialize Swiper -->
     <script>
         $(function(){
-            var swiper = new Swiper('.profile_plans .swiper-container', {
+            const swiper = new Swiper('.profile_plans .swiper-container', {
                 autoHeight: true,
                 centeredSlides: true,
                 slidesPerView: 'auto',
                 spaceBetween: 15,
-                loop: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
-            swiper.slideNext();
-
-            var swiper = new Swiper('.profile_sugestions .swiper-container', {
-                autoHeight: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                spaceBetween: 30,
                 loop: false,
                 navigation: {
                     nextEl: '.swiper-button-next',
