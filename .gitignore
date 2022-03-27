@@ -15,7 +15,6 @@ yarn-error.log
 /.vscode
 
 ## Project exclude paths
-/storage/
 composer.lock
 package-lock.json
 
