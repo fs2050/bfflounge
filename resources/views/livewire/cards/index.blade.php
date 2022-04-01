@@ -81,10 +81,10 @@
 
             <div data-tab="2" class="payments" style="display:none;">
                 <div class="d-flex w-100 mt-0 mt-lg-4 payments_filter">
-                    <button class="transparent mx-2 active">Todas</button>
-                    <button class="transparent mx-2">Erros</button>
-                    <button class="transparent mx-2">Crédito</button>
-                    <button class="transparent mx-2">Pagamentos</button>
+                    <button class="btn-primary transparent mx-2 active">Todas</button>
+                    <button class="btn-primary transparent mx-2">Erros</button>
+                    <button class="btn-primary transparent mx-2">Crédito</button>
+                    <button class="btn-primary transparent mx-2">Pagamentos</button>
                 </div>
 
                 <table class="w-100 mb-3 mt-4">
@@ -135,14 +135,14 @@
                 Adicione créditos na sua carteira
 
                 <div class="d-flex w-100 mt-3">
-                    <button class="transparent">R$10</button>
-                    <button class="transparent">R$20</button>
-                    <button class="transparent">R$50</button>
-                    <button class="transparent">R$100</button>
+                    <button class="btn-primary transparent">R$10</button>
+                    <button class="btn-primary transparent">R$20</button>
+                    <button class="btn-primary transparent">R$50</button>
+                    <button class="btn-primary transparent">R$100</button>
                 </div>
 
                 <div class="px-3 mt-4">
-                    <button><i class="las la-plus"></i> Adicionar crédito</button>
+                    <button class="btn-primary"><i class="las la-plus"></i> Adicionar crédito</button>
                 </div>
             </div>
         </div>
@@ -181,7 +181,7 @@
                 </div>
 
                 <div class="px-2 mt-4">
-                    <button>Veja todas as transações</button>
+                    <button class="btn-primary">Veja todas as transações</button>
                 </div>
             </div>
         </div>

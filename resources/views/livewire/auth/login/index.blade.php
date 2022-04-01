@@ -25,7 +25,7 @@
 
                 <div class="text-center">
                     <div class="px-5">
-                        <button class="w-100 mt-2 mb-4">Entrar</button>
+                        <button class="btn-primary w-100 mt-2 mb-4">Entrar</button>
                     </div>
 
                     <span class="fs-14">Ou entre com:</span>

@@ -27,7 +27,7 @@
                 Seleciona todos
             </div>
 
-            <button class="btn_new_transmition"><i class="las la-plus mr-2"></i> Adicionar</button>
+            <button class="btn-primary btn_new_transmition"><i class="las la-plus mr-2"></i> Adicionar</button>
         </div>
     </div>
 
@@ -233,7 +233,7 @@
             <p>Indique amigos para participarem do BFF Lounge e<br>ganhe R$ 5,00 por cada 10 amigos indicados</p>
             <div class="d-flex align-items-center">
                 <input type="text" value="https://rb.gy/wbxhsf" class="mr-2 flex-1" disabled>
-                <button>Copiar</button>
+                <button class="btn-primary">Copiar</button>
             </div>
 
             <p class="mt-5 mb-4">Compartilhar nas suas redes sociais:</p>
