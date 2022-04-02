@@ -17,7 +17,7 @@
                                 <i class="las la-comment"></i>
                             </div>
                             <div>
-                                <button>Publicar</button>
+                                <button class="btn-primary">Publicar</button>
                             </div>
                         </div>
                     </form>
@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <button class="btn_new_post">Nova publicação</button>
+                        <button class="btn-primary btn_new_post">Nova publicação</button>
                         <div class="header_actions">
                             <i class="fas fa-newspaper"></i>
                             <i class="far fa-bell"></i>
@@ -75,7 +75,7 @@
                 <form class="form_search mt-4">
                     <div class="position-relative d-block d-lg-flex align-items-center">
                         <input type="text" name="filtrar" placeholder="Pesquisa por nome de usuário, hashtag ou publicação" class="flex-1 mr-0 mr-lg-3" />
-                        <button class="nowrap"><i class="fas fa-search"></i> Buscar</button>
+                        <button class="btn-primary nowrap"><i class="fas fa-search"></i> Buscar</button>
                     </div>
                 </form>
 
@@ -84,7 +84,7 @@
                         <div class="profile_cover p-4" style="background-image:url(assets/images/covers/04.png);">
                             <div class="row">
                                 <div class="col-12 text-right">
-                                    <button class="hover"><i class="fas fa-plus"></i> Adicionar como amigo</button>
+                                    <button class="btn-primary hover"><i class="fas fa-plus"></i> Adicionar como amigo</button>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +158,7 @@
                         </ul>
 
                         <div class="btn_more px-1 py-3 bg-white position-relative">
-                            <button class="w-100">Ver todos</button>
+                            <button class="btn-primary w-100">Ver todos</button>
                         </div>
                     </div>
                 </div>
@@ -176,15 +176,15 @@
                                 <p>Acesso completo por 30 dias*</p>
                             </div>
                             <div class="col-lg-6">
-                                <button class="mb-3 w-100 d-flex justify-content-between">
+                                <button class="btn-primary mb-3 w-100 d-flex justify-content-between">
                                     <span>Assinar agora</span>
                                     <span>Grátis por 30 dias</span>
                                 </button>
-                                <button class="mb-3 w-100 d-flex justify-content-between">
+                                <button class="btn-primary mb-3 w-100 d-flex justify-content-between">
                                     <span>3 meses</span>
                                     <span>10% off - 186,30</span>
                                 </button>
-                                <button class="w-100 d-flex justify-content-between">
+                                <button class="btn-primary w-100 d-flex justify-content-between">
                                     <span>6 meses</span>
                                     <span>10% off - 372,60</span>
                                 </button>
@@ -194,7 +194,7 @@
 
                     <div class="row">
                         <div class="col-12 mt-5 text-center text-lg-right">
-                            <button><i class="las la-plus"></i> Adicionar novo</button>
+                            <button class="btn-primary"><i class="las la-plus"></i> Adicionar novo</button>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                                 <div>
                                     <h5>Assine 1 mês com (10% de desconto)</h5>
                                     <span>Pague somente R$ 81,00 por mês*</span>
-                                    <button>Assine agora</button>
+                                    <button class="btn-primary">Assine agora</button>
                                 </div>
                             </div>
                         </div>
@@ -227,7 +227,7 @@
                                 <div>
                                     <h5>Combo de 3 meses (10% de desconto)</h5>
                                     <span>Pague somente R$ 186,30 no total por 3 meses!</span>
-                                    <button>Assine agora</button>
+                                    <button class="btn-primary">Assine agora</button>
                                 </div>
                             </div>
                         </div>
@@ -236,7 +236,7 @@
                                 <div>
                                     <h5>Combo de 6 meses (10% de desconto)</h5>
                                     <span>Pague somente R$ 372,60 no total por 3 meses!</span>
-                                    <button>Assine agora</button>
+                                    <button class="btn-primary">Assine agora</button>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                                 <div>
                                     <h5>Combo de anual (10% de desconto)</h5>
                                     <span>Pague somente R$ 972,60 no total por 12 meses!</span>
-                                    <button>Assine agora</button>
+                                    <button class="btn-primary">Assine agora</button>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                         </div>
                     </div>
                     <div class="text-center mt-5 mb-4 my-lg-5">
-                        <button>Ver mais</button>
+                        <button class="btn-primary">Ver mais</button>
                     </div>
                 </div>
             </div>
@@ -318,7 +318,7 @@
                                     <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
+                                                <button class="btn-primary hover">Seguir</button>
                                                 <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                                             </div>
                                         </div>
@@ -341,7 +341,7 @@
                                     <div class="cover" style="background-image:url(assets/images/covers/02.png);">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
+                                                <button class="btn-primary hover">Seguir</button>
                                                 <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                                             </div>
                                         </div>
@@ -364,7 +364,7 @@
                                     <div class="cover" style="background-image:url(assets/images/covers/03.png);">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
+                                                <button class="btn-primary hover">Seguir</button>
                                                 <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                                             </div>
                                         </div>
@@ -387,7 +387,7 @@
                                     <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                                         <div class="row">
                                             <div class="col-12 text-right">
-                                                <button class="hover">Seguir</button>
+                                                <button class="btn-primary hover">Seguir</button>
                                                 <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                                             </div>
                                         </div>

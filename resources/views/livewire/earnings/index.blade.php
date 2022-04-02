@@ -47,7 +47,7 @@
 
             <div class="text-center mt-4">
                 <div class="px-4">
-                    <button>Solicitar saque</button>
+                    <button class="btn-primary">Solicitar saque</button>
                 </div>
             </div>
         </div>

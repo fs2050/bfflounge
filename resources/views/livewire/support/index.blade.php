@@ -112,7 +112,7 @@
         <div class="input mb-3">
             <textarea name="descricao" placeholder="Descreva seu problema da maneira mais clara que conseguir"></textarea>
         </div>
-        <button class="float-right">Confirmar</button>
+        <button class="btn-primary float-right">Confirmar</button>
         <div class="clearfix"></div>
     </form>
 </div>

@@ -54,7 +54,7 @@
                                             <i class="las la-comment"></i>
                                         </div>
                                         <div>
-                                            <button>Publicar</button>
+                                            <button class="btn-primary">Publicar</button>
                                         </div>
                                     </div>
                                 </form>
@@ -118,7 +118,7 @@
                                 </a>
                             </div>
 
-                            <button class="w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
+                            <button class="btn-primary w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
 
                             <ul class="menu">
                                 <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i> Home</a></li>
@@ -161,6 +161,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
+        <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
 
         @livewireScripts
 
