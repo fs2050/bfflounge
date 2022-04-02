@@ -48,7 +48,7 @@
 
             <div class="text-center mt-4">
                 <div class="px-4">
-                    <button>Solicitar saque</button>
+                    <button class="btn-primary">Solicitar saque</button>
                 </div>
             </div>
         </div>
@@ -85,13 +85,13 @@
                     XXX4138-8
                 </div>
                 <div>
-                    <button>Trocar conta</button>
+                    <button class="btn-primary">Trocar conta</button>
                 </div>
             </div>
         </div>
 
         <div class="text-center mt-4">
-            <button class="transparent btn_new_account">
+            <button class="btn-primary transparent btn_new_account">
                 <i class="fas fa-plus"></i> Adicionar nova conta bancária</button>
         </div>
     </div>

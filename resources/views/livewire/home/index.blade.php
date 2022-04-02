@@ -2,7 +2,7 @@
     <form class="form_search mt-4">
         <div class="position-relative">
             <input type="text" name="filtrar" placeholder="Pesquisa por nome de usuário, hashtag ou publicação" class="w-100" />
-            <button><i class="fas fa-search"></i> Buscar</button>
+            <button class="btn-primary"><i class="fas fa-search"></i> Buscar</button>
         </div>
     </form>
 
@@ -113,7 +113,7 @@
                         <textarea placeholder="Comentar como Júlia Padilha..."></textarea>
                     </div>
                     <div class="new_comment_button">
-                        <button>Publicar</button>
+                        <button class="btn-primary">Publicar</button>
                     </div>
                 </div>
             </div>
@@ -225,7 +225,7 @@
                         <textarea placeholder="Comentar como Júlia Padilha..."></textarea>
                     </div>
                     <div class="new_comment_button">
-                        <button>Publicar</button>
+                        <button class="btn-primary">Publicar</button>
                     </div>
                 </div>
             </div>
@@ -241,7 +241,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -262,7 +262,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/02.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -283,7 +283,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/03.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -304,7 +304,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>

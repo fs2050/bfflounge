@@ -44,7 +44,7 @@
                 Seleciona todos
             </div>
 
-            <button class="btn_new_transmition"><i class="las la-plus mr-2"></i> Adicionar</button>
+            <button class="btn-primary btn_new_transmition"><i class="las la-plus mr-2"></i> Adicionar</button>
         </div>
     </div>
 
@@ -273,7 +273,7 @@
     <div class="chat_empty h-100">
         <div>
             <p>Selecione a mensagem que você deseja visualizar, inicie uma conversa ou <a href="#" class="btn_transmition">Faça uma transmissão</a></p>
-            <button><i class="las la-plus"></i> Nova mensagem</button>
+            <button class="btn-primary"><i class="las la-plus"></i> Nova mensagem</button>
         </div>
     </div>
 
@@ -349,7 +349,7 @@
                         <textarea></textarea>
                     </div>
                     <div class="message_button">
-                        <button><i class="far fa-paper-plane mr-2"></i>Enviar</button>
+                        <button class="btn-primary"><i class="far fa-paper-plane mr-2"></i>Enviar</button>
                     </div>
                 </div>
             </div>
@@ -371,7 +371,7 @@
 
             <div class="chat_transmition_alert">
                 <p>Selecione os usuários para quem quer enviar mensagem e clique em nova transmissão</p>
-                <button class="btn_new_transmition"><i class="las la-plus mr-2"></i> Nova transmissão</button>
+                <button class="btn-primary btn_new_transmition"><i class="las la-plus mr-2"></i> Nova transmissão</button>
             </div>
         </div>
     </div>
@@ -403,7 +403,7 @@
                         <textarea></textarea>
                     </div>
                     <div class="message_button">
-                        <button><i class="far fa-paper-plane mr-2"></i>Enviar</button>
+                        <button class="btn-primary"><i class="far fa-paper-plane mr-2"></i>Enviar</button>
                     </div>
                 </div>
             </div>

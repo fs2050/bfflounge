@@ -29,12 +29,18 @@ h2 {font-size:28px;font-family:'Montserrat';}
 h3 {font-weight:400;color:var(--primary-color);}
 hr {background:var(--primary-color);}
 a, a:hover {text-decoration:none;}
-button {background:var(--primary-color);color:#fff;font-family: 'Roboto', sans-serif;border:2px solid var(--primary-color);transition:all ease .2s;outline:none!important;border:none;border-radius:20px;padding:10px 30px;font-size:13px;text-transform:uppercase;font-weight:500;}
-button i {margin-right:4px;}
-button:hover {background:#cb4e96;border-color:#cb4e96;}
-button:active {background:#722c64;border-color:#fff;}
-button.transparent {background:transparent;border:2px solid var(--primary-color);color:var(--primary-color);padding:8px;}
-button.transparent:hover, button.transparent.active {background:var(--primary-color);color:#fff;}
+
+.btn-primary {background:var(--primary-color);color:#fff;font-family: 'Roboto', sans-serif;border:2px solid var(--primary-color);transition:all ease .2s;outline:none!important;border:none;border-radius:20px;padding:10px 30px;font-size:13px;text-transform:uppercase;font-weight:500;}
+.btn-primary i {margin-right:4px;}
+.btn-primary:hover {background:#cb4e96;border-color:#cb4e96;}
+.btn-primary:active {background:#722c64;border-color:#fff;}
+.btn-primary.transparent {background:transparent;border:2px solid var(--primary-color);color:var(--primary-color);padding:8px;}
+.btn-primary.transparent:hover, .btn-primary.transparent.active {background:var(--primary-color);color:#fff;}
+
+.btn-rounded {
+    border-radius:20px;
+}
+
 .flex-1 {flex:1;}
 .mt-60 {margin-top:60px;}
 .mb-30 {margin-bottom:30px;}

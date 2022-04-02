@@ -66,9 +66,15 @@
                     </div>
                 </div>
             </div>
-
-            <div class="text-center">
-                <button class="my-4">Salvar alterações</button>
+            <div class="text-center pb-4">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-danger btn-rounded" onclick="deleteAccount()">Excluir conta</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn-primary">Salvar alterações</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -77,12 +83,12 @@
 <div class="container_right h-100">
     <h4 class="mb-4">Sugestões para você:</h4>
 
-    <div class="cards_sugestion mb-5">
+    <div class="cards_sugestion">
         <div class="card_sugestion">
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -103,7 +109,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/02.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -124,7 +130,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/03.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -145,7 +151,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="btn-primary hover">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -164,3 +170,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    function deleteAccount() {
+        swal({
+            title: "Deseja prosseguir?",
+            text: "Tem certeza de que deseja apagar sua conta? Todos os seus dados serão perdidos. Ainda será possível recuperar sua conta por um período de 30 (trinta) dias, logando em sua conta.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Sim, excluir!",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false
+        },
+        function(){
+            swal("Conta excluída!", "Operação realizada com sucesso", "success");
+        });
+    }
+</script>
