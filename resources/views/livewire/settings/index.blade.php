@@ -69,7 +69,7 @@
             <div class="text-center pb-4">
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn btn-danger btn-rounded" onclick="deleteAccount()">Excluir conta</button>
+                        <button type="button" class="btn btn-danger btn-rounded" onclick="confirmDeleteAccount()">Excluir conta</button>
                     </div>
                     <div class="col-6">
                         <button class="btn-primary">Salvar alterações</button>
@@ -172,7 +172,7 @@
 </div>
 
 <script>
-    function deleteAccount() {
+    function confirmDeleteAccount() {
         swal({
             title: "Deseja prosseguir?",
             text: "Tem certeza de que deseja apagar sua conta? Todos os seus dados serão perdidos. Ainda será possível recuperar sua conta por um período de 30 (trinta) dias, logando em sua conta.",
@@ -184,7 +184,12 @@
             closeOnConfirm: false
         },
         function(){
+            deleteAccount();
             swal("Conta excluída!", "Operação realizada com sucesso", "success");
         });
+    }
+
+    function deleteAccount() {
+        Livewire.emit('deleteAccount');
     }
 </script>
