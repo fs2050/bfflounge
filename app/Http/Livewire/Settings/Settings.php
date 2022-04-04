@@ -13,7 +13,9 @@ class Settings extends Component
     public $userName = "";
     public $token = "";
 
-    public function mount(
+    protected $listeners = ['deleteAccount'];
+
+    public function booted(
         ClientApi $clientApi
     )
     {
@@ -23,9 +25,14 @@ class Settings extends Component
         session()->put('token', $res->user->token);
         session()->put('user', $res->user);
 
-        $this->userId = session()->get('user')->name;
-        $this->userName = session()->get('user')->id;
+        $this->userId = session()->get('user')->id;
+        $this->userName = session()->get('user')->name;
         $this->token = session()->get('token');
+    }
+
+    public function deleteAccount()
+    {
+        $this->clientApi->userDelete(session()->get('user')->id);
     }
 
     public function render()
