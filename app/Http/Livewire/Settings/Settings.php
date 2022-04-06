@@ -14,7 +14,6 @@ class Settings extends Component
 
     public $user = [];
     public $credentials = [];
-    public $token = "";
 
     protected $listeners = ['deleteAccount', 'updateAccount', 'updatePassword'];
 
