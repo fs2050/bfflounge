@@ -2,42 +2,80 @@
 
 namespace App\Http\Livewire\Settings;
 
+use Illuminate\Support\Facades\Validator;
+
 use Livewire\Component;
 use App\Services\ClientApi;
+use App\Client\UserClient;
 
 class Settings extends Component
 {
-    protected $clientApi;
+    protected $userClient;
 
-    public $userId = null;
-    public $userName = "";
+    public $user = [];
+    public $credentials = [];
     public $token = "";
 
-    protected $listeners = ['deleteAccount'];
+    protected $listeners = ['deleteAccount', 'updateAccount', 'updatePassword'];
 
-    public function booted(
-        ClientApi $clientApi
-    )
+    public function boot(
+        UserClient $userClient
+    ) {
+        $this->userClient = $userClient;
+    }
+
+    public function mount()
     {
-        $this->clientApi = $clientApi;
-        $res = $this->clientApi->login(env('USER_EMAIL'), env('USER_PASS'));
+        $this->user = (array)session()->get('user');
+    }
 
-        session()->put('token', $res->user->token);
-        session()->put('user', $res->user);
+    public function updateAccount()
+    {
+        try {
+            $this->userClient->update(session()->get('user')->id, $this->user);
+            $this->emit('accountUpdated');
+        } catch (\Exception $e) {
+            $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
+        }
+    }
 
-        $this->userId = session()->get('user')->id;
-        $this->userName = session()->get('user')->name;
-        $this->token = session()->get('token');
+    public function updatePassword()
+    {
+        try {
+            $validator = Validator::make($this->credentials, [
+                'current_password' => 'required',
+                'password' => 'required|confirmed',
+            ]);
+
+            if ($validator->fails()) {
+                throw new \Exception();
+            }
+
+            $this->userClient->update(session()->get('user')->id, $this->credentials);
+            $this->credentials = [
+                'current_password' => '',
+                'password' => '',
+                'password_confirmation' => '',
+            ];
+            $this->emit('passwordUpdated');
+        } catch (\Exception $e) {
+            $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
+        }
     }
 
     public function deleteAccount()
     {
-        $this->clientApi->userDelete(session()->get('user')->id);
+        try {
+            $this->userClient->destroy(session()->get('user')->id);
+            $this->emit('accountDeleted');
+        } catch (\Exception $e) {
+            $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
+        }
     }
 
     public function render()
     {
-        return view( 'livewire.settings.index' );
+        return view('livewire.settings.index' );
     }
 
 } // Settings
