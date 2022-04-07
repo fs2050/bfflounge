@@ -8,22 +8,33 @@
 
         <div class="card p-4 p-lg-5">
 
-            <img src="{{ asset( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
+            <img src="{{ url( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
 
-            <form class="form_cadastro mb-0" id="login">
+            <div class="alert">
+                {{ $return }}
+            </div>
+
+            <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
                 <div class="input">
-                    <input type="email" name="email" placeholder="E-mail:" />
+                    <input type="email" name="email" id="email" required placeholder="E-mail:" wire:model="form.email"/>
+                    @error( 'form.email' )
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="input password mb-2">
-                    <input type="password" name="senha" placeholder="Senha:" />
+                    <input type="password" name="senha" id="password" required placeholder="Senha:" wire:model="form.password" />
                     <i class="fas fa-eye show_password"></i>
+                    @error( 'form.password' )
+                        <span class="error">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <p class="text-right forgot ls-1">Esqueceu a sua senha?</p>
 
                 <div class="text-center">
+
                     <div class="px-5">
                         <button class="btn-primary w-100 mt-2 mb-4">Entrar</button>
                     </div>
@@ -36,9 +47,13 @@
                         <a href="#"><img src="{{ asset( 'assets/images/google.png' ) }}" alt="Google" class="mx-3" /></a>
                     </div>
 
-                    <span class="d-block mb-2 fs-14">Ainda não tem uma conta?</span>
+                    <span class="d-block mb-2 fs-14">
+                        Ainda não tem uma conta?
+                    </span>
+[
                     <a href="#" class="text-uppercase c-pink fs-14 ls-1 fw-500">Cadastre-se</a>
-                </div>
+
+                </div> <!-- text-center -->
 
             </form> <!-- form_cadastro -->
 

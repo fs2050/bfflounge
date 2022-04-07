@@ -58,11 +58,11 @@ use App\Http\Livewire\{
 
 };
 
-Route::group( [ ], function () {
+/* Login
+================================================== */
+Route::get( '/login', Login::class )->name( 'login' ); ## Login
 
-    /* Login
-    ================================================== */
-    Route::get( '/login', Login::class ); ## Login
+Route::group( [ 'middleware' => 'auth.api' ], function() {
 
     /* Home
     ================================================== */
