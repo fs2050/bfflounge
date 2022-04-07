@@ -10,25 +10,22 @@ use Illuminate\Support\Facades\Session;
 
 class Login extends Component
 {
-    public $form = [
-        'email'     => '',
-        'password'  => '',
-    ];
-
-    public $return = '';
+    public $email       = '';
+    public $password    = '';
+    public $return      = '';
 
     public function submit()
     {
         $this->validate([
-            'form.email'        => [ 'required', 'email' ],
-            'form.password'     => [ 'required' ]
+            'email'        => [ 'required', 'email' ],
+            'password'     => [ 'required' ]
         ]);
 
         $client = new ClientGuzzle( new Client );
 
         $formParams = [ 'form_params' => [
-            "email"         => $this->form[ 'email' ],
-            "password"      => $this->form[ 'password' ],
+            'email'         => $this->email,
+            'password'      => $this->password,
         ]];
 
         $response = $client->request( 'POST', config( 'bffapi.auth.login' ), $formParams );

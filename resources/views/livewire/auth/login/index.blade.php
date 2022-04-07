@@ -17,29 +17,35 @@
             <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
                 <div class="input">
-                    <input type="email" name="email" id="email" required placeholder="E-mail:" wire:model="form.email"/>
-                    @error( 'form.email' )
+                    <input type="email" name="email" required placeholder="E-mail:" wire:model="email"/>
+                    @error( 'email' )
                         <span class="error">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <div class="input password mb-2">
-                    <input type="password" name="senha" id="password" required placeholder="Senha:" wire:model="form.password" />
+                    <input type="password" name="senha" required placeholder="Senha:" wire:model="password" />
                     <i class="fas fa-eye show_password"></i>
-                    @error( 'form.password' )
+                    @error( 'password' )
                         <span class="error">{{ $message }}</span>
                     @enderror
                 </div>
 
-                <p class="text-right forgot ls-1">Esqueceu a sua senha?</p>
+                <p class="text-right forgot ls-1">
+                    Esqueceu a sua senha?
+                </p>
 
                 <div class="text-center">
 
                     <div class="px-5">
-                        <button class="btn-primary w-100 mt-2 mb-4">Entrar</button>
+                        <button class="btn-primary w-100 mt-2 mb-4">
+                            Entrar
+                        </button>
                     </div>
 
-                    <span class="fs-14">Ou entre com:</span>
+                    <span class="fs-14">
+                        Ou entre com:
+                    </span>
 
                     <div class="d-flex align-items-center justify-content-center mt-4 mb-5">
                         <a href="#"><img src="{{ asset( 'assets/images/facebook.png' ) }}" alt="Facebook" class="mx-3" /></a>
@@ -51,7 +57,9 @@
                         Ainda não tem uma conta?
                     </span>
 [
-                    <a href="#" class="text-uppercase c-pink fs-14 ls-1 fw-500">Cadastre-se</a>
+                    <a href="#" class="text-uppercase c-pink fs-14 ls-1 fw-500">
+                        Cadastre-se
+                    </a>
 
                 </div> <!-- text-center -->
 
