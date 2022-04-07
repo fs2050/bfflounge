@@ -10,7 +10,8 @@ return [
         'verify'        => 'auth/verify',
 
         'login'         => 'auth/login',
-        'forgot'        => 'auth/forgot'
+        'forgot'        => 'auth/forgot',
+        'recover'       => 'auth/recover'
 
     ] // auth
 
