@@ -8,6 +8,7 @@ return [
 
         'login'         => 'auth/login',
         'register'      => 'auth/register',
+        'verify'        => 'auth/verify',
         'forgot'        => 'auth/forgot'
 
     ] // auth
