@@ -6,6 +6,7 @@ use App\Http\Livewire\{
 
     /* Auth
     ================================================== */
+    Auth\Register\Register, ## Register
     Auth\Login\Login, ## Login
 
     /* Home
@@ -58,9 +59,10 @@ use App\Http\Livewire\{
 
 };
 
-/* Login
+/* Auth
 ================================================== */
 Route::get( '/login', Login::class )->name( 'login' ); ## Login
+Route::get( '/register', Register::class )->name( 'register' ); ## Register
 
 Route::group( [ 'middleware' => 'auth.api' ], function() {
 

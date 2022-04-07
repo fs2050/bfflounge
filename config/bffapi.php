@@ -2,12 +2,13 @@
 
 return [
 
-    'base_url'      => env( 'BFF_API_URL' ),
+    'base_url'          => env( 'BFF_API_URL' ),
 
     'auth' => [
 
-        'login'     => 'auth/login',
-        'forgot'    => 'auth/forgot'
+        'login'         => 'auth/login',
+        'register'      => 'auth/register',
+        'forgot'        => 'auth/forgot'
 
     ] // auth
 
