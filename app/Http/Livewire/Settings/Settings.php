@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Settings;
 use Illuminate\Support\Facades\Validator;
 
 use Livewire\Component;
-use App\Services\ClientApi;
 use App\Client\UserClient;
 
 class Settings extends Component
