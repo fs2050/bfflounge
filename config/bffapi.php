@@ -6,9 +6,10 @@ return [
 
     'auth' => [
 
-        'login'         => 'auth/login',
         'register'      => 'auth/register',
         'verify'        => 'auth/verify',
+
+        'login'         => 'auth/login',
         'forgot'        => 'auth/forgot'
 
     ] // auth
