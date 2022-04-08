@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Auth\Login;
 
 use Livewire\Component;
 
-use App\Http\Requests\Auth\Login\LoginValidationFormRequest;
 use App\Client\ClientGuzzle;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
