@@ -7,43 +7,39 @@ use Livewire\Component;
 use App\Client\ClientGuzzle;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Exception\ClientException;
 
 class Recover extends Component
 {
-    public $token           = '';
-    public $senha           = '';
-    public $return          = '';
+    public $token       = '';
+    public $password    = '';
+    public $return      = '';
 
     public function submit()
     {
-        $this->validate([
-            'token'         => [ 'required' ],
-            'senha'         => [ 'required', 'string,', 'confirmed' ]
-        ]);
-
+        dd("chegou aqui!");
         $client = new ClientGuzzle( new Client );
 
-        $formParams = [ 'form_params' => [
-            'token'         => $this->token,
-            'senha'         => $this->senha,
-        ]];
+        try {
+            $response = $client->request( 'POST', config( 'bffapi.auth.recover' ), [
+                'form_params' => [
+                    'token'         => $this->token,
+                    'password'      => $this->password
+                ]
+            ]);
 
-        $response = $client->request( 'POST', config( 'bffapi.auth.recover' ), $formParams );
-
-        if( $response->getStatusCode() == 200 ) {
-
-            $response = json_decode( ( string ) $response->getBody() );
+            $response = json_decode( $response->getBody() );
 
             Session::put( 'user', $response->user );
 
-            return redirect()->route( 'home.index' );
+            return redirect()->route( 'recover' );
+
+        } catch ( ClientException $e ) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+
+            $this->return = 'Ops.. Algo errado!';
         }
-        else{
-
-            $this->return = 'Login ou senha inválidos';
-
-        }
-
     }
 
     public function render()
