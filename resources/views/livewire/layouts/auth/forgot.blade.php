@@ -25,11 +25,15 @@
 		<link rel="stylesheet" type="text/css" href="{{ url( 'assets/css/default.css' ) }}">
         <link rel="stylesheet" type="text/css" href="{{ url( 'assets/css/login.css' ) }}">
 
+        @livewireStyles
+
 	</head>
 
     <body>
 
         {{ $slot }}
+
+        @livewireScripts
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>

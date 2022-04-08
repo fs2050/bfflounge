@@ -27,15 +27,14 @@ class Forgot extends Component
 
             $response = json_decode( $response->getBody() );
 
-            Session::put( 'user', $response->user );
-
-            return redirect()->route( 'recover' );
+            if( $response == [] )
+                return redirect()->route( 'recover' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-
-            $this->return = 'Ops.. E-mail inválido!';
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            // dd($responseBodyAsString->errors->email[0]);
+            $this->return = $responseBodyAsString->errors->email[0];
         }
     }
 
