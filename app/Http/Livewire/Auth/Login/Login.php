@@ -4,9 +4,11 @@ namespace App\Http\Livewire\Auth\Login;
 
 use Livewire\Component;
 
+use App\Http\Requests\Auth\Login\LoginValidationFormRequest;
 use App\Client\ClientGuzzle;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Exception\ClientException;
 
 class Login extends Component
 {
@@ -16,40 +18,34 @@ class Login extends Component
 
     public function submit()
     {
-        $this->validate([
-            'email'        => [ 'required', 'email' ],
-            'password'     => [ 'required' ]
-        ]);
-
         $client = new ClientGuzzle( new Client );
 
-        $formParams = [ 'form_params' => [
-            'email'         => $this->email,
-            'password'      => $this->password,
-        ]];
+        try {
+            $response = $client->request( 'POST', config( 'bffapi.auth.login' ), [
+                'form_params' => [
+                    'email'         => $this->email,
+                    'password'      => $this->password
+                ]
+            ]);
 
-        $response = $client->request( 'POST', config( 'bffapi.auth.login' ), $formParams );
-
-        if( $response->getStatusCode() == 200 ) {
-
-            $response = json_decode( ( string ) $response->getBody() );
+            $response = json_decode( $response->getBody() );
 
             Session::put( 'user', $response->user );
 
             return redirect()->route( 'home.index' );
+
+        } catch ( ClientException $e ) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+
+            $this->return = 'Ops.. Login e/ou senha inválidos';
         }
-        else{
-
-            $this->return = 'Login ou senha inválidos';
-
-        }
-
     }
 
     public function render()
     {
         return view( 'livewire.auth.login.index' )
-                ->layout( 'livewire.layouts.login' );
+                ->layout( 'livewire.layouts.auth.login' );
     }
 
 } // Login
