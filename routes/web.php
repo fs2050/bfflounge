@@ -11,7 +11,7 @@ use App\Http\Livewire\{
 
     Auth\Login\Login, ## Login
     Auth\Forgot\Forgot, ## Forgot
-    Auth\Recover\Recover, ## Recover
+    Auth\Reset\Reset, ## Reset
 
     /* Home
     ================================================== */
@@ -70,7 +70,7 @@ Route::get( '/verify', Verify::class )->name( 'verify' ); ## Verify
 
 Route::get( '/login', Login::class )->name( 'login' ); ## Login
 Route::get( '/forgot', Forgot::class )->name( 'forgot' ); ## Forgot
-Route::get( '/recover', Recover::class )->name( 'recover' ); ## Recover
+Route::get( '/reset', Reset::class )->name( 'reset' ); ## Reset
 
 Route::group( [ 'middleware' => 'auth.api' ], function() {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Recover;
+namespace App\Http\Livewire\Auth\Reset;
 
 use Livewire\Component;
 
@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
-class Recover extends Component
+class Reset extends Component
 {
     public $token       = '';
     public $password    = '';
@@ -17,11 +17,10 @@ class Recover extends Component
 
     public function submit()
     {
-        dd("chegou aqui!");
         $client = new ClientGuzzle( new Client );
 
         try {
-            $response = $client->request( 'POST', config( 'bffapi.auth.recover' ), [
+            $response = $client->request( 'PATCH', config( 'bffapi.auth.reset' ), [
                 'form_params' => [
                     'token'         => $this->token,
                     'password'      => $this->password
@@ -32,20 +31,23 @@ class Recover extends Component
 
             Session::put( 'user', $response->user );
 
-            return redirect()->route( 'recover' );
+            return redirect()->route( 'verify' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
 
-            $this->return = 'Ops.. Algo errado!';
+            dd( $errors = $responseBodyAsString->errors);
+            // $errors = $responseBodyAsString->errors->password[0];
+
+            $this->return = $errors;
         }
     }
 
     public function render()
     {
-        return view( 'livewire.auth.recover.index' )
-                ->layout( 'livewire.layouts.auth.recover' );
+        return view( 'livewire.auth.reset.index' )
+                ->layout( 'livewire.layouts.auth.reset' );
     }
 
-} // Recover
+} // Reset

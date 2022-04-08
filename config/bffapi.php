@@ -11,7 +11,7 @@ return [
 
         'login'         => 'auth/login',
         'forgot'        => 'auth/forgot',
-        'recover'       => 'auth/recover'
+        'reset'         => 'auth/reset'
 
     ] // auth
 
