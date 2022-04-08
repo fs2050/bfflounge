@@ -37,7 +37,10 @@ class Login extends Component
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
 
-            $this->return = 'Ops.. Login e/ou senha inválidos';
+            if( $responseBodyAsString == "[]" )
+                return redirect()->route( 'verify' );
+
+            return $this->return = 'Ops.. Login e/ou senha inválidos';
         }
     }
 
