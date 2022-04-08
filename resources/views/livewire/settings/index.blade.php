@@ -12,12 +12,12 @@
             <div class="container pt-0">
                 <div class="input">
                     <label>Nome</label>
-                    <input type="text" name="nome" wire:model="user.name" readonly />
+                    <input type="text" name="nome" wire:model="user.name" />
                 </div>
 
                 <div class="input">
                     <label>E-mail</label>
-                    <input type="text" name="email" wire:model="user.email" />
+                    <input type="text" name="email" wire:model="user.email" readonly />
                 </div>
 
                 <div class="row mb-30">
@@ -106,15 +106,16 @@
                         <label>Confirmar nova senha</label>
                         <input type="password" name="senha_confirmacao" wire:model="credentials.password_confirmation" />
                     </div>
-                </div>
-            </div>
-            <div class="text-center pb-4">
-                <div class="row">
-                    <div class="col-6">
-                        <button type="button" class="btn btn-danger btn-rounded" onclick="confirmDeleteAccount()">Excluir conta</button>
-                    </div>
-                    <div class="col-6">
-                        <button type="button" onclick="updatePassword()" class="btn-primary">Alterar Senha</button>
+
+                    <div class="text-center pb-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-danger btn-rounded" onclick="confirmDeleteAccount()">Excluir conta</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" onclick="updatePassword()" class="btn-primary">Alterar Senha</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -246,7 +247,7 @@
     function coverUpdated() {
         swal({
             title: "Confirmação",
-            text: "Deseja substituir a capa da perfil?",
+            text: "Deseja substituir a capa do perfil?",
             type: "info",
             showCancelButton: true,
             confirmButtonClass: "btn-primary",
