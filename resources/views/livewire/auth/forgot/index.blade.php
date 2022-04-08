@@ -8,27 +8,26 @@
 
         <img src="{{ url( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
 
-        <h3>
-            E-mail
-        </h3>
+        <div style="color: red" class="error alert text-center">
+            {{ $return }}
+        </div>
 
-        <form class="form_cadastro mt-3" id="login" wire:submit.prevent="submit">
+        <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
-            <div class="input mb-2">
-                <input type="email" name="email" placeholder="E-mail" wire:model="email" />
-                @error( 'email' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
+            <div class="input">
+                <input type="email" name="email" placeholder="E-mail:" wire:model="email"/>
             </div>
 
             <div class="text-center">
-                <div class="px-5 mt-5">
-                    <button type="submit" class="w-100 mt-2 mb-4">
+
+                <div class="px-5">
+                    <button class="btn-primary w-100 mt-2 mb-4">
                         Enviar
                     </button>
                 </div>
 
-            </div>
+            </div> <!-- text-center -->
+
         </form>
 
     </div>
@@ -44,7 +43,6 @@
             </div>
             <div>
                 <a href="#" class="mr-0 mr-lg-5 mb-2 mb-lg-0 d-block d-lg-inline-block"><i class="far fa-question-circle"></i> O que é o BFF Lounge?</a>
-                <a href="#" class="d-block d-lg-inline-block"><i class="fas fa-globe"></i>Idioma</a>
             </div>
         </div>
     </div>
