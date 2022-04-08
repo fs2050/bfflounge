@@ -14,7 +14,7 @@ class ClientGuzzle
      */
     protected $client;
     protected $url_api;
-    
+
     /**
      * GuzzleHelper constructor.
      * @param Client $client
@@ -35,7 +35,7 @@ class ClientGuzzle
     public function request(string $method, string $url, array $options = [])
     {
         if(Session::has('user')){
-            $options['headers']['Authorization'] = 'Bearer ' . Session::get('user')->token;
+            $options['headers']['Authorization'] = 'Bearer ' . Session::get('user');
         }
 
         // dd($options);

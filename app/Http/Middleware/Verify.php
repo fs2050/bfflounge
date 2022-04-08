@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class AuthApi
+class Verify
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class AuthApi
      */
     public function handle( Request $request, Closure $next )
     {
-        if( !Session::get( 'user' ) )
-            return redirect()->route( 'login' );
+        if ( !Session::get( 'user' )->status == 1 )
+            return redirect()->route( 'verify' );
 
         return $next( $request );
     }
 
-} // AuthApi
+} // Verify

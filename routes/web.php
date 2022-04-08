@@ -72,7 +72,7 @@ Route::get( '/login', Login::class )->name( 'login' ); ## Login
 Route::get( '/forgot', Forgot::class )->name( 'forgot' ); ## Forgot
 Route::get( '/reset', Reset::class )->name( 'reset' ); ## Reset
 
-Route::group( [ 'middleware' => 'auth.api' ], function() {
+Route::group( [ 'middleware' => 'auth.api', 'verify' ], function() {
 
     /* Home
     ================================================== */
