@@ -4,7 +4,7 @@ namespace App\Client;
 
 use App\Client\ClientGuzzle;
 
-class UserClient
+class ProfileClient
 {
     private $client;
     private $token;
@@ -21,7 +21,7 @@ class UserClient
 
     public function show($id)
     {
-        $response = $this->client->request('GET', "users/$id", [
+        $response = $this->client->request('GET', "profiles/$id", [
             'headers' => [
                 "authorization" => "Bearer {$this->token}"
             ]
@@ -32,7 +32,7 @@ class UserClient
 
     public function update($id, $data)
     {
-        $response = $this->client->request('PUT', "users/$id", [
+        $response = $this->client->request('PUT', "profiles/$id", [
             'form_params' => $data,
             'headers' => [
                 "authorization" => "Bearer {$this->token}"
@@ -44,7 +44,7 @@ class UserClient
 
     public function destroy($id)
     {
-        $response = $this->client->request('DELETE', "users/$id/destroy", [
+        $response = $this->client->request('DELETE', "profiles/$id/destroy", [
             'headers' => [
                 "authorization" => "Bearer {$this->token}"
             ]
