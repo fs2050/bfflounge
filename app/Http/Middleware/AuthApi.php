@@ -17,6 +17,9 @@ class AuthApi
      */
     public function handle( Request $request, Closure $next )
     {
+        if ( !Session::get( 'user' )->status == 1 )
+            return redirect()->route( 'verify' );
+
         if( !Session::get( 'user' ) )
             return redirect()->route( 'login' );
 
