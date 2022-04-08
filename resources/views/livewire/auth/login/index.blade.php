@@ -10,36 +10,36 @@
 
             <img src="{{ url( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
 
-            <div class="alert">
+            <div style="color: red" class="error alert text-center">
                 {{ $return }}
             </div>
 
             <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
                 <div class="input">
-                    <input type="email" name="email" id="email" required placeholder="E-mail:" wire:model="form.email"/>
-                    @error( 'form.email' )
-                        <span class="error">{{ $message }}</span>
-                    @enderror
+                    <input type="email" name="email" placeholder="E-mail:" wire:model="email"/>
                 </div>
 
                 <div class="input password mb-2">
-                    <input type="password" name="senha" id="password" required placeholder="Senha:" wire:model="form.password" />
+                    <input type="password" name="senha" placeholder="Senha:" wire:model="password" />
                     <i class="fas fa-eye show_password"></i>
-                    @error( 'form.password' )
-                        <span class="error">{{ $message }}</span>
-                    @enderror
                 </div>
 
-                <p class="text-right forgot ls-1">Esqueceu a sua senha?</p>
+                <a href="{{ route( 'forgot' ) }}" class="text-right forgot ls-1">
+                    Esqueceu a sua senha?
+                </a>
 
                 <div class="text-center">
 
                     <div class="px-5">
-                        <button class="btn-primary w-100 mt-2 mb-4">Entrar</button>
+                        <button class="btn-primary w-100 mt-2 mb-4">
+                            Entrar
+                        </button>
                     </div>
 
-                    <span class="fs-14">Ou entre com:</span>
+                    <span class="fs-14">
+                        Ou entre com:
+                    </span>
 
                     <div class="d-flex align-items-center justify-content-center mt-4 mb-5">
                         <a href="#"><img src="{{ asset( 'assets/images/facebook.png' ) }}" alt="Facebook" class="mx-3" /></a>
@@ -50,8 +50,10 @@
                     <span class="d-block mb-2 fs-14">
                         Ainda não tem uma conta?
                     </span>
-[
-                    <a href="#" class="text-uppercase c-pink fs-14 ls-1 fw-500">Cadastre-se</a>
+
+                    <a href="{{ route( 'register' ) }}" class="text-uppercase c-pink fs-14 ls-1 fw-500">
+                        Cadastre-se
+                    </a>
 
                 </div> <!-- text-center -->
 
@@ -75,7 +77,6 @@
 
                 <div>
                     <a href="#" class="mr-0 mr-lg-5 mb-2 mb-lg-0 d-block d-lg-inline-block"><i class="far fa-question-circle"></i> O que é o BFF Lounge?</a>
-                    <a href="#" class="d-block d-lg-inline-block"><i class="fas fa-globe"></i>Idioma</a>
                 </div>
 
             </div>
