@@ -9,6 +9,10 @@ return [
         'login'     => 'auth/login',
         'forgot'    => 'auth/forgot'
 
-    ] // auth
+    ], // auth
+
+    'profiles' => [
+        'update' => 'profiles'
+    ]
 
 ]; // return
