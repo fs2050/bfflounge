@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/profile.css' ) }}">
-
 <div class="page_container">
     <div class="modal_default">
         <div class="d-flex w-100 h-100 position-relative align-items-center justify-content-center">
