@@ -13,7 +13,13 @@ class Profile extends Component
 
     public $user = [];
     public $profiles = [];
-    public $profile = [];
+    public $profile = [
+        'name' => 'Profile',
+        'slug' => 'slug',
+        'bio' => 'Conteúdo da bio',
+        'avatar' => null,
+        'cover' => null,
+    ];
 
     public function boot(
         UserClient $userClient,
@@ -33,7 +39,10 @@ class Profile extends Component
             return (array)$item;
         }, $userData->profiles);
 
-        $this->profile = reset($this->profiles);
+        if(count($this->profiles)) {
+            $this->profile = reset($this->profiles);
+        }
+
     }
 
     public function render()
