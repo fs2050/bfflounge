@@ -40,8 +40,8 @@
                     <h2 class="mb-4 c-pink">Profiles</h2>
 
                     <div style="display: none;">
-                        <input type="file" wire:model="cover" accept=".png,.jpg,.jpeg" onchange="coverUpdated()" name="cover" />
-                        <input type="file" wire:model="avatar" accept=".png,.jpg,.jpeg" onchange="avatarUpdated()" name="avatar" />
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="coverUpdated()" name="cover" />
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="avatarUpdated()" name="avatar" />
                     </div>
 
                     @foreach($profiles as $index => $profile)

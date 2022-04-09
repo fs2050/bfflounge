@@ -70,7 +70,7 @@
 
         <main>
             <div class="container">
-                <form class="form_search mt-4">
+                <form class="form_search mt-4 mb-4">
                     <div class="position-relative d-block d-lg-flex align-items-center">
                         <input type="text" name="filtrar" placeholder="Pesquisa por nome de usuário, hashtag ou publicação" class="flex-1 mr-0 mr-lg-3" />
                         <button class="btn-primary nowrap"><i class="fas fa-search"></i> Buscar</button>
@@ -79,7 +79,14 @@
 
                 <div class="d-block d-lg-flex w-100">
                     <div class="profile_info flex-1 mb-4 mb-lg-0">
-                        <div class="profile_cover p-4" style="background-image:url(assets/images/covers/04.png);">
+                        <div
+                            class="profile_cover p-4"
+                            @if(isset($profile) && !is_null($profile['cover']))
+                                style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['cover']}});"
+                            @else
+                                style="background-image:url(assets/images/covers/04.png);"
+                            @endif
+                        >
                             <div class="row">
                                 <div class="col-12 text-right">
                                     <button class="btn-primary hover"><i class="fas fa-plus"></i> Adicionar como amigo</button>
@@ -88,10 +95,17 @@
                         </div>
                         <div class="profile_menu px-5 pl-lg-5 py-4 pr-lg-4">
                             <div class="d-block d-lg-flex align-items-center text-center text-lg-left">
-                                <div class="profile_photo" style="background-image:url(assets/images/users/01.png);"></div>
+                                <div
+                                    class="profile_photo"
+                                    @if(isset($profile) && !is_null($profile['avatar']))
+                                        style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['avatar']}});"
+                                    @else
+                                        style="background-image:url(assets/images/users/01.png);"
+                                    @endif
+                                ></div>
                                 <div class="profile_name ml-0 ml-lg-3 flex-1">
-                                    <h5>Jéssica Padilha</h5>
-                                    <span><a href="#">@jessypadilha22</a></span>
+                                    <h5>{{$profile['name']}}</h5>
+                                    <span><a href="#">{{ '@'.$profile['slug'] }}</a></span>
                                 </div>
                                 <div class="profile_numbers d-flex justify-content-center mt-4 mt-lg-0">
                                     <div>
@@ -163,7 +177,7 @@
 
                 <div class="profile_about my-5">
                     <h3>Sobre mim</h3>
-                    <p>Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                    <p>{{$profile['bio']}}</p>
                 </div>
 
                 <div class="profile_price bg-white py-4 py-lg-5 px-3 px-lg-5">

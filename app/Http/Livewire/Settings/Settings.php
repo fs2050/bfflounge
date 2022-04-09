@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Settings;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr;
 
-use Livewire\WithFileUploads;
 use Livewire\Component;
 use App\Client\UserClient;
 use App\Client\ProfileClient;
@@ -14,8 +13,6 @@ use Storage;
 
 class Settings extends Component
 {
-    use WithFileUploads;
-
     protected $userClient;
     protected $profileClient;
 
@@ -24,8 +21,6 @@ class Settings extends Component
     public $profiles = [];
 
     public $selectedProfileId;
-    public $avatar;
-    public $cover;
 
     protected $listeners = [
         'deleteAccount',
@@ -118,14 +113,12 @@ class Settings extends Component
 
     public function changeCover($id)
     {
-        $this->cover = [];
         $this->selectedProfileId = $id;
         $this->emit('showSelectCoverDialog');
     }
 
     public function changeAvatar($id)
     {
-        $this->avatar = [];
         $this->selectedProfileId = $id;
         $this->emit('showSelectAvatarDialog');
     }
@@ -135,9 +128,6 @@ class Settings extends Component
 
         try {
             $profile = collect($this->profiles)->where('id', $this->selectedProfileId)->first();
-            $upload = reset($this->cover);
-            $path = $upload->store('covers');
-
             $this->emit('sendCoverToApi',  $profile);
         } catch (\Exception $e) {
             dd($e->getMessage());
@@ -150,9 +140,6 @@ class Settings extends Component
 
         try {
             $profile = collect($this->profiles)->where('id', $this->selectedProfileId)->first();
-            $upload = reset($this->avatar);
-            $path = $upload->store('avatars');
-
             $this->emit('sendAvatarToApi',  $profile);
         } catch (\Exception $e) {
             dd($e->getMessage());
