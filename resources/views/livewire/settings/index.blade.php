@@ -1,53 +1,118 @@
-<div class="container_center h-100 pt-4 pt-lg-5">
+<div class="container_center pt-4 pt-lg-5">
     <h4 class="mt-0 mt-lg-5 mb-4 c-pink">
         Configurações
     </h4>
 
     <div class="card mb-5">
         <div class="container">
-            <h2 class="c-pink">Editar Perfil</h2>
+            <h2 class="c-pink">Editar Usuário</h2>
         </div>
 
         <form class="form_cadastro">
             <div class="container pt-0">
                 <div class="input">
-                    <label>User Name</label>
-                    <input type="text" name="user" />
-                </div>
-
-                <div class="input">
                     <label>Nome</label>
-                    <input type="text" name="nome" />
-                </div>
-
-                <div class="input">
-                    <label>Bio</label>
-                    <textarea name="biografia"></textarea>
+                    <input type="text" name="nome" wire:model="user.name" />
                 </div>
 
                 <div class="input">
                     <label>E-mail</label>
-                    <input type="text" name="email" />
+                    <input type="text" name="email" wire:model="user.email" readonly />
                 </div>
 
                 <div class="row mb-30">
                     <div class="col-lg-6">
                         <div class="input mb-sm-30">
                             <label>Telefone</label>
-                            <input type="tel" name="telefone" />
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="input">
-                            <label>Celular</label>
-                            <input type="tel" name="celular" />
+                            <input type="tel" name="telefone" wire:model="user.phone" />
                         </div>
                     </div>
                 </div>
+                <div class="col-12 text-right">
+                    <button type="button" onclick="updateAccount()" class="btn-primary">
+                        Salvar alterações
+                    </button>
+                </div>
+            </div>
 
-                <div class="input">
-                    <label>Endereço</label>
-                    <input type="text" name="endereco" />
+            <div>
+                <div class="container">
+                    <h2 class="mb-4 c-pink">Profiles</h2>
+
+                    <div style="display: none;">
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="coverUpdated()" name="cover" />
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="avatarUpdated()" name="avatar" />
+                    </div>
+
+                    @foreach($profiles as $index => $profile)
+                        <div class="container-flex">
+                            <div class="row">
+                                @if(isset($profile) && !is_null($profile['avatar']))
+                                    <div class="col-12 py-2">
+                                        <div
+                                            class="profile_photo cursor-pointer"
+                                            title="Alterar avatar"
+                                            wire:click="changeAvatar('{{$profile['id']}}')"
+                                            @if(isset($profile) && !is_null($profile['avatar']))
+                                                style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['avatar']}});"
+                                            @else
+                                                style="background-image:url(assets/images/users/01.png);"
+                                            @endif
+                                        ></div>
+                                    </div>
+                                @endif
+                                @if(isset($profile) && !is_null($profile['cover']))
+                                    <div class="col-12 pt-2 pb-4">
+                                        <div
+                                            class="profile_cover cursor-pointer"
+                                            title="Alterar capa"
+                                            wire:click="changeCover('{{$profile['id']}}')"
+                                            @if(isset($profile) && !is_null($profile['cover']))
+                                                style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['cover']}});"
+                                            @else
+                                                style="background-image:url(assets/images/users/01.png);"
+                                            @endif
+                                        ></div>
+                                    </div>
+                                @endif
+                                <div class="col-12 my-4">
+                                    <div class="input">
+                                        <label>Nome</label>
+                                        <input type="text" wire:model="profiles.{{$index}}.name" />
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="input">
+                                        <label>Bio</label>
+                                        <textarea rows="5" wire:model="profiles.{{$index}}.bio"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4 text-right">
+                                    <button
+                                        type="button"
+                                        class="btn-primary"
+                                        wire:click="changeCover('{{$profile['id']}}')"
+                                    >
+                                        Alterar Capa
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn-primary"
+                                        wire:click="changeAvatar('{{$profile['id']}}')"
+                                    >
+                                        Alterar Avatar
+                                    </button>
+                                    <button
+                                        type="button"
+                                        wire:click="updateProfile('{{$profile['id']}}')"
+                                        class="btn-primary"
+                                    >
+                                        Alterar Perfil
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -56,23 +121,29 @@
                     <h2 class="mb-4 c-pink">Segurança</h2>
 
                     <div class="input">
+                        <label>Senha Atual</label>
+                        <input type="password" name="senha" wire:model="credentials.current_password" />
+                    </div>
+
+                    <div class="input">
                         <label>Nova senha</label>
-                        <input type="password" name="senha" />
+                        <input type="password" name="senha" wire:model="credentials.password" />
                     </div>
 
                     <div class="input">
                         <label>Confirmar nova senha</label>
-                        <input type="password" name="senha_confirmacao" />
+                        <input type="password" name="senha_confirmacao" wire:model="credentials.password_confirmation" />
                     </div>
-                </div>
-            </div>
-            <div class="text-center pb-4">
-                <div class="row">
-                    <div class="col-6">
-                        <button type="button" class="btn btn-danger btn-rounded" onclick="confirmDeleteAccount()">Excluir conta</button>
-                    </div>
-                    <div class="col-6">
-                        <button class="btn-primary">Salvar alterações</button>
+
+                    <div class="text-center pb-4">
+                        <div class="row">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-danger btn-rounded" onclick="confirmDeleteAccount()">Excluir conta</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" onclick="updatePassword()" class="btn-primary">Alterar Senha</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -185,11 +256,154 @@
         },
         function(){
             deleteAccount();
-            swal("Conta excluída!", "Operação realizada com sucesso", "success");
         });
     }
 
     function deleteAccount() {
         Livewire.emit('deleteAccount');
     }
+
+    function updateAccount() {
+        Livewire.emit('updateAccount');
+    }
+
+    function updatePassword() {
+        Livewire.emit('updatePassword');
+        swal("Senha atualizada!", "Operação realizada com sucesso", "success");
+    }
+
+    function coverUpdated() {
+        swal({
+            title: "Confirmação",
+            text: "Deseja substituir a capa do perfil?",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonClass: "btn-primary",
+            confirmButtonText: "Sim, enviar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false
+        },
+        function(){
+            Livewire.emit('sendCover');
+        });
+    }
+
+    function sendCover(profile) {
+        const file = _.head(document.querySelector('[name=cover]').files);
+        const formData = new FormData();
+        formData.append('id', profile.id);
+        formData.append('name', profile.name);
+        formData.append('bio', profile.bio);
+        formData.append('cover', file);
+        formData.append('_method', 'PUT');
+
+        $.ajax({
+            url: `{{ config("bffapi.base_url").'/'.config('bffapi.profiles.update') }}/${profile.id}?_method=PUT`,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', `Bearer {{session()->get('user')->token}}`);
+            },
+            contentType: false,
+            processData: false,
+            type: "POST",
+            data: formData,
+            success: function(data){
+                swal("Sucesso!", "Operação realizada com sucesso.", "success");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function avatarUpdated() {
+        swal({
+            title: "Confirmação",
+            text: "Deseja substituir o avatar?",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonClass: "btn-primary",
+            confirmButtonText: "Sim, enviar",
+            cancelButtonText: "Cancelar",
+            closeOnConfirm: false
+        },
+        function(){
+            Livewire.emit('sendAvatar');
+        });
+    }
+
+    function sendAvatar(profile) {
+        const file = _.head(document.querySelector('[name=avatar]').files);
+        const formData = new FormData();
+        formData.append('id', profile.id);
+        formData.append('name', profile.name);
+        formData.append('bio', profile.bio);
+        formData.append('avatar', file);
+        formData.append('_method', 'PUT');
+
+        $.ajax({
+            url: `{{ config("bffapi.base_url").'/'.config('bffapi.profiles.update') }}/${profile.id}?_method=PUT`,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', `Bearer {{session()->get('user')->token}}`);
+            },
+            contentType: false,
+            processData: false,
+            type: "POST",
+            data: formData,
+            success: function(data){
+                swal("Sucesso!", "Operação realizada com sucesso.", "success");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+    }
+
+    function registerListeners () {
+        Livewire.on('accountUpdated', () => {
+            swal("Conta atualizada!", "Operação realizada com sucesso", "success");
+        });
+
+        Livewire.on('passwordUpdated', () => {
+            swal("Senha atualizada!", "Operação realizada com sucesso", "success");
+        });
+
+        Livewire.on('accountDeleted', () => {
+            swal("Conta excluída!", "Operação realizada com sucesso", "success");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        });
+
+        Livewire.on('profileUpdated', () => {
+            swal("Profile Atualizado!", "Operação realizada com sucesso", "success");
+        });
+
+        Livewire.on('showSelectCoverDialog', () => {
+            $('[name=cover]').click();
+        });
+
+        Livewire.on('showSelectAvatarDialog', () => {
+            $('[name=avatar]').click();
+        });
+
+        Livewire.on('sendCoverToApi', (profile) => {
+            sendCover(profile);
+        });
+
+        Livewire.on('sendAvatarToApi', (profile) => {
+            sendAvatar(profile);
+        });
+
+        Livewire.on('showErrorMessage', (msg) => {
+            swal(msg);
+        });
+    }
+
+    window.onload = registerListeners;
 </script>

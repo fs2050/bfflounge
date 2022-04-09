@@ -37,14 +37,12 @@ class ClientGuzzle
         if(Session::has('user')){
             $options['headers']['Authorization'] = 'Bearer ' . Session::get('user')->token;
         }
-        // dd($options);
-
-        $url = $this->url_api . '/' . $url;
+      
+        $url = $this->url_api.'/'.$url;
+      
         $response = $this->client->request($method, $url, $options);
-
 
         return $response;
     }
 
 }
-
