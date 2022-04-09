@@ -149,7 +149,8 @@ class Settings extends Component
 
     public function render()
     {
-        return view('livewire.settings.index' );
+        return view('livewire.settings.index' )
+            ->layout( 'livewire.layouts.settings' );
     }
 
 } // Settings
