@@ -87,19 +87,19 @@
                                 <div class="profile_numbers d-flex justify-content-center mt-4 mt-lg-0">
                                     <div>
                                         <i class="lar la-heart"></i><br>
-                                        <span>72k</span>
+                                        <span>{{$profile['likes'] ?? 0}}</span>
                                     </div>
                                     <div>
                                         <i class="las la-eye"></i><br>
-                                        <span>18.9</span>
+                                        <span>{{$profile['views'] ?? 0}}</span>
                                     </div>
                                     <div>
                                         <i class="las la-crown"></i><br>
-                                        <span>1k</span>
+                                        <span>{{$profile['subscribers'] ?? 0}}</span>
                                     </div>
                                     <div>
                                         <i class="las la-dollar-sign"></i><br>
-                                        <span>564</span>
+                                        <span>{{$profile['income'] ?? 0}}</span>
                                     </div>
                                 </div>
                             </div>

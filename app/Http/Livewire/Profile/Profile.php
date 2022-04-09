@@ -41,6 +41,11 @@ class Profile extends Component
 
         if(count($this->profiles)) {
             $this->profile = reset($this->profiles);
+
+            $this->profile['likes'] = 1000;
+            $this->profile['views'] = 2000;
+            $this->profile['subscribers'] = 100;
+            $this->profile['income'] = 100;
         }
 
     }
