@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class Verify
 {
@@ -17,8 +16,11 @@ class Verify
      */
     public function handle( Request $request, Closure $next )
     {
-        if ( !Session::get( 'user' )->status == 1 )
+        if( response()->json( [], 401 ) )
             return redirect()->route( 'verify' );
+
+        if( response()->json( [], 200 ) )
+            return redirect()->route( 'home.index' );
 
         return $next( $request );
     }

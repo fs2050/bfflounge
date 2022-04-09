@@ -69,10 +69,11 @@ Route::get( '/register', Register::class )->name( 'register' ); ## Register
 Route::get( '/verify', Verify::class )->name( 'verify' ); ## Verify
 
 Route::get( '/login', Login::class )->name( 'login' ); ## Login
-Route::get( '/forgot', Forgot::class )->name( 'forgot' ); ## Forgot
-Route::get( '/reset', Reset::class )->name( 'reset' ); ## Reset
 
-Route::group( [ 'middleware' => 'auth.api', 'verify' ], function() {
+Route::group([ 'middleware' => 'auth.api', 'verify' ], function() {
+
+    Route::get( '/forgot', Forgot::class )->name( 'forgot' ); ## Forgot
+    Route::get( '/reset', Reset::class )->name( 'reset' ); ## Reset
 
     /* Home
     ================================================== */
