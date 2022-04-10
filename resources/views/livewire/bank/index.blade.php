@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/earnings.css' ) }}">
-
 <div class="container_center h-100 pt-4 pt-lg-5">
     <h4 class="mt-0 mt-lg-5 mb-4 mb-lg-5 c-pink">
         Estimativa de Ganhos
@@ -91,14 +89,22 @@
         </div>
 
         <div class="text-center mt-4">
-            <button class="btn-primary transparent btn_new_account">
-                <i class="fas fa-plus"></i> Adicionar nova conta bancária</button>
+            <button class="btn-primary transparent btn-add-account">
+                <i class="fas fa-plus"></i> Adicionar nova conta bancária
+            </button>
         </div>
     </div>
 </div>
+
+@include('livewire.components.banks.account-dialog')
+
+<!--
+Desativado temporariamente por estar causando erros
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="{{ asset( 'assets/js/charts.js' ) }}"></script>
 <script type="text/javascript">
     loadCharts();
 </script>
+-->
+
