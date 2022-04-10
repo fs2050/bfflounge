@@ -10,8 +10,9 @@ return [
         'verify'        => 'auth/verify',
 
         'login'         => 'auth/login',
+        'activate'      => 'auth/activate',
         'forgot'        => 'auth/forgot',
-        'recover'       => 'auth/recover'
+        'reset'         => 'auth/reset'
 
     ], // auth
 

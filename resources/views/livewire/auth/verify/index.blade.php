@@ -12,23 +12,26 @@
             Código de verificação
         </h3>
 
-        <form class="form_cadastro mt-3" id="login" wire:submit.prevent="submit">
+        <div style="color: red" class="error alert text-center">
+            {{ $return }}
+        </div>
+
+        <form class="form_cadastro mt-3" wire:submit.prevent="submit">
 
             <div class="input mb-2">
                 <input type="text" name="activation_code" placeholder="Insira o código aqui" wire:model="activation_code" />
-                @error( 'activation_code' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
             </div>
 
             <div class="text-center">
-                <div class="px-5 mt-5">
-                    <button type="submit" class="w-100 mt-2 mb-4">
-                        Enviar
+
+                <div class="px-5">
+                    <button class="btn-primary w-100 mt-2 mb-4">
+                        Verificar
                     </button>
                 </div>
 
-            </div>
+            </div> <!-- text-center -->
+
         </form>
 
     </div>

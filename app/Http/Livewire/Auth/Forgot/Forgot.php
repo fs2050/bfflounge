@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Client\ClientGuzzle;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Exception\ClientException;
 
 class Forgot extends Component
 {
@@ -15,38 +16,32 @@ class Forgot extends Component
 
     public function submit()
     {
-        $this->validate([
-            'email'     => [ 'required', 'email' ]
-        ]);
-
         $client = new ClientGuzzle( new Client );
 
-        $formParams = [ 'form_params' => [
-            'email' => $this->email,
-        ]];
+        try {
+            $response = $client->request( 'POST', config( 'bffapi.auth.forgot' ), [
+                'form_params' => [
+                    'email'         => $this->email
+                ]
+            ]);
 
-        $response = $client->request( 'POST', config( 'bffapi.auth.forgot' ), $formParams );
+            $response = json_decode( $response->getBody() );
 
-        if( $response->getStatusCode() == 200 ) {
+            if( $response == [] )
+                return redirect()->route( 'recover' );
 
-            $response = json_decode( ( string ) $response->getBody() );
-
-            Session::put( 'user', $response->user );
-
-            return redirect()->route( 'home.index' );
+        } catch ( ClientException $e ) {
+            $response = $e->getResponse();
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            // dd($responseBodyAsString->errors->email[0]);
+            $this->return = $responseBodyAsString->errors->email[0];
         }
-        else{
-
-            $this->return = 'Login ou senha inválidos';
-
-        }
-
     }
 
     public function render()
     {
         return view( 'livewire.auth.forgot.index' )
-                ->layout( 'livewire.layouts.forgot' );
+                ->layout( 'livewire.layouts.auth.forgot' );
     }
 
 } // Forgot
