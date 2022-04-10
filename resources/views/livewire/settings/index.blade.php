@@ -40,14 +40,42 @@
                     <h2 class="mb-4 c-pink">Profiles</h2>
 
                     <div style="display: none;">
-                        <input type="file" wire:model="cover" accept=".png,.jpg,.jpeg" onchange="coverUpdated()" name="cover" />
-                        <input type="file" wire:model="avatar" accept=".png,.jpg,.jpeg" onchange="avatarUpdated()" name="avatar" />
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="coverUpdated()" name="cover" />
+                        <input type="file" accept=".png,.jpg,.jpeg" onchange="avatarUpdated()" name="avatar" />
                     </div>
 
                     @foreach($profiles as $index => $profile)
-                        <div class="container-flex pt-4">
+                        <div class="container-flex">
                             <div class="row">
-                                <div class="col-12 mb-4">
+                                @if(isset($profile) && !is_null($profile['avatar']))
+                                    <div class="col-12 py-2">
+                                        <div
+                                            class="profile_photo cursor-pointer"
+                                            title="Alterar avatar"
+                                            wire:click="changeAvatar('{{$profile['id']}}')"
+                                            @if(isset($profile) && !is_null($profile['avatar']))
+                                                style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['avatar']}});"
+                                            @else
+                                                style="background-image:url(assets/images/users/01.png);"
+                                            @endif
+                                        ></div>
+                                    </div>
+                                @endif
+                                @if(isset($profile) && !is_null($profile['cover']))
+                                    <div class="col-12 pt-2 pb-4">
+                                        <div
+                                            class="profile_cover cursor-pointer"
+                                            title="Alterar capa"
+                                            wire:click="changeCover('{{$profile['id']}}')"
+                                            @if(isset($profile) && !is_null($profile['cover']))
+                                                style="background-image:url({{ env('BFF_API_STORAGE') }}/profile/{{$profile['cover']}});"
+                                            @else
+                                                style="background-image:url(assets/images/users/01.png);"
+                                            @endif
+                                        ></div>
+                                    </div>
+                                @endif
+                                <div class="col-12 my-4">
                                     <div class="input">
                                         <label>Nome</label>
                                         <input type="text" wire:model="profiles.{{$index}}.name" />
@@ -280,6 +308,9 @@
             data: formData,
             success: function(data){
                 swal("Sucesso!", "Operação realizada com sucesso.", "success");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             },
             error: function(data) {
                 console.log(data);
@@ -323,6 +354,9 @@
             data: formData,
             success: function(data){
                 swal("Sucesso!", "Operação realizada com sucesso.", "success");
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             },
             error: function(data) {
                 console.log(data);

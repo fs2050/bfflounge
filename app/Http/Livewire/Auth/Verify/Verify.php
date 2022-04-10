@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Login;
+namespace App\Http\Livewire\Auth\Verify;
 
 use Livewire\Component;
 
@@ -9,21 +9,22 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
-class Login extends Component
+class Verify extends Component
 {
-    public $email       = '';
-    public $password    = '';
-    public $return      = '';
+    public $activation_code     = '';
+    public $return              = '';
 
     public function submit()
     {
         $client = new ClientGuzzle( new Client );
 
         try {
-            $response = $client->request( 'POST', config( 'bffapi.auth.login' ), [
+            $response = $client->request( 'PATCH', config( 'bffapi.auth.activate' ), [
+                'headers' => [
+                    'Accept'     => 'application/json'
+                ],
                 'form_params' => [
-                    'email'         => $this->email,
-                    'password'      => $this->password
+                    'activation_code'   => $this->activation_code
                 ]
             ]);
 
@@ -36,15 +37,16 @@ class Login extends Component
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
+            dd($responseBodyAsString);
 
-            return $this->return = 'Ops.. Login e/ou senha inválidos';
+            return $this->return = 'Ops.. Código inválido!';
         }
     }
 
     public function render()
     {
-        return view( 'livewire.auth.login.index' )
-                ->layout( 'livewire.layouts.auth.login' );
+        return view( 'livewire.auth.verify.index' )
+                ->layout( 'livewire.layouts.auth.verify' );
     }
 
-} // Login
+} // Verify

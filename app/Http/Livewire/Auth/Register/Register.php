@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Login;
+namespace App\Http\Livewire\Auth\Register;
 
 use Livewire\Component;
 
@@ -9,8 +9,9 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
-class Login extends Component
+class Register extends Component
 {
+    public $name        = '';
     public $email       = '';
     public $password    = '';
     public $return      = '';
@@ -20,8 +21,9 @@ class Login extends Component
         $client = new ClientGuzzle( new Client );
 
         try {
-            $response = $client->request( 'POST', config( 'bffapi.auth.login' ), [
+            $response = $client->request( 'POST', config( 'bffapi.auth.register' ), [
                 'form_params' => [
+                    'name'          => $this->name,
                     'email'         => $this->email,
                     'password'      => $this->password
                 ]
@@ -29,22 +31,20 @@ class Login extends Component
 
             $response = json_decode( $response->getBody() );
 
-            Session::put( 'user', $response->user );
-
-            return redirect()->route( 'home.index' );
+            return redirect()->route( 'verify' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-
-            return $this->return = 'Ops.. Login e/ou senha inválidos';
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            dd($errors = $responseBodyAsString->errors);
+            $this->return = $errors;
         }
     }
 
     public function render()
     {
-        return view( 'livewire.auth.login.index' )
-                ->layout( 'livewire.layouts.auth.login' );
+        return view( 'livewire.auth.register.index' )
+                ->layout( 'livewire.layouts.auth.register' );
     }
 
-} // Login
+} // Register

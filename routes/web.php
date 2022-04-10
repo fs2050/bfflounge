@@ -6,7 +6,12 @@ use App\Http\Livewire\{
 
     /* Auth
     ================================================== */
+    Auth\Register\Register, ## Register
+    Auth\Verify\Verify, ## Verify
+
     Auth\Login\Login, ## Login
+    Auth\Forgot\Forgot, ## Forgot
+    Auth\Reset\Reset, ## Reset
 
     /* Home
     ================================================== */
@@ -58,11 +63,17 @@ use App\Http\Livewire\{
 
 };
 
-/* Login
+/* Auth
 ================================================== */
+Route::get( '/register', Register::class )->name( 'register' ); ## Register
+Route::get( '/verify', Verify::class )->name( 'verify' ); ## Verify
+
 Route::get( '/login', Login::class )->name( 'login' ); ## Login
 
-Route::group( [ 'middleware' => 'auth.api' ], function() {
+Route::group([ 'middleware' => 'auth.api', 'verify' ], function() {
+
+    Route::get( '/forgot', Forgot::class )->name( 'forgot' ); ## Forgot
+    Route::get( '/reset', Reset::class )->name( 'reset' ); ## Reset
 
     /* Home
     ================================================== */
