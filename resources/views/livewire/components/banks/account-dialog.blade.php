@@ -5,6 +5,7 @@
                 <h5 class="modal-title" id="accountDialogLabel">Conta Bancária</h5>
             </div>
             <div class="modal-body">
+                <input type="hidden" name="id" />
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
@@ -16,16 +17,22 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" class="form-control" name="firstname" />
+                            <input type="text" class="form-control" name="first_name" />
                         </div>
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>Sobrenome</label>
-                            <input type="text" class="form-control" name="lastname" />
+                            <input type="text" class="form-control" name="last_name" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Data de Nascimento</label>
+                            <input type="date" class="form-control" name="birth" />
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
@@ -46,7 +53,7 @@
                             <input type="text" class="form-control" name="state" />
                         </div>
                     </div>
-                    <div class="col-12 col-md-6">
+                    <div class="col-12">
                         <div class="form-group">
                             <label>Cidade</label>
                             <input type="text" class="form-control" name="city" />
@@ -73,14 +80,14 @@
                     <div class="col-12 col-md-6">
                         <div class="form-group">
                             <label>CEP</label>
-                            <input type="text" class="form-control" name="cep" />
+                            <input type="text" class="form-control" name="zipcode" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-close" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <button type="button" class="btn btn-close">Fechar</button>
+                <button type="button" class="btn btn-primary btn-save">Salvar</button>
             </div>
         </div>
     </div>
