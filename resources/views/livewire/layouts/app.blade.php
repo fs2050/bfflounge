@@ -38,8 +38,6 @@
 
             <div class="page_container">
 
-                <livewire:home.insert-posts>
-
                 <div class="menu_right">
                     <ul>
                         <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>

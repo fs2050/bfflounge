@@ -10,6 +10,33 @@
     </div>
     <!-- Fechamento Barra de buscas -->
 
+    <div class="modal_default" data-modal="post">
+        <div class="d-flex w-100 h-100 position-relative align-items-center justify-content-center">
+            <div class="bg"></div>
+
+            <div class="container_form">
+                <div class="d-block d-lg-flex">
+                    <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
+
+                    <form wire:submit.prevent="addPost">
+                        <textarea class="mb-2" name="content" wire:model="content"></textarea>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <i class="lab la-youtube mr-1"></i>
+                                <i class="las la-camera mr-1"></i>
+                                <i class="las la-comment"></i>
+                            </div>
+                            <div>
+                                <button class="btn-primary">Publicar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     <!-- Posts Show -->
     @foreach ($posts as $post)
@@ -31,7 +58,7 @@
                 </div>
             </div>
             <div class="post_info">
-                <p>{{ $post->content }}</p>
+
                 <img src="assets/images/posts/01.png" class="w-100" />
             </div>
             <div class="post_reactions">
