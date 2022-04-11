@@ -17,9 +17,8 @@ class AuthApi
      */
     public function handle( Request $request, Closure $next )
     {
-        if( !Session::get( 'user' ) ){
+        if( !Session::get( 'user' ) )
             return redirect()->route( 'login' );
-        }
 
         return $next( $request );
     }
