@@ -22,8 +22,6 @@
                 <input type="text" name="activation_code" placeholder="Insira o código aqui" wire:model="activation_code" />
             </div>
 
-            <a class="text-center" href="">Reenviar e-mail</a>
-
             <div class="text-center">
 
                 <div class="px-5">
@@ -31,6 +29,10 @@
                         Verificar
                     </button>
                 </div>
+
+                <a href="{{ route( 'resend' ) }}">
+                    Reenviar e-mail
+                </a>
 
             </div> <!-- text-center -->
 
