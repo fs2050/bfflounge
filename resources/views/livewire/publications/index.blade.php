@@ -20,8 +20,8 @@
                         <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar" >Alguma ação</a>
-                            <a class="dropdown-item" href="#">Outra ação</a>
-                            <a class="dropdown-item" href="#">Alguma coisa aqui</a>
+                            <a class="dropdown-item" href="#">Editar</a>
+                            <a class="dropdown-item" href="#">Excluir</a>
                           </div>
 
                     </div>
