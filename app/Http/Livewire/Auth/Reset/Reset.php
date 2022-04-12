@@ -36,11 +36,10 @@ class Reset extends Component
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            $errors = $responseBodyAsString->errors;
+            dd($errors);
 
-            dd( $errors = $responseBodyAsString->errors);
-            // $errors = $responseBodyAsString->errors->password[0];
-
-            $this->return = $errors;
+            return $this->return = $errors;
         }
     }
 

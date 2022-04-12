@@ -28,13 +28,14 @@ class Forgot extends Component
             $response = json_decode( $response->getBody() );
 
             if( $response == [] )
-                return redirect()->route( 'recover' );
+                return redirect()->route( 'reset' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
-            // dd($responseBodyAsString->errors->email[0]);
-            $this->return = $responseBodyAsString->errors->email[0];
+            $errors = $responseBodyAsString->errors;
+
+            return $this->return = $errors->email[0];
         }
     }
 

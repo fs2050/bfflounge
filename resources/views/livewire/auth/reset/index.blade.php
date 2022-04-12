@@ -27,14 +27,15 @@
                 <i class="fas fa-eye show_password"></i>
             </div>
 
-
             <div class="text-center">
-                <div class="px-5 mt-5">
-                    <button type="submit" class="w-100 mt-2 mb-4">
+
+                <div class="px-5">
+                    <button class="btn-primary w-100 mt-2 mb-4">
                         Atualizar
                     </button>
                 </div>
-            </div>
+
+            </div> <!-- text-center -->
 
         </form>
     </div>
