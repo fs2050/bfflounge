@@ -8,6 +8,7 @@ use App\Http\Livewire\{
     ================================================== */
     Auth\Register\Register, ## Register
     Auth\Verify\Verify, ## Verify
+    Auth\Resend\Resend, ## Verify
 
     Auth\Login\Login, ## Login
     Auth\Forgot\Forgot, ## Forgot
@@ -67,6 +68,7 @@ use App\Http\Livewire\{
 ================================================== */
 Route::get( '/register', Register::class )->name( 'register' ); ## Register
 Route::get( '/verify', Verify::class )->name( 'verify' ); ## Verify
+Route::get( '/resend', Resend::class )->name( 'resend' ); ## Resend
 
 Route::get( '/login', Login::class )->name( 'login' ); ## Login
 

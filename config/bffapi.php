@@ -8,6 +8,7 @@ return [
 
         'register'      => 'auth/register',
         'verify'        => 'auth/verify',
+        'resend'        => 'auth/resend',
 
         'login'         => 'auth/login',
         'activate'      => 'auth/activate',
