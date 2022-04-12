@@ -53,7 +53,7 @@
                     </ul>
                 </div>
 
-                <div class="container_scroll">
+                <div>
                     <div class="menu_background"></div>
 
                     <div class="btn_menu_right d-none d-lg-block">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
 
-                    <div class="page d-block d-lg-flex h-lg-100 justify-content-between">
+                    <div class="page d-block d-lg-flex h-lg-100">
 
                         <div class="container_left h-100 bg-white p-5">
 
