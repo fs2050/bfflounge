@@ -30,16 +30,14 @@ class Verify extends Component
 
             $response = json_decode( $response->getBody() );
 
-            Session::put( 'user', $response->user );
-
             return redirect()->route( 'home.index' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            dd($responseBodyAsString);
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            $errors = $responseBodyAsString->errors->activation_code[0];
 
-            return $this->return = 'Ops.. Código inválido!';
+            return $this->return = $errors;
         }
     }
 

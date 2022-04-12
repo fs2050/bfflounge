@@ -31,6 +31,8 @@ class Register extends Component
 
             $response = json_decode( $response->getBody() );
 
+            Session::put( 'user', $response->token );
+
             return redirect()->route( 'verify' );
 
         } catch ( ClientException $e ) {
