@@ -119,18 +119,19 @@
                             <button class="btn-primary w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
 
                             <ul class="menu">
-                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i> Home</a></li>
-                                <li><a href="{{ route( 'publications.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
-                                <li><a href="{{ route( 'chat.index' ) }}"><i class="far fa-paper-plane"></i> Mensagens</a></li>
-                                <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
-                                <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>
-                                <li><a href="{{ route( 'cards.index' ) }}"><i class="las la-credit-card"></i> Meus Cartões</a></li>
-                                <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
-                                <li><a href="#"><i class="lar la-heart"></i> Curtidos</a></li>
-                                <li><a href="#"><i class="las la-bookmark"></i> Salvos</a></li>
-                                <li class="mt-5 active"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i> Configurações</a></li>
-                                <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="las la-question-circle"></i> Ajuda e Suporte</a></li>
-                                <li><a href="#"><i class="las la-globe"></i> Idioma</a></li>
+                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i>Home</a></li>
+                                <li><a href="{{ route( 'publications.index' ) }}"><i class="las la-newspaper"></i>Publicações</a></li>
+                                <li><a href="{{ route( 'chat.index' ) }}"><i class="far fa-paper-plane"></i>Mensagens</a></li>
+                                <li><a href="#"><i class="far fa-bell"></i>Notificações</a></li>
+                                <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i>Perfil</a></li>
+                                <li><a href="{{ route( 'cards.index' ) }}"><i class="las la-credit-card"></i>Meus Cartões</a></li>
+                                <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i>Banco</a></li>
+                                <li><a href="#"><i class="lar la-heart"></i>Curtidos</a></li>
+                                <li><a href="#"><i class="las la-bookmark"></i>Salvos</a></li>
+                                <li class="mt-5 active"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i>Configurações</a></li>
+                                <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="las la-question-circle"></i>Ajuda e Suporte</a></li>
+                                <li><a href="#"><i class="las la-globe"></i>Sair</a></li>
+                                {{-- <li><a href="#"><i class="las la-globe"></i> Idioma</a></li> --}}
                             </ul>
 
                             <ul class="small_menu mt-5">
