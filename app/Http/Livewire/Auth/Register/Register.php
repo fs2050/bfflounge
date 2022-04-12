@@ -36,7 +36,7 @@ class Register extends Component
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
-            $responseBodyAsString->errors;
+            $errors = $responseBodyAsString->errors;
 
             return $this->return = 'Ops... algo errado!';
         }
