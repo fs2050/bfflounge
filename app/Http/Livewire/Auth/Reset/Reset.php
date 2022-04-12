@@ -37,7 +37,6 @@ class Reset extends Component
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
             $errors = $responseBodyAsString->errors;
-            dd($errors);
 
             return $this->return = $errors;
         }
