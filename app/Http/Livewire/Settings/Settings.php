@@ -99,9 +99,12 @@ class Settings extends Component
     {
         try {
             $profile = collect($this->profiles)->where('id', $id)->first();
+            $profile['avatar'] = null;
+            $profile['cover'] = null;
             $response = $this->profileClient->update($profile['id'], $profile);
             $this->emit('profileUpdated');
         } catch (\Exception $e) {
+            dd($e->getMessage());
             $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
         }
     }
