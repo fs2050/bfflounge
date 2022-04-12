@@ -2070,6 +2070,8 @@ var swal = __webpack_require__(/*! bootstrap-sweetalert */ "./node_modules/boots
 
 __webpack_require__(/*! bootstrap-sweetalert/dist/sweetalert.css */ "./node_modules/bootstrap-sweetalert/dist/sweetalert.css");
 
+__webpack_require__(/*! ./posts */ "./resources/js/posts.js");
+
 __webpack_require__(/*! ./bank */ "./resources/js/bank.js");
 
 /***/ }),
@@ -2309,6 +2311,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/posts.js":
+/*!*******************************!*\
+  !*** ./resources/js/posts.js ***!
+  \*******************************/
+/***/ (() => {
+
+$(function () {
+  $(".btn-send-tip").on("click", function () {
+    $("#sendTipDialog").modal("show");
+  });
+});
 
 /***/ }),
 
