@@ -17,6 +17,7 @@ use App\Http\Livewire\{
     /* Livewire
     ================================================== */
     Home\Home, ## Home
+    Publications\Publications, ## Publications
     Chat\Chat, ## Chat
     Profile\Profile, ## Profile
     Cards\Cards, ## Cards
@@ -47,7 +48,7 @@ Route::group( [ 'middleware' => 'auth.api', 'verify' ], function() {
     /* Livewire
     ================================================== */
     Route::get( '/', Home::class )->name( 'home.index' ); ## Home
-    Route::get( '/publicacoes', Publicacoes::class )->name( 'publicacoes.index' ); ## Publicações
+    Route::get( '/publications', Publications::class )->name( 'publications.index' ); ## Publications
     Route::get( '/chat', Chat::class )->name( 'chat.index' ); ## Chat
     Route::get( '/profile', Profile::class )->name( 'profile.index' ); ## Profile
     Route::get( '/cards', Cards::class )->name( 'cards.index' ); ## Cards
