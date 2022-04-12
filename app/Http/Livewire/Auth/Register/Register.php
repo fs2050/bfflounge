@@ -7,55 +7,44 @@ use Livewire\Component;
 use App\Client\ClientGuzzle;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
+use GuzzleHttp\Exception\ClientException;
 
 class Register extends Component
 {
-    public $nome            = '';
-    public $email           = '';
-    public $senha           = '';
-    public $confirmaSenha   = '';
-    public $return          = '';
+    public $name        = '';
+    public $email       = '';
+    public $password    = '';
+    public $return      = '';
 
     public function submit()
     {
-        $this->validate([
-            'nome'                  => [ 'required', 'string', 'min:3' ],
-            'email'                 => [ 'required', 'email' ],
-            'senha'                 => [ 'required' ],
-            'confirmar-senha'       => [ 'required' ]
-        ]);
-
         $client = new ClientGuzzle( new Client );
 
-        $formParams = [ 'form_params' => [
-            'nome'                  => $this->nome,
-            'email'                 => $this->email,
-            'senha'                 => $this->senha,
-            'confirmar-senha'       => $this->confirmaSenha
-        ]];
+        try {
+            $response = $client->request( 'POST', config( 'bffapi.auth.register' ), [
+                'form_params' => [
+                    'name'          => $this->name,
+                    'email'         => $this->email,
+                    'password'      => $this->password
+                ]
+            ]);
 
-        $response = $client->request( 'POST', config( 'bffapi.auth.register' ), $formParams );
+            $response = json_decode( $response->getBody() );
 
-        if( $response->getStatusCode() == 200 ) {
+            return redirect()->route( 'verify' );
 
-            $response = json_decode( ( string ) $response->getBody() );
-
-            Session::put( 'user', $response->user );
-
-            return redirect()->route( 'home.index' );
+        } catch ( ClientException $e ) {
+            $response = $e->getResponse();
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            dd($errors = $responseBodyAsString->errors);
+            $this->return = $errors;
         }
-        else{
-
-            $this->return = 'Login ou senha inválidos';
-
-        }
-
     }
 
     public function render()
     {
         return view( 'livewire.auth.register.index' )
-                ->layout( 'livewire.layouts.register' );
+                ->layout( 'livewire.layouts.auth.register' );
     }
 
 } // Register

@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
-class AuthApi
+class Verify
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,13 @@ class AuthApi
      */
     public function handle( Request $request, Closure $next )
     {
-        if( Session::get( 'user' ) == null )
-            return redirect()->route( 'login' );
+        if( response()->json( [], 401 ) )
+            return redirect()->route( 'verify' );
+
+        if( response()->json( [], 200 ) )
+            return redirect()->route( 'home.index' );
 
         return $next( $request );
     }
 
-} // AuthApi
+} // Verify

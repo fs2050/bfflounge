@@ -6,35 +6,25 @@
     <div class="card p-4 p-lg-5">
         <img src="{{ url( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
 
-        <h3>
-            Recuperacão de senha
-        </h3>
+        <div style="color: red" class="error alert text-center">
+            {{ $return }}
+        </div>
 
-        <form class="form_cadastro mt-3" wire:submit.prevent="submit">
+        <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
             <div class="input mb-2">
                 <input type="text" name="token" placeholder="Insira o token:" wire:model="token" />
-                @error( 'token' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
             </div>
 
 
             <div class="input password mb-2">
-                <input type="password" name="senha" placeholder="Insira a nova senha:" wire:model="senha" />
-                <i class="fas fa-eye show_password"></i>
-                @error( 'senha' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <input type="password" name="password" placeholder="Insira a nova senha:" wire:model="senha" />
             </div>
 
 
             <div class="input password mb-2">
-                <input type="password" name="confirma-senha" placeholder="Confirme a nova senha:" wire:model="confirma-senha" />
+                <input type="password" name="password" placeholder="Confirme a nova senha:" wire:model="password" />
                 <i class="fas fa-eye show_password"></i>
-                @error( 'confirma-senha' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
             </div>
 
 

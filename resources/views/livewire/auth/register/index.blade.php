@@ -10,33 +10,21 @@
         <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
             <div class="input mb-2">
-                <input type="text" name="nome" placeholder="Seu nome:" wire:model="nome" />
-                @error( 'nome' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <input type="text" name="name" placeholder="Seu nome:" wire:model="name" />
             </div>
 
             <div class="input mb-2">
                 <input type="email" name="email" placeholder="E-mail:" wire:model="email" />
-                @error( 'email' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
             </div>
 
             <div class="input password mb-2">
-                <input type="password" name="senha" placeholder="Senha:" wire:model="senha" />
-                @error( 'senha' )
-                    <span class="error">{{ $message }}</span>
-                @enderror
+                <input type="password" name="password" placeholder="Senha:" wire:model="password" />
                 <i class="fas fa-eye show_password"></i>
             </div>
 
 
             <div class="input password mb-2">
-                <input type="password" name="confirma-senha" placeholder="Confirmar senha:" wire:model="confirma-senha" />
-                @error( 'confirma-senha' )
-                        <span class="error">{{ $message }}</span>
-                    @enderror
+                <input type="password" name="password" placeholder="Confirmar senha:" wire:model="password" />
                 <i class="fas fa-eye show_password"></i>
             </div>
 
