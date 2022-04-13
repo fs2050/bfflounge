@@ -36,32 +36,6 @@
 
             <div class="page_container">
 
-                <div class="modal_default" data-modal="post">
-                    <div class="d-flex w-100 h-100 position-relative align-items-center justify-content-center">
-                        <div class="bg"></div>
-
-                        <div class="container_form">
-                            <div class="d-block d-lg-flex">
-                                <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
-                                <form>
-                                    <textarea class="mb-2"></textarea>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <i class="lab la-youtube mr-1"></i>
-                                            <i class="las la-camera mr-1"></i>
-                                            <i class="las la-comment"></i>
-                                        </div>
-                                        <div>
-                                            <button class="btn-primary">Publicar</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
                 <div class="menu_right">
                     <ul>
                         <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
@@ -160,6 +134,24 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
         <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
+
+
+
+        <script type="text/javascript">
+            function noenter() {
+            return !(window.event && window.event.keyCode == 13); }
+            function enter(nextfield) {
+            if(window.event && window.event.keyCode == 13) {
+              nextfield.focus();
+              return false; }
+            else
+              return true; }
+            function entsub(event,ourform) {
+              if (event && event.which == 13)
+                ourform.submit();
+              else
+                return true;}
+        </script>
 
         @livewireScripts
 
