@@ -1,7 +1,8 @@
 <div class="container_center h-100">
     <form class="form_search mt-4 ">
         <div class="position-relative">
-            <input type="text" name="filtrar" placeholder="Pesquisa por nome de usuário, hashtag ou publicação" class="w-100" />
+            <input type="text" name="filtrar" placeholder="Pesquisa por nome de usuário, hashtag ou publicação"
+                class="w-100" />
             <button><i class="fas fa-search"></i> Buscar</button>
         </div>
     </form>
@@ -39,9 +40,9 @@
         </div>
     </div>
 
-       <!-- Posts Show -->
-       @foreach ($posts as $post)
-       <div class="timeline">
+    <!-- Posts Show -->
+    @forelse ($posts as $post)
+    <div class="timeline">
         <div class="post">
             <div class="post_user">
                 <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
@@ -60,15 +61,15 @@
             </div>
 
             @if( !$post->medias == null )
-                <div class="post_info">
-                    <p>{{ $post->content}}</p>
-                    <img src="assets/images/posts/01.png" class="w-100" />
-                </div>
+            <div class="post_info">
+                <p>{{ $post->content}}</p>
+                <img src="assets/images/posts/01.png" class="w-100" />
+            </div>
             @else
-                <div class="post_info">
-                    <p>{{ $post->content}}</p>
-                    <img src="assets/images/posts/01.png" class="w-100" />
-                </div>
+            <div class="post_info">
+                <p>{{ $post->content}}</p>
+                <img src="assets/images/posts/01.png" class="w-100" />
+            </div>
             @endif
 
 
@@ -84,7 +85,9 @@
                         <i class="far fa-paper-plane mx-1 mx-lg-2"></i>
                     </div>
                     <div>
-                        <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i> <span class="d-none d-lg-inline-block mr-1 position-relative fw-500" style="top:-4px;">Send Tip</span>
+                        <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i> <span
+                            class="d-none d-lg-inline-block mr-1 position-relative fw-500" style="top:-4px;">Send
+                            Tip</span>
                         <i class="las la-eye mx-1 mx-lg-2">
                             {{ $post->views }}
                         </i>
@@ -99,11 +102,12 @@
 
 
 
-<form action="#" name="demo">
-    <input class="form-control" type="text" placeholder="Escreva um comentário" name="hiddenfield" aria-label="default input example" onkeypress="return enter(document.demo.send)> Field 1:
+                    <form action="#" name="demo">
+                        <input class="form-control" type="text" placeholder="Escreva um comentário" name="hiddenfield"
+                            aria-label="default input example" onkeypress="return enter(document.demo.send)> Field 1:
 
-    <input type="submit" name="send">
-</form>
+    <input type=" submit" name="send">
+                    </form>
 
 
                     <div class="comment_user">
@@ -120,7 +124,8 @@
                                             14min
                                         </div>
                                         <div class="comment_like mx-2 mx-lg-4">
-                                            <i class="far fa-heart ml-2"></i> <span class="num">73</span> <span class="d-none d-lg-inline-block">curtidas</span>
+                                            <i class="far fa-heart ml-2"></i> <span class="num">73</span> <span
+                                                class="d-none d-lg-inline-block">curtidas</span>
                                         </div>
                                         <div class="comment_answer flex-1 text-right">
                                             <span>Responder</span>
@@ -152,10 +157,14 @@
                 </div>
             </div>
 
+        </div>
     </div>
-   </div>
-@endforeach
-   <!-- Fim Posts Show -->
+    @empty
+
+        <h1 class="text-center">Ops... Você ainda não segue ninguém!</h1>
+
+    @endforelse
+    <!-- Fim Posts Show -->
 </div>
 
 <div class="container_right h-100">
@@ -174,7 +183,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex py-3 px-4">
-                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);"></div>
+                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);">
+                        </div>
                         <div class="card_sugestion_name">
                             <h5>Juliana Bordon</h5>
                             <span>@julianabd</span>
@@ -195,7 +205,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex py-3 px-4">
-                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/04.png);"></div>
+                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/04.png);">
+                        </div>
                         <div class="card_sugestion_name">
                             <h5>Paula Cassy</h5>
                             <span>@paulacass</span>
@@ -216,7 +227,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex py-3 px-4">
-                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/05.png);"></div>
+                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/05.png);">
+                        </div>
                         <div class="card_sugestion_name">
                             <h5>Katarina Mendez</h5>
                             <span>@julianabd</span>
@@ -237,7 +249,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="d-flex py-3 px-4">
-                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);"></div>
+                        <div class="card_sugestion_photo" style="background-image:url(assets/images/users/03.png);">
+                        </div>
                         <div class="card_sugestion_name">
                             <h5>Juliana Bordon</h5>
                             <span>@julianabd</span>
@@ -248,5 +261,3 @@
         </div>
     </div>
 </div>
-
-
