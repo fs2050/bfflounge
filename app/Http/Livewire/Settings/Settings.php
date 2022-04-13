@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Settings;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Arr;
-
-use Livewire\Component;
-use App\Client\UserClient;
 use App\Client\ProfileClient;
+use App\Client\UserClient;
+
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
 
 use Storage;
 
@@ -35,8 +35,7 @@ class Settings extends Component
     public function boot(
         UserClient $userClient,
         ProfileClient $profileClient,
-    )
-    {
+    ) {
         $this->userClient = $userClient;
         $this->profileClient = $profileClient;
     }
@@ -46,7 +45,7 @@ class Settings extends Component
         $this->user = (array)session()->get('user');
         $userData = $this->userClient->show(session()->get('user')->id);
 
-        $this->profiles = array_map(function($item) {
+        $this->profiles = array_map(function ($item) {
             return (array)$item;
         }, $userData->profiles);
     }
@@ -128,10 +127,9 @@ class Settings extends Component
 
     public function sendCover()
     {
-
         try {
             $profile = collect($this->profiles)->where('id', $this->selectedProfileId)->first();
-            $this->emit('sendCoverToApi',  $profile);
+            $this->emit('sendCoverToApi', $profile);
         } catch (\Exception $e) {
             dd($e->getMessage());
             $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
@@ -140,10 +138,9 @@ class Settings extends Component
 
     public function sendAvatar()
     {
-
         try {
             $profile = collect($this->profiles)->where('id', $this->selectedProfileId)->first();
-            $this->emit('sendAvatarToApi',  $profile);
+            $this->emit('sendAvatarToApi', $profile);
         } catch (\Exception $e) {
             dd($e->getMessage());
             $this->emit('showErrorMessage', 'Não foi possível realizar a operação');
@@ -152,8 +149,7 @@ class Settings extends Component
 
     public function render()
     {
-        return view('livewire.settings.index' )
-            ->layout( 'livewire.layouts.settings' );
+        return view('livewire.settings.index')
+            ->layout('livewire.layouts.settings');
     }
-
 } // Settings
