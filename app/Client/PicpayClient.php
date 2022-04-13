@@ -23,7 +23,7 @@ class PicpayClient
     {
         $response = $this->client->request('GET', "payments/picpay/buyer", [
             'headers' => [
-                "authorization" => "Bearer {$this->token}"
+                'Authorization' => "Bearer {$this->token}"
             ]
         ]);
 
@@ -34,7 +34,7 @@ class PicpayClient
     {
         $response = $this->client->request('GET', "payments/gerencianet/buyer", [
             'headers' => [
-                "authorization" => "Bearer {$this->token}"
+                'Authorization' => "Bearer {$this->token}"
             ]
         ]);
 
