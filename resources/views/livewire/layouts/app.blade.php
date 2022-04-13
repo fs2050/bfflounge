@@ -64,15 +64,15 @@
 
                 <div class="menu_right">
                     <ul>
-                        <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
-                        <li><a href="{{ route( 'indications.index' ) }}"><i class="las la-user-friends"></i> Programa de Indicação</a></li>
-                        <li><a href="{{ route( 'earnings.index' ) }}"><i class="las la-hand-holding-usd"></i> Estimativa de Ganhos</a></li>
-                        <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i> Banco</a></li>
-                        <li class="pb-5"><a href="#"><i class="las la-box"></i> Editar meus planos e pacotes</a></li>
+                        <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i>Lista de Estornos</a></li>
+                        <li><a href="{{ route( 'indications.index' ) }}"><i class="las la-user-friends"></i>Programa de Indicação</a></li>
+                        <li><a href="{{ route( 'earnings.index' ) }}"><i class="las la-hand-holding-usd"></i>Estimativa de Ganhos</a></li>
+                        <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i>Banco</a></li>
+                        <li class="pb-5"><a href="#"><i class="las la-box"></i>Editar meus planos e pacotes</a></li>
 
-                        <li class="mt-5 pt-5"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i> Configurações</a></li>
-                        <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="lar la-question-circle"></i> Ajuda e Suporte</a></li>
-                        <li><a href="#"><i class="las la-globe"></i> Idioma</a></li>
+                        <li class="mt-5 pt-5"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i>Configurações</a></li>
+                        <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="lar la-question-circle"></i>Ajuda e Suporte</a></li>
+                        <li><a href="#"><i class="las la-globe"></i>Idioma</a></li>
                     </ul>
                 </div>
 
@@ -160,7 +160,6 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
-        <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
 
         @livewireScripts
 
