@@ -23,7 +23,7 @@ class ProfileClient
     {
         $response = $this->client->request('GET', "profiles/$id", [
             'headers' => [
-                "authorization" => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
@@ -35,7 +35,7 @@ class ProfileClient
         $response = $this->client->request('PUT', "profiles/$id", [
             'form_params' => $data,
             'headers' => [
-                "authorization" => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
@@ -46,7 +46,7 @@ class ProfileClient
     {
         $response = $this->client->request('DELETE', "profiles/$id/destroy", [
             'headers' => [
-                "authorization" => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
