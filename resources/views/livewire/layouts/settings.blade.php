@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <html lang="{{ str_replace( '_', '-', app()->getLocale()) }}">
 
     <head>
@@ -25,7 +27,7 @@
         <link rel="stylesheet" href="{{ asset( 'assets/slider/dist/css/swiper.min.css' ) }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/default.css' ) }}">
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/main.css' ) }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/earnings.css' ) }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/settings.css' ) }}">
 
         @livewireStyles
 
@@ -36,7 +38,6 @@
         <main>
 
             <div class="page_container">
-
                 <div class="menu_right">
                     <ul>
                         <li><a href="{{ route( 'chargebacks.index' ) }}"><i class="las la-list"></i> Lista de Estornos</a></li>
@@ -51,7 +52,7 @@
                     </ul>
                 </div>
 
-                <div>
+                <div class="container_scroll">
                     <div class="menu_background"></div>
 
                     <div class="btn_menu_right d-none d-lg-block">
@@ -81,7 +82,7 @@
                         </div>
                     </div>
 
-                    <div class="page d-block d-lg-flex h-lg-100">
+                    <div class="page d-block d-lg-flex h-lg-100 justify-content-between">
 
                         <div class="container_left h-100 bg-white p-5">
 
@@ -95,7 +96,7 @@
 
                             <ul class="menu">
                                 <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i> Home</a></li>
-                                <li><a href="{{ route( 'publications.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
+                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
                                 <li><a href="{{ route( 'chat.index' ) }}"><i class="far fa-paper-plane"></i> Mensagens</a></li>
                                 <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
                                 <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>
@@ -132,7 +133,8 @@
         @include('livewire.layouts.setup-jquery-ajax')
 
         <script type="text/javascript" src="{{ asset( 'assets/js/aos.js' ) }}"></script>
-        <script src="{{ asset( 'assets/js/functions.js' ) }}"></script>
+		<script src="{{ asset( 'assets/js/functions.js' ) }}"></script>
+
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>

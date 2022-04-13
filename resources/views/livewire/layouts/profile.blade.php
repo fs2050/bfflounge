@@ -16,8 +16,15 @@
 		<link rel="shortcut icon" href="{{ asset( 'assets/images/favicon.png' ) }}" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+        @include('livewire.layouts.setup-jquery-ajax')
+
         <script type="text/javascript" src="{{ asset( 'assets/js/aos.js ' ) }}"></script>
 		<script src="{{ asset( 'assets/js/functions.js ' ) }}"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js ' ) }}"></script>
 
         <link href="{{ asset( 'assets/dist/hamburgers.css' ) }}" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/aos.css' ) }}">
@@ -32,9 +39,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/default.css' ) }}">
         <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/profile.css' ) }}">
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js ' ) }}"></script>
+        <link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/profile.css' ) }}">
 
         @livewireStyles
 
@@ -48,28 +53,30 @@
 
         </main>
 
+        <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
+
         @livewireScripts
 
         <!-- Swiper JS -->
-    <script type="text/javascript" src="{{ asset( 'assets/slider/dist/js/swiper.min.js' ) }}"></script>
+        <script type="text/javascript" src="{{ asset( 'assets/slider/dist/js/swiper.min.js' ) }}"></script>
 
-    <!-- Initialize Swiper -->
-    <script>
-        $(function(){
-            const swiper = new Swiper('.profile_plans .swiper-container', {
-                autoHeight: true,
-                centeredSlides: true,
-                slidesPerView: 'auto',
-                spaceBetween: 15,
-                loop: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+        <!-- Initialize Swiper -->
+        <script>
+            $(function(){
+                const swiper = new Swiper('.profile_plans .swiper-container', {
+                    autoHeight: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    spaceBetween: 15,
+                    loop: false,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+                swiper.slideNext();
             });
-            swiper.slideNext();
-        });
-    </script>
+        </script>
 
     </body>
 

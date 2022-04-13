@@ -15,6 +15,10 @@ return [
         'forgot'        => 'auth/forgot',
         'reset'         => 'auth/reset'
 
-    ] // auth
+    ], // auth
+
+    'profiles' => [
+        'update' => 'profiles'
+    ]
 
 ]; // return

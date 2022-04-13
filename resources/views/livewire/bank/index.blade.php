@@ -1,5 +1,3 @@
-<link rel="stylesheet" type="text/css" href="{{ asset( 'assets/css/earnings.css' ) }}">
-
 <div class="container_center h-100 pt-4 pt-lg-5">
     <h4 class="mt-0 mt-lg-5 mb-4 mb-lg-5 c-pink">
         Estimativa de Ganhos
@@ -65,40 +63,86 @@
         </div>
 
         <div class="card shadow py-4 py-lg-3 px-4">
-            <div class="d-block d-lg-flex text-center text-lg-left align-items-center justify-content-between">
-                <div class="mb-4 mb-lg-0">
-                    <span class="c-pink d-block mb-2">
-                        Instituição:
-                    </span>
-                    237 - Itaú
+            @if(count($picpayBuyers))
+                <h6 class="mt-4 mb-3">Contas Picpay</h6>
+            @endif
+            @foreach($picpayBuyers as $key => $buyer)
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Nome/Sobrenome:
+                            </span>
+                            {{$buyer['first_name']}} {{$buyer['last_name']}}
+                        </div>
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Documento:
+                            </span>
+                            {{$buyer['document']}}
+                        </div>
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Telefone:
+                            </span>
+                            {{$buyer['phone']}}
+                        </div>
+                        <div class="col-3">
+                            <button class="btn-primary btn-edit-picpay" data-record="{{json_encode($buyer)}}">Editar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4 mb-lg-0">
-                    <span class="c-pink d-block mb-2">
-                        Agência:
-                    </span>
-                    XX28
+            @endforeach
+
+            @if(count($gerencianetBuyers))
+                <h6 class="mt-4 mb-3">Contas Gerenciament</h6>
+            @endif
+            @foreach($gerencianetBuyers as $key => $buyer)
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Nome/Sobrenome:
+                            </span>
+                            {{$buyer['first_name']}} {{$buyer['last_name']}}
+                        </div>
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Documento:
+                            </span>
+                            {{$buyer['document']}}
+                        </div>
+                        <div class="col-3">
+                            <span class="c-pink d-block mb-2">
+                                Telefone:
+                            </span>
+                            {{$buyer['phone']}}
+                        </div>
+                        <div class="col-3">
+                            <button class="btn-primary btn-edit-gerencianet" data-record="{{json_encode($buyer)}}">Editar</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4 mb-lg-0">
-                    <span class="c-pink d-block mb-2">
-                        Conta:
-                    </span>
-                    XXX4138-8
-                </div>
-                <div>
-                    <button class="btn-primary">Trocar conta</button>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="text-center mt-4">
-            <button class="btn-primary transparent btn_new_account">
-                <i class="fas fa-plus"></i> Adicionar nova conta bancária</button>
+            <button class="btn-primary transparent btn-add-account">
+                <i class="fas fa-plus"></i> Adicionar nova conta bancária
+            </button>
         </div>
     </div>
 </div>
+
+@include('livewire.components.banks.account-dialog')
+
+<!--
+Desativado temporariamente por estar causando erros
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript" src="{{ asset( 'assets/js/charts.js' ) }}"></script>
 <script type="text/javascript">
     loadCharts();
 </script>
+-->
+
