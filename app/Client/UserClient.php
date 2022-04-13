@@ -11,9 +11,9 @@ class UserClient
 
     public function __construct(
         ClientGuzzle $client
-    )
-    {
+    ) {
         $this->client = $client;
+
         if (session()->has('user')) {
             $this->token = session()->get('user')->token;
         }

@@ -35,9 +35,13 @@ class Login extends Component
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
+            $responseBodyAsString = json_decode( $response->getBody()->getContents() );
+            $errors = $responseBodyAsString;
 
-            return $this->return = 'Ops.. Login e/ou senha inválidos';
+            if( $errors == [] );
+                return redirect()->route( 'verify' );
+
+            return $this->return = $errors;
         }
     }
 
