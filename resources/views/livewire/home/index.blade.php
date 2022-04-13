@@ -6,7 +6,6 @@
         </div>
     </form>
 
-
     <div>
         <div class="modal_default" data-modal="post">
             <div class="d-flex w-100 h-100 position-relative align-items-center justify-content-center">
@@ -166,7 +165,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="hover btn-primary">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -187,7 +186,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/02.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="hover btn-primary">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -208,7 +207,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/03.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="hover btn-primary">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
@@ -229,7 +228,7 @@
             <div class="cover" style="background-image:url(assets/images/covers/01.png);">
                 <div class="row">
                     <div class="col-12 text-right">
-                        <button class="hover">Seguir</button>
+                        <button class="hover btn-primary">Seguir</button>
                         <i class="fas fa-ellipsis-v ml-2 text-white"></i>
                     </div>
                 </div>
