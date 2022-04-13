@@ -31,13 +31,16 @@ class Register extends Component
 
             $response = json_decode( $response->getBody() );
 
+            Session::put( 'user', $response->token );
+
             return redirect()->route( 'verify' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
-            dd($errors = $responseBodyAsString->errors);
-            $this->return = $errors;
+            $errors = $responseBodyAsString->errors;
+
+            return $this->return = 'Ops... algo errado!';
         }
     }
 

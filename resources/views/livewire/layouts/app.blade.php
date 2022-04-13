@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html lang="{{ str_replace( '_', '-', app()->getLocale()) }}">
 
     <head>
@@ -97,7 +95,7 @@
 
                             <ul class="menu">
                                 <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i> Home</a></li>
-                                <li><a href="{{ route( 'home.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
+                                <li><a href="{{ route( 'publications.index' ) }}"><i class="las la-newspaper"></i> Publicações</a></li>
                                 <li><a href="{{ route( 'chat.index' ) }}"><i class="far fa-paper-plane"></i> Mensagens</a></li>
                                 <li><a href="#"><i class="far fa-bell"></i> Notificações</a></li>
                                 <li><a href="{{ route( 'profile.index' ) }}"><i class="far fa-user"></i> Perfil</a></li>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Verify;
+namespace App\Http\Livewire\Auth\Resend;
 
 use Livewire\Component;
 
@@ -9,42 +9,37 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
-class Verify extends Component
+class Resend extends Component
 {
-    public $activation_code     = '';
-    public $return              = '';
+    public $return      = '';
 
     public function submit()
     {
         $client = new ClientGuzzle( new Client );
 
         try {
-            $response = $client->request( 'PATCH', config( 'bffapi.auth.activate' ), [
-                'headers' => [
-                    'Accept'     => 'application/json'
-                ],
+            $response = $client->request( 'POST', config( 'bffapi.auth.resend' ), [
                 'form_params' => [
-                    'activation_code'   => $this->activation_code
+                    'email'         => $this->email
                 ]
             ]);
 
             $response = json_decode( $response->getBody() );
+
+            Session::put( 'user', $response->user );
 
             return redirect()->route( 'home.index' );
 
         } catch ( ClientException $e ) {
             $response = $e->getResponse();
             $responseBodyAsString = json_decode( $response->getBody()->getContents() );
-            $errors = $responseBodyAsString->errors->activation_code[0];
+            $errors = $responseBodyAsString;
+
+            if( $errors == [] );
+                return redirect()->route( 'verify' );
 
             return $this->return = $errors;
         }
     }
 
-    public function render()
-    {
-        return view( 'livewire.auth.verify.index' )
-                ->layout( 'livewire.layouts.auth.verify' );
-    }
-
-} // Verify
+} // Resend

@@ -30,6 +30,10 @@
                     </button>
                 </div>
 
+                <a href="{{ route( 'resend' ) }}">
+                    Reenviar e-mail
+                </a>
+
             </div> <!-- text-center -->
 
         </form>
