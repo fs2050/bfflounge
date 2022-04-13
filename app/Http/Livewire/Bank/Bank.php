@@ -22,16 +22,11 @@ class Bank extends Component
 
     public function mount()
     {
-        $picpayBuyers = $this->picpayClient->picpayBuyers();
-        $gerencianetBuyers = $this->picpayClient->gerencianetBuyers();
+        $picpayBuyers = $this->picpayClient->buyers();
 
         $this->picpayBuyers = array_map(function($item) {
             return (array)$item;
         }, $picpayBuyers);
-
-        $this->gerencianetBuyers = array_map(function($item) {
-            return (array)$item;
-        }, $gerencianetBuyers);
     }
 
     public function render()

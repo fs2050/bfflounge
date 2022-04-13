@@ -4,7 +4,7 @@ namespace App\Client;
 
 use App\Client\ClientGuzzle;
 
-class PicpayClient
+class GerencianetClient
 {
     private $client;
     private $token;
@@ -21,7 +21,7 @@ class PicpayClient
 
     public function buyers()
     {
-        $response = $this->client->request('GET', "payments/picpay/buyer", [
+        $response = $this->client->request('GET', "payments/gerencianet/buyer", [
             'headers' => [
                 "Authorization" => "Bearer {$this->token}"
             ]

@@ -5,7 +5,7 @@
         <div class="container">
             <h2 class="c-pink">
                 Meus Cartões
-                <div class="float-right position-relative new_card cursor-pointer">
+                <div class="float-right position-relative new_card btn-add-card cursor-pointer" title="Adicionar Cartão">
                     <i class="far fa-credit-card"></i>
                     <i class="fas fa-plus"></i>
                 </div>
@@ -20,63 +20,40 @@
 
         <div class="container">
             <div data-tab="1" class="credit_card">
-                <div class="d-block d-lg-flex justify-content-between w-100 mt-0 mt-lg-4">
-                    <div class="mb-3 mb-lg-0">
-                        <div class="card_flag">
-                            <img src="{{ asset( 'assets/images/visa.png' ) }}">
+                @if(isset($cards) && is_array($cards) && count($cards) > 0)
+                    @foreach($cards as $cardIndex => $card)
+                        <div class="d-block d-lg-flex justify-content-between w-100 mt-0 mt-lg-4">
+                            <div class="mb-3 mb-lg-0">
+                                <div class="card_flag">
+                                    <img src="{{ asset( 'assets/images/'.$card['type'].'.png' ) }}">
+                                </div>
+                                <span class="card_number">
+                                    {{$card['type']}} {{$card['description']}}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="card_expiration">
+                                    {{sprintf('%02d', $card['month'])}}/{{$card['year']}}
+                                </span>
+                            </div>
                         </div>
-                        <span class="card_number">
-                            visa •••• •••• •••• 4274
-                        </span>
-                    </div>
-                    <div>
-                        <span class="card_expiration">
-                            Expiration date 10/25 •••
-                        </span>
-                    </div>
-                </div>
-                <hr />
-                <div class="d-flex justify-content-between w-100">
-                    <div>
-                        <span class="card_status">
-                            Ativo
-                        </span>
-                    </div>
-                    <div>
-                        <span class="card_type">
-                            Principal
-                        </span>
-                    </div>
-                </div>
-
-                <div class="d-block d-lg-flex justify-content-between w-100 mt-5">
-                    <div class="mb-3 mb-lg-0">
-                        <div class="card_flag">
-                            <img src="{{ asset( 'assets/images/mastercard.png' ) }}">
-                        </div>
-                        <span class="card_number">
-                            visa •••• •••• •••• 5852
-                        </span>
-                    </div>
-                    <div>
-                        <span class="card_expiration">
-                            Expiration date 09/23 •••
-                        </span>
-                    </div>
-                </div>
-                <hr />
-                <div class="d-flex justify-content-between w-100 mb-4">
-                    <div>
-                        <span class="card_status">
-                            Ativo
-                        </span>
-                    </div>
-                    <div>
-                        <span class="card_type">
-                            Secundário
-                        </span>
-                    </div>
-                </div>
+                        <hr />
+                        <!-- <div class="d-flex justify-content-between w-100">
+                            <div>
+                                <span class="card_status">
+                                    Ativo
+                                </span>
+                            </div>
+                            <div>
+                                <span class="card_type">
+                                    Principal
+                                </span>
+                            </div>
+                        </div> -->
+                    @endforeach
+                @else
+                    Nenhum cartão cadastrado
+                @endif
             </div>
 
             <div data-tab="2" class="payments" style="display:none;">
@@ -187,3 +164,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    const currentBuyer = {!! json_encode($buyer) !!}
+</script>
+
+
+@include('livewire.components.cards.add-card-dialog')

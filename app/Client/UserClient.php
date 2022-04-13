@@ -23,7 +23,7 @@ class UserClient
     {
         $response = $this->client->request('GET', "users/$id", [
             'headers' => [
-                'Authorization' => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
@@ -35,7 +35,7 @@ class UserClient
         $response = $this->client->request('PUT', "users/$id", [
             'form_params' => $data,
             'headers' => [
-                'Authorization' => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
@@ -46,7 +46,7 @@ class UserClient
     {
         $response = $this->client->request('DELETE', "users/$id/destroy", [
             'headers' => [
-                'Authorization' => "Bearer {$this->token}"
+                "Authorization" => "Bearer {$this->token}"
             ]
         ]);
 
