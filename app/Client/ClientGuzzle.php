@@ -35,7 +35,7 @@ class ClientGuzzle
     public function request(string $method, string $url, array $options = [])
     {
         if(Session::has('user')){
-            $options['headers']['Authorization'] = 'Bearer ' . Session::get('user');
+            $options['headers']['Authorization'] = 'Bearer ' . Session::get('user')->token;
         }
         // dd($options);
 

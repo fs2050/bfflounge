@@ -10,24 +10,24 @@
         <div class="post">
             <div class="post_user">
                 <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
-                <div class="user_name">
+                <div class="user_name">gt
                     <h5>Jéssica Padilha</h5>
             <span><a href="#">@jessypadilha22</a></span>
                 </div>
                 <div class="post_options">
-                    <div class="post_action">
-                        <div class="dropdown">
-                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar" >Editar</a>
-                            <a class="dropdown-item" href="#">Excluir</a>
-                          </div>
 
-                    </div>
-                    </div>
                     <div class="post_date">
                         <span class="d-none d-lg-inline-block">Publicado</span> há 2 dias
                     </div>
+                </div>     <div class="post_action">
+                    <div class="dropdown">
+                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar" >Editar</a>
+                        <a class="dropdown-item" href="#">Excluir</a>
+                      </div>
+
+                </div>
                 </div>
             </div>
             <!-- Modal Editar-->
