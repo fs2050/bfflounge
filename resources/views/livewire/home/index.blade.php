@@ -28,7 +28,6 @@
                         </div>
                     </div>
                     <div class="post_info">
-
                         <img src="assets/images/posts/01.png" class="w-100" />
                     </div>
                     <div class="post_reactions">
@@ -42,7 +41,8 @@
                                 <i class="far fa-paper-plane mx-1 mx-lg-2"></i>
                             </div>
                             <div>
-                                <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i> <span class="d-none d-lg-inline-block mr-1 position-relative fw-500" style="top:-4px;">Send Tip</span>
+                                <i class="fas fa-dollar-sign mx-1 mx-lg-0 btn-send-tip cursor-pointer"></i>
+                                <span class="d-none d-lg-inline-block mr-1 position-relative fw-500 btn-send-tip cursor-pointer" style="top:-4px;">Send Tip</span>
                                 <i class="las la-eye mx-1 mx-lg-2">
                                     {{ $post->views }}
                                 </i>
@@ -218,5 +218,7 @@
             </div>
         </div>
     </div>
+    @include('livewire.components.posts.send-tip-dialog')
+    @include('livewire.components.posts.select-card-dialog')
 </div>
     <!-- Fim container_right-->
