@@ -5,7 +5,12 @@
     <div class="bg_03" data-aos="fade-left" data-delay="100"></div>
 
     <div class="card p-4 p-lg-5">
+
         <img src="{{ url( 'assets/images/logo2.png' ) }}" alt="BFF Lounger" class="logo mb-5 w-100" />
+
+        <div style="color: red" class="error alert text-center">
+            {{ $return }}
+        </div>
 
         <form class="form_cadastro mb-0" wire:submit.prevent="submit">
 
@@ -22,12 +27,10 @@
                 <i class="fas fa-eye show_password"></i>
             </div>
 
-
-            <div class="input password mb-2">
+            {{-- <div class="input password mb-2">
                 <input type="password" name="password" placeholder="Confirmar senha:" wire:model="password" />
                 <i class="fas fa-eye show_password"></i>
-            </div>
-
+            </div> --}}
 
             <div class="text-center">
                 <div class="px-5 mt-5">
