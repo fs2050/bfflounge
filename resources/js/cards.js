@@ -122,7 +122,6 @@ function getPersonData() {
 
 function loadCurrentBuyer() {
     if (!isNil(currentBuyer) && has(currentBuyer, "id")) {
-        console.log(currentBuyer);
         $("[name=first_name]").val(currentBuyer.first_name);
         $("[name=last_name]").val(currentBuyer.last_name);
         $("[name=document]").val(currentBuyer.document);
