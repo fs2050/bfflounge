@@ -60,15 +60,14 @@
             </div>
 
             @if( !$post->medias == null )
-            <div class="post_info">
-                <p>{{ $post->content}}</p>
-                <img src="assets/images/posts/01.png" class="w-100" />
-            </div>
+                <div class="post_info">
+                    <p>{{ $post->content }}</p>
+                    <img src="assets/images/posts/01.png" class="w-100" />
+                </div>
             @else
-            <div class="post_info">
-                <p>{{ $post->content}}</p>
-                <img src="assets/images/posts/01.png" class="w-100" />
-            </div>
+                <div class="post_info">
+                    <p>{{ $post->content }}</p>
+                </div>
             @endif
 
 
