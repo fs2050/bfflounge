@@ -21,7 +21,7 @@ class Home extends Component
 
         $posts = json_decode( $response->getBody()->getContents() );
 
-       return view( 'livewire.home.index', [
+        return view( 'livewire.home.index', [
             'posts' => $posts->data
         ]);
     }
@@ -46,7 +46,6 @@ class Home extends Component
         ]);
 
         $posts = json_decode( $response->getBody()->getContents() );
-
     }
 
     public function confirmDeletePost()
@@ -57,10 +56,7 @@ class Home extends Component
 
         $posts = json_decode( $response->getBody()->getContents() );
 
-        $this->clientApi->userDelete(session()->get('user')->id);
-
-
-
+        $this->clientApi->userDelete( session()->get( 'user' )->id );
     }
 
 } // Home
