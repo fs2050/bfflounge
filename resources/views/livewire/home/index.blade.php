@@ -15,8 +15,9 @@
                     <div class="d-block d-lg-flex">
                         <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
 
-                        <form wire:submit.prevent="addPost">
-                            <textarea class="mb-2" name="content" wire:model="content"></textarea>
+
+                        <form wire:submit.prevent="addPost" >
+                            <textarea class="mb-2" name="content" wire:model.defer="content"></textarea>
                             <div class="d-flex align-items-center justify-content-between">
 
                                 <div>
@@ -29,8 +30,9 @@
                                     <i class="las la-comment"></i>
                                 </div>
 
+
                                 <div>
-                                    <button class="btn-primary">Cancelar</button>
+                                    <button type="submit" name="submit" class="btn btn-primary" formnovalidate>Cancelar</button>
 
                                     <button class="btn-primary">Publicar</button>
                                 </div>

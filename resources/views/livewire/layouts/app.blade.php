@@ -170,7 +170,6 @@
             return true;
     }
 </script>
-
 <script type="text/javascript">
     function escolherArquivo(){
       // vamos obter uma referência ao elemento file
