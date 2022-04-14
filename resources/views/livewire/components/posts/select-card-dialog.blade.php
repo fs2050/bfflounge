@@ -9,18 +9,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <h4>Saldo atual R$ 0,00</h4>
+                <!-- <h4>Saldo atual R$ 0,00</h4> -->
+
                 <h5 class="pt-3" style="color: rgb(184, 184, 184); margin-top: 10px;">Valores em Reais (BRL)</h5>
 
-                <div class="row d-flex justify-content-center "><button type="button"
-                        class="btn btn-item active">15*</button></div>
+                <div class="row d-flex justify-content-center ">
+                    <button type="button" class="btn btn-item active btn-tip-show-value">
+                        15*
+                    </button>
+                </div>
 
                 <h4 class="pt-5" style="color: black; font-style: italic;">Métodos</h4>
+
                 <div id="myDIV" style="text-align: center;">
                     <button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
-                        Cartao de credito</button>
+                        Cartao de credito
+                    </button>
                     <button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
-                        PIX</button>
+                        PIX
+                    </button>
                     <button data-v-70b0291a="" class="btn btn-item mr-2 ml-2 active">
                         Pic Pay
                     </button>
@@ -33,13 +40,25 @@
 
                 <div data-v-58e484df="" class="row title_value_wallet pt-5">
                     <h4 data-v-58e484df="">Seus Cartões</h4>
-                    <div data-v-58e484df="" class="col col_md" style="padding: 0px;"><button data-v-58e484df=""
-                            type="button"
-                            class="btn btn-success white--text v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default"
-                            style="float: right; background-color: rgb(193, 51, 77);">Novo</button></div>
+                    <table class="table table-striped table-bordered table-cards">
+                        <thead>
+                            <th>Tipo</th>
+                            <th>Descrição</th>
+                            <th>Selecionado</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
                 </div>
 
-                <button class="btn btn-primary btn-lg mt-5" style="margin-top: 10px;">Confirmar</button>
+                <div class="text-right">
+                    <button class="btn btn-warning btn-rounded mt-5 btn-go-to-cards">Novo</button>
+                    <button class="btn btn-primary mt-5 btn-submit-tip">
+                        <span class="spinner-border spinner-border-sm preload" style="display: none;" role="status" aria-hidden="true">&nbsp;</span>
+                        Confirmar
+                    </button>
+                </div>
             </div>
         </div>
     </div>
