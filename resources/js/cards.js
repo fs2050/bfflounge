@@ -1,11 +1,13 @@
-const { has, isNil } = require("lodash");
 const cardValidator = require("card-validator");
+let selectedCardId = null;
 
 $(() => {
     $("[name=cc_number]").mask("0000 0000 0000 0000");
     $("[name=cc_cvv]").mask("000");
     $("[name=phone]").mask("+00(00)00000-0000");
     $("[name=document]").mask("000.000.000-00", { reverse: true });
+    $("[name=zipcode]").mask("00000-000");
+    $("[name=number]").mask("000000");
 
     $(".btn-add-card").on("click", () => {
         $("#addCardDialog").modal("show");
@@ -16,8 +18,77 @@ $(() => {
     });
 
     $(".btn-continue").on("click", submit);
+
+    $(".btn-select-card").on("click", (e) => {
+        if (Object.keys(e.target.dataset).length > 0) {
+            const { cardId } = e.target.dataset;
+            selectedCardId = cardId;
+            enableCardOptions();
+        }
+    });
+
+    $(".card-options")
+        .find(".btn-delete")
+        .on("click", () => {
+            swal(
+                {
+                    title: "Confirmação",
+                    text: "Deseja excluir este cartão?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "Sim, excluir",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false,
+                },
+                function () {
+                    destroyCard();
+                }
+            );
+        });
+
+    $(".card-options")
+        .find(".btn-card-main")
+        .on("click", () => {
+            swal(
+                {
+                    title: "Confirmação",
+                    text: "Deseja tornar esse cartão principal?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-warning",
+                    confirmButtonText: "Sim",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false,
+                },
+                function () {
+                    setMain();
+                }
+            );
+        });
+
     loadCurrentBuyer();
 });
+
+function disableCardOptions() {
+    $(".card-options")
+        .find(".btn")
+        .each((i, e) => {
+            $(e).prop("disabled", true);
+        });
+}
+
+function enableCardOptions() {
+    $(".card-options")
+        .find(".btn")
+        .each((i, e) => {
+            $(e).prop("disabled", false);
+        });
+
+    setTimeout(() => {
+        disableCardOptions();
+    }, 10000);
+}
 
 function getCardType() {
     const cardNumber = cardValidator.number($("[name=cc_number]").val());
@@ -108,7 +179,12 @@ function getPersonData() {
         birth: $("[name=birth]").val(),
         email: $("[name=email]").val(),
         phone: $("[name=phone]").val(),
-        full_address: $("[name=address]").val(),
+        street: $("[name=street]").val(),
+        number: $("[name=number]").val(),
+        zipcode: $("[name=zipcode]").val(),
+        neighborhood: $("[name=neighborhood]").val(),
+        state: $("[name=state]").val(),
+        city: $("[name=city]").val(),
         adult: $("[name=flexRadioDefault]").is(":checked"),
         card: {
             type: getCardType(),
@@ -121,14 +197,24 @@ function getPersonData() {
 }
 
 function loadCurrentBuyer() {
-    if (!isNil(currentBuyer) && has(currentBuyer, "id")) {
+    if ($("[name=buyer]").length) {
+        const currentBuyer = JSON.parse($("[name=buyer]").val());
+        if (typeof currentBuyer !== "object") {
+            return;
+        }
+
         $("[name=first_name]").val(currentBuyer.first_name);
         $("[name=last_name]").val(currentBuyer.last_name);
         $("[name=document]").val(currentBuyer.document);
         $("[name=birth]").val(currentBuyer.birth);
         $("[name=email]").val(currentBuyer.email);
         $("[name=phone]").val(currentBuyer.phone);
-        $("[name=full_address]").val(currentBuyer.full_address);
+        $("[name=street]").val(currentBuyer.street);
+        $("[name=number]").val(currentBuyer.number);
+        $("[name=zipcode]").val(currentBuyer.zipcode);
+        $("[name=neighborhood]").val(currentBuyer.neighborhood);
+        $("[name=state]").val(currentBuyer.state);
+        $("[name=city]").val(currentBuyer.city);
 
         $("[name=first_name]").prop("readonly", true);
         $("[name=last_name]").prop("readonly", true);
@@ -136,8 +222,16 @@ function loadCurrentBuyer() {
         $("[name=birth]").prop("readonly", true);
         $("[name=email]").prop("readonly", true);
         $("[name=phone]").prop("readonly", true);
-        $("[name=full_address]").prop("readonly", true);
+
+        $("[name=street]").prop("readonly", true);
+        $("[name=number]").prop("readonly", true);
+        $("[name=zipcode]").prop("readonly", true);
+        $("[name=neighborhood]").prop("readonly", true);
+        $("[name=state]").prop("readonly", true);
+        $("[name=city]").prop("readonly", true);
+
         $("[name=flexRadioDefault]").prop("checked", true);
+        $(".btn-reset").hide();
     } else {
         $("[name=first_name]").prop("readonly", false);
         $("[name=last_name]").prop("readonly", false);
@@ -145,9 +239,57 @@ function loadCurrentBuyer() {
         $("[name=birth]").prop("readonly", false);
         $("[name=email]").prop("readonly", false);
         $("[name=phone]").prop("readonly", false);
-        $("[name=full_address]").prop("readonly", false);
+
+        $("[name=street]").prop("readonly", false);
+        $("[name=number]").prop("readonly", false);
+        $("[name=zipcode]").prop("readonly", false);
+        $("[name=neighborhood]").prop("readonly", false);
+        $("[name=state]").prop("readonly", false);
+        $("[name=city]").prop("readonly", false);
+
         $("[name=flexRadioDefault]").prop("checked", false);
+        $(".btn-reset").show();
     }
+}
+
+function destroyCard() {
+    $.ajax({
+        method: "DELETE",
+        url: `payments/gerencianet/cards/${selectedCardId}`,
+        success: () => {
+            swal("Sucesso!", "Operação realizada com sucesso.", "success");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        },
+        error: () => {
+            swal(
+                "Ocorreu um erro!",
+                "Não foi possível realzar a operação.",
+                "error"
+            );
+        },
+    });
+}
+
+function setMain() {
+    $.ajax({
+        method: "PUT",
+        url: `payments/gerencianet/cards/${selectedCardId}/main`,
+        success: () => {
+            swal("Sucesso!", "Operação realizada com sucesso.", "success");
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000);
+        },
+        error: () => {
+            swal(
+                "Ocorreu um erro!",
+                "Não foi possível realzar a operação.",
+                "error"
+            );
+        },
+    });
 }
 
 function submit() {

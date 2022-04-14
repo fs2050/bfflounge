@@ -53,6 +53,14 @@
 
         </main>
 
+        <script type='text/javascript'>var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/acfcda84ba182127c8fdb96fcb1f6f25/'+v;s.async=false;s.id='acfcda84ba182127c8fdb96fcb1f6f25';if(!document.getElementById('acfcda84ba182127c8fdb96fcb1f6f25')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
+
+        <script>
+            $gn.ready(function (checkout) {
+                window.gerencianetCheckout = checkout;
+            });
+        </script>
+
         <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
 
         @livewireScripts

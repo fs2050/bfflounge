@@ -10,13 +10,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="myDIV" style="text-align: center;"><button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
+                <div id="myDIV" style="text-align: center;">
+                    <button data-v-70b0291a="" data-value="5" class="btn btn-item mr-2 ml-2 btn-tip-value">
                         5
-                    </button><button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
+                    </button>
+                    <button data-v-70b0291a="" data-value="10" class="btn btn-item mr-2 ml-2 btn-tip-value">
                         10
-                    </button><button data-v-70b0291a="" class="btn btn-item mr-2 ml-2 active">
+                    </button>
+                    <button data-v-70b0291a="" data-value="15" class="btn btn-item mr-2 ml-2 active btn-tip-value">
                         15
-                    </button><button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
+                    </button>
+                    <button data-v-70b0291a="" class="btn btn-item mr-2 ml-2">
                         ?
                     </button>
                 </div>
@@ -29,8 +33,9 @@
                                 <fieldset aria-hidden="true">
                                     <legend style="width: 0px;"><span>​</span></legend>
                                 </fieldset>
-                                <div class="v-text-field__slot"><textarea id="input-617"
-                                        placeholder="Mensagem (opcional)" rows="1" style="height: 32px;"></textarea>
+                                <div class="v-text-field__slot">
+                                    <textarea id="input-617" placeholder="Mensagem (opcional)" rows="5"
+                                        class="form-control" name="tip_message"></textarea>
                                 </div>
                             </div>
                             <div class="v-text-field__details">
@@ -39,10 +44,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div> <button class="btn btn-primary mt-5" data-toggle="modal"
-                        data-target="#selectCardDialog">Confirmar</button>
-                </div>
+                    </div>
 
+                    </div class="text-right">
+                        <button class="btn btn-primary mt-5 btn-tip-next-step" data-toggle="modal"
+                        data-target="#selectCardDialog">Confirmar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
