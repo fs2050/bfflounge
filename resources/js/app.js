@@ -8,3 +8,4 @@ require("bootstrap-sweetalert/dist/sweetalert.css");
 
 require("./posts");
 require("./bank");
+require("./cards");

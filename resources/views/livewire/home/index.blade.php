@@ -37,7 +37,7 @@
                                     <button class="btn-primary">Publicar</button>
                                 </div>
                             </div>
-                        </form>
+                        </form>q
                     </div>
                 </div>
 
