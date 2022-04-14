@@ -21,10 +21,10 @@
                             <div class="d-flex align-items-center justify-content-between">
 
                                 <div>
-                                    <input id="arquivo" name="arquivo" type="file" style="display:none">
-                                    <a href="javascript:escolherArquivo()"><i class="lab la-youtube mr-1"></i></a>
-                                    <input id="arquivo" name="arquivo" type="file" style="display:none">
-                                    <a href="javascript:escolherArquivo()"> <i class="las la-camera mr-1"></i></a>
+                                    <input id="arquivo" name="file" type="file" style="display:none">
+                                    <a href="javascript:chooseFile()"><i class="lab la-youtube mr-1"></i></a>
+                                    <input id="file" name="file" type="file" style="display:none">
+                                    <a href="javascript:chooseFile()"> <i class="las la-camera mr-1"></i></a>
 
 
                                     <i class="las la-comment"></i>

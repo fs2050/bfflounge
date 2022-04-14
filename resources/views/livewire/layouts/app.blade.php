@@ -170,10 +170,11 @@
             return true;
     }
 </script>
+
 <script type="text/javascript">
-    function escolherArquivo(){
+    function chooseFile(){
       // vamos obter uma referência ao elemento file
-      var arquivo = document.getElementById("arquivo");
+      var arquivo = document.getElementById("file");
       // vamos disparar seu evento onclick()
       arquivo.click();
     }
