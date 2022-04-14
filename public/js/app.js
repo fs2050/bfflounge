@@ -2772,6 +2772,7 @@ function prepareCardData(card) {
 }
 
 function registerTip() {
+  $(".preload").show();
   var tipData = {
     status: 1,
     price: tip.value,
@@ -2783,18 +2784,20 @@ function registerTip() {
     url: "tips",
     data: tipData,
     success: function success(data) {
+      $(".preload").hide();
       swal("Tip registrada!", "Operação realizada com sucesso", "success");
-      console.log("registerTip response", data);
       tip.tip_id = data.id;
       registerPayment();
     },
     error: function error() {
+      $(".preload").hide();
       swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
     }
   });
 }
 
 function registerPayment() {
+  $(".preload").show();
   var paymentData = {
     product: {
       type: "tip",
@@ -2809,8 +2812,8 @@ function registerPayment() {
     url: "payments/gerencianet/card-payments",
     data: paymentData,
     success: function success(resp) {
+      $(".preload").hide();
       swal("Pagamento registrado!", "Operação realizada com sucesso", "success");
-      console.log(resp);
       tip = {
         profile_id: "",
         value: 0,
@@ -2820,6 +2823,7 @@ function registerPayment() {
       };
     },
     error: function error() {
+      $(".preload").hide();
       swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
     }
   });
@@ -2827,6 +2831,7 @@ function registerPayment() {
 
 function submitTip() {
   var cardId = $("[name=radio_card_item]:checked").data("id");
+  $(".preload").show();
 
   if (isNumber(cardId)) {
     $.ajax({
@@ -2834,10 +2839,10 @@ function submitTip() {
       url: "payments/gerencianet/cards/".concat(cardId),
       success: function success(resp) {
         if (has(resp, "card.type")) {
-          $(".preload").show();
           var cardData = prepareCardData(resp.card);
           window.gerencianetCheckout.getPaymentToken(cardData, function (error, _ref) {
             var data = _ref.data;
+            $(".preload").hide();
 
             if (error) {
               swal("Ocorreu um erro!", error, "error");
@@ -2852,6 +2857,7 @@ function submitTip() {
         }
       },
       error: function error() {
+        $(".preload").hide();
         swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
       }
     });

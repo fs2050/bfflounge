@@ -110,6 +110,7 @@ function prepareCardData(card) {
 }
 
 function registerTip() {
+    $(".preload").show();
     const tipData = {
         status: 1,
         price: tip.value,
@@ -121,16 +122,17 @@ function registerTip() {
         url: `tips`,
         data: tipData,
         success: (data) => {
+            $(".preload").hide();
             swal(
                 "Tip registrada!",
                 "Operação realizada com sucesso",
                 "success"
             );
-            console.log("registerTip response", data);
             tip.tip_id = data.id;
             registerPayment();
         },
         error: () => {
+            $(".preload").hide();
             swal(
                 "Ocorreu um erro!",
                 "Não foi possível realzar a operação.",
@@ -141,6 +143,7 @@ function registerTip() {
 }
 
 function registerPayment() {
+    $(".preload").show();
     const paymentData = {
         product: {
             type: "tip",
@@ -155,12 +158,12 @@ function registerPayment() {
         url: `payments/gerencianet/card-payments`,
         data: paymentData,
         success: (resp) => {
+            $(".preload").hide();
             swal(
                 "Pagamento registrado!",
                 "Operação realizada com sucesso",
                 "success"
             );
-            console.log(resp);
             tip = {
                 profile_id: "",
                 value: 0,
@@ -170,6 +173,7 @@ function registerPayment() {
             };
         },
         error: () => {
+            $(".preload").hide();
             swal(
                 "Ocorreu um erro!",
                 "Não foi possível realzar a operação.",
@@ -181,17 +185,18 @@ function registerPayment() {
 
 function submitTip() {
     const cardId = $("[name=radio_card_item]:checked").data("id");
+    $(".preload").show();
     if (isNumber(cardId)) {
         $.ajax({
             method: "GET",
             url: `payments/gerencianet/cards/${cardId}`,
             success: (resp) => {
                 if (has(resp, "card.type")) {
-                    $(".preload").show();
                     const cardData = prepareCardData(resp.card);
                     window.gerencianetCheckout.getPaymentToken(
                         cardData,
                         function (error, { data }) {
+                            $(".preload").hide();
                             if (error) {
                                 swal("Ocorreu um erro!", error, "error");
                                 console.error(error);
@@ -206,6 +211,7 @@ function submitTip() {
                 }
             },
             error: () => {
+                $(".preload").hide();
                 swal(
                     "Ocorreu um erro!",
                     "Não foi possível realzar a operação.",
