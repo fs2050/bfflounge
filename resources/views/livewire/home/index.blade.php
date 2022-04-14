@@ -18,9 +18,14 @@
                         <form wire:submit.prevent="addPost">
                             <textarea class="mb-2" name="content" wire:model="content"></textarea>
                             <div class="d-flex align-items-center justify-content-between">
+
                                 <div>
-                                    <i class="lab la-youtube mr-1"></i>
-                                    <i class="las la-camera mr-1"></i>
+                                    <input id="arquivo" name="arquivo" type="file" style="display:none">
+                                    <a href="javascript:escolherArquivo()"><i class="lab la-youtube mr-1"></i></a>
+                                    <input id="arquivo" name="arquivo" type="file" style="display:none">
+                                    <a href="javascript:escolherArquivo()"> <i class="las la-camera mr-1"></i></a>
+
+
                                     <i class="las la-comment"></i>
                                 </div>
 
