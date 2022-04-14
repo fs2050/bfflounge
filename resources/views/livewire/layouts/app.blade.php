@@ -171,6 +171,15 @@
     }
 </script>
 
+<script type="text/javascript">
+    function escolherArquivo(){
+      // vamos obter uma referência ao elemento file
+      var arquivo = document.getElementById("arquivo");
+      // vamos disparar seu evento onclick()
+      arquivo.click();
+    }
+  </script>
+
 @livewireScripts
 
 </body>

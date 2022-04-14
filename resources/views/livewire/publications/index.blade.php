@@ -10,7 +10,7 @@
         <div class="post">
             <div class="post_user">
                 <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
-                <div class="user_name">gt
+                <div class="user_name">
                     <h5>Jéssica Padilha</h5>
             <span><a href="#">@jessypadilha22</a></span>
                 </div>
