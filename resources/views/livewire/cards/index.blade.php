@@ -1,5 +1,8 @@
-<div class="container_center h-100 mt-5">
+<div class="container_center h-100 mt-5 cards-page">
     <h4 class="mt-0 mt-lg-5 mb-4 c-pink">Configurações</h4>
+
+    <!-- O buyer será utilizando dentro do script cards.js -->
+    <input type="hidden" value="{{json_encode($buyer)}}" name="buyer" />
 
     <div class="card">
         <div class="container">
@@ -22,23 +25,27 @@
             <div data-tab="1" class="credit_card">
                 @if(isset($cards) && is_array($cards) && count($cards) > 0)
                     @foreach($cards as $cardIndex => $card)
-                        <div class="d-block d-lg-flex justify-content-between w-100 mt-0 mt-lg-4">
+                        <div
+                            class="d-block d-lg-flex justify-content-between w-100 mt-0 mt-lg-4 cursor-pointer btn-select-card"
+                            data-card-id="{{$card['id']}}"
+                            title="Clique para editar o cartão"
+                        >
                             <div class="mb-3 mb-lg-0">
                                 <div class="card_flag">
-                                    <img src="{{ asset( 'assets/images/'.$card['type'].'.png' ) }}">
+                                    <img src="{{ asset( 'assets/images/'.$card['type'].'.png' ) }}" class="btn-select-card" data-card-id="{{$card['id']}}">
                                 </div>
-                                <span class="card_number">
+                                <span class="card_number" class="btn-select-card" data-card-id="{{$card['id']}}">
                                     {{$card['type']}} {{$card['description']}}
                                 </span>
                             </div>
                             <div>
-                                <span class="card_expiration">
+                                <span class="card_expiration" class="btn-select-card" data-card-id="{{$card['id']}}">
                                     {{sprintf('%02d', $card['month'])}}/{{$card['year']}}
                                 </span>
                             </div>
                         </div>
                         <hr />
-                        <!-- <div class="d-flex justify-content-between w-100">
+                        <div class="d-flex justify-content-between w-100">
                             <div>
                                 <span class="card_status">
                                     Ativo
@@ -46,11 +53,19 @@
                             </div>
                             <div>
                                 <span class="card_type">
-                                    Principal
+                                    @if($card['main'])
+                                        Principal
+                                    @else
+                                        Secundário
+                                    @endif
                                 </span>
                             </div>
-                        </div> -->
+                        </div>
                     @endforeach
+                    <div class="text-right mt-4 card-options">
+                        <button class="btn btn-danger btn-rounded btn-sm btn-delete" disabled>Excluir</button>
+                        <button class="btn btn-warning btn-rounded btn-sm btn-card-main" disabled>Tornar Principal</button>
+                    </div>
                 @else
                     Nenhum cartão cadastrado
                 @endif
@@ -164,10 +179,5 @@
         </div>
     </div>
 </div>
-
-<script>
-    const currentBuyer = {!! json_encode($buyer) !!}
-</script>
-
 
 @include('livewire.components.cards.add-card-dialog')

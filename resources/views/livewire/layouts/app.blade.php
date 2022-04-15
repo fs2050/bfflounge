@@ -135,64 +135,66 @@
 
 </main> <!-- -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ asset( 'assets/js/aos.js' ) }}"></script>
-<script src="{{ asset( 'assets/js/functions.js' ) }}"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-<script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
-
-
-<script type="text/javascript">
-    function noenter() {
-        return !(window.event && window.event.keyCode == 13);
-    }
-
-    function enter(nextfield) {
-        if (window.event && window.event.keyCode == 13) {
-            nextfield.focus();
-            return false;
-        } else
-            return true;
-    }
-
-    function entsub(event, ourform) {
-        if (event && event.which == 13)
-            ourform.submit();
-        else
-            return true;
-    }
-</script>
-
-<script type="text/javascript">
-    function chooseFile(){
-      // vamos obter uma referência ao elemento file
-      var arquivo = document.getElementById("file");
-      // vamos disparar seu evento onclick()
-      arquivo.click();
-    }
-  </script>
-
-  <script type="text/javascript">
-    function Cancel()
-    {
-    location.href="./"
-    }
-    </script>
+    <script type='text/javascript'>var s=document.createElement('script');s.type='text/javascript';var v=parseInt(Math.random()*1000000);s.src='https://sandbox.gerencianet.com.br/v1/cdn/acfcda84ba182127c8fdb96fcb1f6f25/'+v;s.async=false;s.id='acfcda84ba182127c8fdb96fcb1f6f25';if(!document.getElementById('acfcda84ba182127c8fdb96fcb1f6f25')){document.getElementsByTagName('head')[0].appendChild(s);};$gn={validForm:true,processed:false,done:{},ready:function(fn){$gn.done=fn;}};</script>
 
     <script>
+        $gn.ready(function (checkout) {
+            window.gerencianetCheckout = checkout;
+        });
+    </script>
 
-        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
-@livewireScripts
+    @include('livewire.layouts.setup-jquery-ajax')
 
+    <script type="text/javascript" src="{{ asset( 'assets/js/aos.js' ) }}"></script>
+    <script src="{{ asset( 'assets/js/functions.js' ) }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
+    <script type="text/javascript">
+        function noenter() {
+            return !(window.event && window.event.keyCode === 13);
+        }
+        function enter(nextfield) {
+            if (window.event && window.event.keyCode === 13) {
+                nextfield.focus();
+                return false;
+            } else
+                return true;
+        }
+        function entsub(event, ourform) {
+            if (event && event.which === 13)
+                ourform.submit();
+            else
+                return true;
+        }
+    </script>
+
+    <script type="text/javascript">
+        function chooseFile(){
+            // vamos obter uma referência ao elemento file
+            var arquivo = document.getElementById("file");
+            // vamos disparar seu evento onclick()
+            arquivo.click();
+        }
+    </script>
+
+    <script type="text/javascript">
+        function Cancel()
+        {
+            location.href="./"
+        }
+    </script>
+
+    <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
+    @livewireScripts
 </body>
 
 </html>

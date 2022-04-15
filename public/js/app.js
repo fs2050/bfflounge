@@ -2334,12 +2334,11 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
-    has = _require.has,
-    isNil = _require.isNil;
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 var cardValidator = __webpack_require__(/*! card-validator */ "./node_modules/card-validator/dist/index.js");
 
+var selectedCardId = null;
 $(function () {
   $("[name=cc_number]").mask("0000 0000 0000 0000");
   $("[name=cc_cvv]").mask("000");
@@ -2347,6 +2346,8 @@ $(function () {
   $("[name=document]").mask("000.000.000-00", {
     reverse: true
   });
+  $("[name=zipcode]").mask("00000-000");
+  $("[name=number]").mask("000000");
   $(".btn-add-card").on("click", function () {
     $("#addCardDialog").modal("show");
   });
@@ -2354,8 +2355,58 @@ $(function () {
     cardNumberIsValid();
   });
   $(".btn-continue").on("click", submit);
+  $(".btn-select-card").on("click", function (e) {
+    if (Object.keys(e.target.dataset).length > 0) {
+      var cardId = e.target.dataset.cardId;
+      selectedCardId = cardId;
+      enableCardOptions();
+    }
+  });
+  $(".card-options").find(".btn-delete").on("click", function () {
+    swal({
+      title: "Confirmação",
+      text: "Deseja excluir este cartão?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Sim, excluir",
+      cancelButtonText: "Cancelar",
+      closeOnConfirm: false
+    }, function () {
+      destroyCard();
+    });
+  });
+  $(".card-options").find(".btn-card-main").on("click", function () {
+    swal({
+      title: "Confirmação",
+      text: "Deseja tornar esse cartão principal?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-warning",
+      confirmButtonText: "Sim",
+      cancelButtonText: "Cancelar",
+      closeOnConfirm: false
+    }, function () {
+      setMain();
+    });
+  });
   loadCurrentBuyer();
 });
+
+function disableCardOptions() {
+  $(".card-options").find(".btn").each(function (i, e) {
+    $(e).prop("disabled", true);
+  });
+}
+
+function enableCardOptions() {
+  $(".card-options").find(".btn").each(function (i, e) {
+    $(e).prop("disabled", false);
+  });
+  setTimeout(function () {
+    disableCardOptions();
+  }, 10000);
+}
 
 function getCardType() {
   var cardNumber = cardValidator.number($("[name=cc_number]").val());
@@ -2453,7 +2504,12 @@ function getPersonData() {
     birth: $("[name=birth]").val(),
     email: $("[name=email]").val(),
     phone: $("[name=phone]").val(),
-    full_address: $("[name=address]").val(),
+    street: $("[name=street]").val(),
+    number: $("[name=number]").val(),
+    zipcode: $("[name=zipcode]").val(),
+    neighborhood: $("[name=neighborhood]").val(),
+    state: $("[name=state]").val(),
+    city: $("[name=city]").val(),
     adult: $("[name=flexRadioDefault]").is(":checked"),
     card: {
       type: getCardType(),
@@ -2466,22 +2522,39 @@ function getPersonData() {
 }
 
 function loadCurrentBuyer() {
-  if (!isNil(currentBuyer) && has(currentBuyer, "id")) {
+  if ($("[name=buyer]").length) {
+    var currentBuyer = JSON.parse($("[name=buyer]").val());
+
+    if (_typeof(currentBuyer) !== "object") {
+      return;
+    }
+
     $("[name=first_name]").val(currentBuyer.first_name);
     $("[name=last_name]").val(currentBuyer.last_name);
     $("[name=document]").val(currentBuyer.document);
     $("[name=birth]").val(currentBuyer.birth);
     $("[name=email]").val(currentBuyer.email);
     $("[name=phone]").val(currentBuyer.phone);
-    $("[name=full_address]").val(currentBuyer.full_address);
+    $("[name=street]").val(currentBuyer.street);
+    $("[name=number]").val(currentBuyer.number);
+    $("[name=zipcode]").val(currentBuyer.zipcode);
+    $("[name=neighborhood]").val(currentBuyer.neighborhood);
+    $("[name=state]").val(currentBuyer.state);
+    $("[name=city]").val(currentBuyer.city);
     $("[name=first_name]").prop("readonly", true);
     $("[name=last_name]").prop("readonly", true);
     $("[name=document]").prop("readonly", true);
     $("[name=birth]").prop("readonly", true);
     $("[name=email]").prop("readonly", true);
     $("[name=phone]").prop("readonly", true);
-    $("[name=full_address]").prop("readonly", true);
+    $("[name=street]").prop("readonly", true);
+    $("[name=number]").prop("readonly", true);
+    $("[name=zipcode]").prop("readonly", true);
+    $("[name=neighborhood]").prop("readonly", true);
+    $("[name=state]").prop("readonly", true);
+    $("[name=city]").prop("readonly", true);
     $("[name=flexRadioDefault]").prop("checked", true);
+    $(".btn-reset").hide();
   } else {
     $("[name=first_name]").prop("readonly", false);
     $("[name=last_name]").prop("readonly", false);
@@ -2489,9 +2562,47 @@ function loadCurrentBuyer() {
     $("[name=birth]").prop("readonly", false);
     $("[name=email]").prop("readonly", false);
     $("[name=phone]").prop("readonly", false);
-    $("[name=full_address]").prop("readonly", false);
+    $("[name=street]").prop("readonly", false);
+    $("[name=number]").prop("readonly", false);
+    $("[name=zipcode]").prop("readonly", false);
+    $("[name=neighborhood]").prop("readonly", false);
+    $("[name=state]").prop("readonly", false);
+    $("[name=city]").prop("readonly", false);
     $("[name=flexRadioDefault]").prop("checked", false);
+    $(".btn-reset").show();
   }
+}
+
+function destroyCard() {
+  $.ajax({
+    method: "DELETE",
+    url: "payments/gerencianet/cards/".concat(selectedCardId),
+    success: function success() {
+      swal("Sucesso!", "Operação realizada com sucesso.", "success");
+      setTimeout(function () {
+        window.location.reload();
+      }, 3000);
+    },
+    error: function error() {
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+    }
+  });
+}
+
+function setMain() {
+  $.ajax({
+    method: "PUT",
+    url: "payments/gerencianet/cards/".concat(selectedCardId, "/main"),
+    success: function success() {
+      swal("Sucesso!", "Operação realizada com sucesso.", "success");
+      setTimeout(function () {
+        window.location.reload();
+      }, 3000);
+    },
+    error: function error() {
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+    }
+  });
 }
 
 function submit() {
@@ -2560,13 +2671,198 @@ function submit() {
 /*!*******************************!*\
   !*** ./resources/js/posts.js ***!
   \*******************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    head = _require.head,
+    isArray = _require.isArray,
+    cloneDeep = _require.cloneDeep,
+    isNumber = _require.isNumber,
+    has = _require.has;
+
+var tip = {
+  profile_id: "",
+  value: 0,
+  message: "",
+  tip_id: "",
+  payment_token: ""
+};
+var buyer = {};
 $(function () {
-  $(".btn-send-tip").on("click", function () {
+  $(".btn-send-tip").on("click", function (e) {
     $("#sendTipDialog").modal("show");
+    var profile_id = e.target.dataset.profile_id;
+    tip.profile_id = profile_id;
   });
+  $(".btn-tip-value").on("click", function (e) {
+    var value = e.target.dataset.value;
+    setTipValue(value);
+  });
+  $("[name=tip_message]").on("keyup", function (e) {
+    tip.message = e.target.value;
+    console.log("tip", tip);
+  });
+  $(".btn-go-to-cards").on("click", goToCards);
+  $(".btn-tip-next-step").on("click", function () {
+    loadBuyers();
+  });
+  $(".btn-submit-tip").on("click", submitTip);
 });
+
+function goToCards() {
+  window.location.href = "/cards";
+}
+
+function setTipValue(val) {
+  tip.value = parseFloat(val);
+  $(".btn-tip-show-value").html("".concat(val, "*"));
+}
+
+function loadBuyers() {
+  $.ajax({
+    method: "GET",
+    url: "payments/gerencianet/buyer",
+    success: function success(buyers) {
+      if (isArray(buyers) && buyers.length > 0) {
+        var first = head(buyers);
+        buyer = cloneDeep(first);
+        $(".table-cards").find("tbody").html("");
+        buyer.cards.forEach(function (c, i) {
+          var tr = $("<tr>");
+          tr.data("id", c.id);
+          var typeColumn = $("<td>");
+          typeColumn.html(c.type);
+          var descriptionColumn = $("<td>");
+          descriptionColumn.html(c.description);
+          var radioColumn = $("<input>");
+          radioColumn.attr("type", "radio");
+          radioColumn.attr("name", "radio_card_item");
+          radioColumn.data("id", c.id);
+
+          if (c.main) {
+            radioColumn.prop("checked", true);
+          }
+
+          tr.append(typeColumn);
+          tr.append(descriptionColumn);
+          tr.append(radioColumn);
+          $(".table-cards").find("tbody").append(tr);
+        });
+      }
+    },
+    error: function error() {
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+    }
+  });
+}
+
+function pad(str, max) {
+  str = str.toString();
+  return str.length < max ? pad("0" + str, max) : str;
+}
+
+function prepareCardData(card) {
+  return {
+    brand: card.type,
+    number: card.number.replace(/\ /, ""),
+    cvv: card.cvv,
+    expiration_year: card.year,
+    expiration_month: pad(card.month, 2)
+  };
+}
+
+function registerTip() {
+  $(".preload").show();
+  var tipData = {
+    status: 1,
+    price: tip.value,
+    description: tip.message,
+    profile_id: tip.profile_id
+  };
+  $.ajax({
+    method: "POST",
+    url: "tips",
+    data: tipData,
+    success: function success(data) {
+      $(".preload").hide();
+      swal("Tip registrada!", "Operação realizada com sucesso", "success");
+      tip.tip_id = data.id;
+      registerPayment();
+    },
+    error: function error() {
+      $(".preload").hide();
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+    }
+  });
+}
+
+function registerPayment() {
+  $(".preload").show();
+  var paymentData = {
+    product: {
+      type: "tip",
+      id: tip.tip_id
+    },
+    value: tip.value,
+    token: tip.payment_token,
+    installments: 1
+  };
+  $.ajax({
+    method: "POST",
+    url: "payments/gerencianet/card-payments",
+    data: paymentData,
+    success: function success(resp) {
+      $(".preload").hide();
+      swal("Pagamento registrado!", "Operação realizada com sucesso", "success");
+      tip = {
+        profile_id: "",
+        value: 0,
+        message: "",
+        tip_id: "",
+        payment_token: ""
+      };
+    },
+    error: function error() {
+      $(".preload").hide();
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+    }
+  });
+}
+
+function submitTip() {
+  var cardId = $("[name=radio_card_item]:checked").data("id");
+  $(".preload").show();
+
+  if (isNumber(cardId)) {
+    $.ajax({
+      method: "GET",
+      url: "payments/gerencianet/cards/".concat(cardId),
+      success: function success(resp) {
+        if (has(resp, "card.type")) {
+          var cardData = prepareCardData(resp.card);
+          window.gerencianetCheckout.getPaymentToken(cardData, function (error, _ref) {
+            var data = _ref.data;
+            $(".preload").hide();
+
+            if (error) {
+              swal("Ocorreu um erro!", error, "error");
+              console.error(error);
+            } else {
+              tip.payment_token = data.payment_token; // Trata a resposta
+
+              registerTip();
+              $(".preload").hide();
+            }
+          });
+        }
+      },
+      error: function error() {
+        $(".preload").hide();
+        swal("Ocorreu um erro!", "Não foi possível realzar a operação.", "error");
+      }
+    });
+  }
+}
 
 /***/ }),
 

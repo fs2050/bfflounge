@@ -101,7 +101,8 @@
                         <i class="far fa-paper-plane mx-1 mx-lg-2"></i>
                     </div>
                     <div>
-                        <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i> <span class="d-none d-lg-inline-block mr-1 position-relative fw-500" style="top:-4px;">Send Tip</span>
+                        <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i>
+                        <span class="d-none d-lg-inline-block mr-1 position-relative fw-500 btn-send-tip cursor-pointer" style="top:-4px;" data-profile_id="{{$post->profile_id}}">Send Tip</span>
                         <i class="las la-eye mx-1 mx-lg-2">
                             {{ $post->views }}
                         </i>
@@ -113,15 +114,11 @@
             </div>
             <div class="post_comments">
                 <div class="post_comment">
+                    <form action="#" name="demo">
+                        <input class="form-control" type="text" placeholder="Escreva um comentário" name="hiddenfield" aria-label="default input example" onkeypress="return enter(document.demo.send)Field 1:
 
-
-
-<form action="#" name="demo">
-    <input class="form-control" type="text" placeholder="Escreva um comentário" name="hiddenfield" aria-label="default input example" onkeypress="return enter(document.demo.send)Field 1:
-
-    <input type="submit" name="send">
-</form>
-
+                        <input type="submit" name="send">
+                    </form>
 
                     <div class="comment_user">
                         <div class="comment_photo" style="background-image:url(assets/images/users/02.png);"></div>
@@ -266,4 +263,5 @@
     </div>
 </div>
 
-
+@include('livewire.components.posts.send-tip-dialog')
+@include('livewire.components.posts.select-card-dialog')
