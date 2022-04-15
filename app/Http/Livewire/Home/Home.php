@@ -13,6 +13,7 @@ class Home extends Component
 {
     public $content = '';
 
+
     public function render()
     {
         $client = new ClientGuzzle( new Client );
@@ -25,6 +26,9 @@ class Home extends Component
             'posts' => $posts->data
         ]);
     }
+
+
+
 
     public function addPost()
     {
