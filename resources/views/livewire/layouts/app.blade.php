@@ -180,6 +180,17 @@
     }
   </script>
 
+  <script type="text/javascript">
+    function Cancel()
+    {
+    location.href="./"
+    }
+    </script>
+
+    <script>
+
+        </script>
+
 @livewireScripts
 
 </body>

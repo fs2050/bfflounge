@@ -26,15 +26,25 @@
                                     <input id="file" name="file" type="file" style="display:none">
                                     <a href="javascript:chooseFile()"> <i class="las la-camera mr-1"></i></a>
 
-
                                     <i class="las la-comment"></i>
+
                                 </div>
 
 
                                 <div>
-                                    <button type="submit" name="submit" class="btn btn-primary" formnovalidate>Cancelar</button>
+
+                                   <input type="button"  value="Cancelar"
+                                    class="btn-primary"  onClick="Cancel()">
+
+
+
+
+                                    <input type="reset"  value="Limpar"
+                                    class="btn-primary">
 
                                     <button class="btn-primary">Publicar</button>
+
+
                                 </div>
                             </div>
                         </form>
@@ -43,6 +53,7 @@
 
             </div>
         </div>
+
     </div>
 
        <!-- Posts Show -->
