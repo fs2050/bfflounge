@@ -33,14 +33,13 @@
 
                                 <div>
 
-                                   <input type="button"  value="Cancelar"
-                                    class="btn-primary"  onClick="Cancel()">
+                                 <!--   <input type="button"  value="Cancelar"
+                                    class="btn-primary"  onClick="Cancel()">  -->
 
 
 
-
-                                    <input type="reset"  value="Limpar"
-                                    class="btn-primary">
+                                    <input type="reset"  value="Cancelar"
+                                    class="btn-primary" onClick="Cancel()">
 
                                     <button class="btn-primary">Publicar</button>
 

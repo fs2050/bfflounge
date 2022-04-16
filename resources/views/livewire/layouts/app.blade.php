@@ -144,8 +144,14 @@
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+
+   <!--  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> -->
+
+
+
 
     @include('livewire.layouts.setup-jquery-ajax')
 
@@ -158,8 +164,11 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ asset( 'assets/js/jquery.mask.min.js' ) }}"></script>
+
+
     <script type="text/javascript">
-        function noenter() {
+
+         function noenter() {
             return !(window.event && window.event.keyCode === 13);
         }
         function enter(nextfield) {
@@ -179,19 +188,19 @@
 
     <script type="text/javascript">
         function chooseFile(){
-            // vamos obter uma referência ao elemento file
+            // obter uma referência ao elemento file
             var arquivo = document.getElementById("file");
             // vamos disparar seu evento onclick()
             arquivo.click();
         }
     </script>
 
-    <script type="text/javascript">
-        function Cancel()
-        {
-            location.href="./"
-        }
-    </script>
+<script type="text/javascript">
+    function Cancel()
+    {
+        location.href="./"
+    }
+</script>
 
     <script type="text/javascript" src="{{ asset( '/js/app.js' ) }}"></script>
     @livewireScripts
