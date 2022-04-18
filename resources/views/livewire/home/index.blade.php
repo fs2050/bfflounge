@@ -54,7 +54,8 @@
                         <i class="fas fa-ellipsis-h"></i>
                     </div>
                     <div class="post_date">
-                        <span class="d-none d-lg-inline-block">Publicado</span> {{ date('d/m/Y') ,$post->created_at }}
+                        <span class="d-none d-lg-inline-block">Publicado</span>
+                        {{ date('d/m/Y') ,$post->created_at }}
                     </div>
                 </div>
             </div>
@@ -70,12 +71,22 @@
                 </div>
             @endif
 
-
-
             <div class="post_reactions">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
+
+                        {{-- {{ dd( $post ) }} --}}
+
+                        @if ( empty( $post->interactions ) )
+                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
+                                <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
+                            </a>
+                        @else
+                            <a href="#" wire:click.prevent="like({{ $post->id }})">
+                                <i class="fa-heart ml-2 fas"></i>
+                            </a>
+                        @endif
+
                         <span class="post_comment_icon">
                             <span class="num">99+</span>
                             <i class="las la-sms mx-1 mx-lg-2"></i>

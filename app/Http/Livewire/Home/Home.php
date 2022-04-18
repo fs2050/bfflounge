@@ -26,6 +26,38 @@ class Home extends Component
         ]);
     }
 
+    public function like( $idPost )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        return $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  => 'reaction',
+                'content'               => 'like',
+                'interactable[id]'      => $idPost,
+                'interactable[type]'    => 'post'
+            ]
+        ]);
+    }
+
+    public function unlike( $idPost )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        return $client->request( 'DELETE', "interactions/$idPost/destroy" );
+    }
+
+    public function savedPosts( $idPost )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        return $client->request( 'GET', 'posts/save', [
+            'form_params' => [
+                'post_id'      => $idPost
+            ]
+        ]);
+    }
+
     public function addPost()
     {
         $client = new ClientGuzzle( new Client );
@@ -45,7 +77,7 @@ class Home extends Component
             ]
         ]);
 
-        $posts = json_decode( $response->getBody()->getContents() );
+        return $posts = json_decode( $response->getBody()->getContents() );
     }
 
     public function confirmDeletePost()
@@ -56,7 +88,7 @@ class Home extends Component
 
         $posts = json_decode( $response->getBody()->getContents() );
 
-        $this->clientApi->userDelete( session()->get( 'user' )->id );
+        return $this->clientApi->userDelete( session()->get( 'user' )->id );
     }
 
 } // Home
