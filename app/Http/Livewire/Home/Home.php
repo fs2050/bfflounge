@@ -27,43 +27,6 @@ class Home extends Component
         ]);
     }
 
-<<<<<<< HEAD
-
-
-=======
-    public function like( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        return $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  => 'reaction',
-                'content'               => 'like',
-                'interactable[id]'      => $idPost,
-                'interactable[type]'    => 'post'
-            ]
-        ]);
-    }
-
-    public function unlike( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        return $client->request( 'DELETE', "interactions/$idPost/destroy" );
-    }
-
-    public function savedPosts( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        return $client->request( 'GET', 'posts/save', [
-            'form_params' => [
-                'post_id'      => $idPost
-            ]
-        ]);
-    }
->>>>>>> feature/home
-
     public function addPost()
     {
         $client = new ClientGuzzle( new Client );
