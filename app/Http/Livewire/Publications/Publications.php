@@ -13,7 +13,6 @@ class Publications extends Component
 {
     public $content = '';
 
-
     public function render()
     {
         $client = new ClientGuzzle( new Client );
@@ -22,13 +21,10 @@ class Publications extends Component
 
         $posts = json_decode( $response->getBody()->getContents() );
 
-       return view( 'livewire.home.index', [
+       return view( 'livewire.publications.index', [
             'posts' => $posts->data
         ]);
     }
-
-
-
 
     public function addPost()
     {
@@ -62,9 +58,6 @@ class Publications extends Component
         $posts = json_decode( $response->getBody()->getContents() );
 
         $this->clientApi->userDelete(session()->get('user')->id);
-
-
-
     }
 
 } // Home
