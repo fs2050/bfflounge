@@ -60,14 +60,14 @@
                 </div>
             </div>
 
-            @if( !$post->medias == null )
+            @if( empty( $post->medias ) )
                 <div class="post_info">
                     <p>{{ $post->content }}</p>
-                    <img src="assets/images/posts/01.png" class="w-100" />
                 </div>
             @else
                 <div class="post_info">
                     <p>{{ $post->content }}</p>
+                    <img src="assets/images/posts/01.png" class="w-100" />
                 </div>
             @endif
 
@@ -75,14 +75,14 @@
                 <div class="d-flex justify-content-between">
                     <div>
 
-                        {{-- {{ dd( $post ) }} --}}
+                        {{-- {{ dd(  ) ) }} --}}
 
-                        @if ( empty( $post->interactions ) )
-                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
+                        @if ( empty( $post->interactions->reactions->like ) )
+                            <a href="#" wire:click.prevent="like({{ $post->id }})">
                                 <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
                             </a>
                         @else
-                            <a href="#" wire:click.prevent="like({{ $post->id }})">
+                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
                                 <i class="fa-heart ml-2 fas"></i>
                             </a>
                         @endif
