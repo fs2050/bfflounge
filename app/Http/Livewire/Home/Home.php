@@ -13,7 +13,6 @@ class Home extends Component
 {
     public $content = '';
 
-
     public function render()
     {
         $client = new ClientGuzzle( new Client );
@@ -23,7 +22,7 @@ class Home extends Component
         $posts = json_decode( $response->getBody()->getContents() );
 
         return view( 'livewire.home.index', [
-            'posts' => $posts->data
+            'posts'         => $posts->data
         ]);
     }
 
@@ -40,13 +39,64 @@ class Home extends Component
         $profile_id = $profile->profiles[0]->id;
 
         $response = $client->request( 'POST', 'posts', [
-            'form_params' => [
+            'multipart' => [
                 'profile_id'    => $profile_id,
                 'content'       => $this->content,
+                'medias'        => $this->medias,
+                'plans'         => $this->plans
             ]
         ]);
 
-        return $posts = json_decode( $response->getBody()->getContents() );
+        json_decode( $response->getBody()->getContents() );
+    }
+
+    public function like( $idPost )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $idPost,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlike( $idPost )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', 'interactions', [
+            'form_params' => [
+                'type'                  => 'comment',
+                'content'               =>  'dfdf',
+                'interactable[id]'      =>  $idPost,
+                'interactable[type]'    => 'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function commentPost( $idPost )
+    {
+        dd("Chegou aqui!");
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  => 'comment',
+                'content'               =>  $this->content,
+                'interactable[id]'      =>  $idPost,
+                'interactable[type]'    => 'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
     }
 
     public function confirmDeletePost()
