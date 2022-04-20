@@ -3,8 +3,9 @@
 return [
 
     'base_url'          => env( 'BFF_API_URL' ),
+    'api_url'           => env( 'BFF_API_URL' ),
 
-    'auth' => [
+    'auth'              => [
 
         'register'      => 'auth/register',
         'verify'        => 'auth/verify',
@@ -17,8 +18,8 @@ return [
 
     ], // auth
 
-    'profiles' => [
-        'update' => 'profiles'
+    'profiles'          => [
+        'update'        => 'profiles'
     ]
 
 ]; // return
