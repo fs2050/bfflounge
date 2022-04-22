@@ -17,19 +17,28 @@
                         <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
 
 
-                        <form wire:submit.prevent="addPost" >
+                        <form wire:submit.prevent="createPost">
+
                             <textarea class="mb-2" name="content" wire:model.defer="content"></textarea>
+
                             <div class="d-flex align-items-center justify-content-between">
 
                                 <div>
-                                    <input id="file" name="file" type="file" style="display:none">
-                                    <a href="javascript:chooseFile()"><i class="lab la-youtube mr-1"></i></a>
-                                    <input id="file" name="file" type="file" style="display:none">
-                                    <a href="javascript:chooseFile()"> <i class="las la-camera mr-1"></i></a>
+                                    {{-- <input type="file" id="file" name="file" style="display:none" wire:model="medias"> --}}
+
+                                        {{-- <a href="javascript:chooseFile()">
+                                            <i class="lab la-youtube mr-1"></i>
+                                        </a> --}}
+
+                                    <input type="file" id="file" name="medias" style="display:none" wire:model="medias">
+
+                                    <a href="javascript:chooseFile()">
+                                        <i class="las la-camera mr-1"></i>
+                                    </a>
 
                                     <i class="las la-comment"></i>
 
-                                </div>
+                                </div> <!-- -->
 
 
                                 <div>

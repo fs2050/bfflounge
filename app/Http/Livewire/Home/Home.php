@@ -9,15 +9,24 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
+use Livewire\WithFileUploads;
+use Illuminate\Http\Request;
+use GuzzleHttp\Psr7;
+
 use App\Client\SuggestionClient;
 use App\Client\FollowerClient;
 
+use Illuminate\Support\Facades\Storage;
+
 class Home extends Component
 {
+    use WithFileUploads;
+
     protected $suggestionClient;
     protected $followerClient;
 
     public $content = '';
+    public $medias;
     public $suggestions = [];
 
     public function boot(
@@ -55,7 +64,7 @@ class Home extends Component
         ]);
     }
 
-    public function addPost()
+    public function createPost( Request $request )
     {
         $client = new ClientGuzzle( new Client );
 
@@ -67,16 +76,34 @@ class Home extends Component
 
         $profile_id = $profile->profiles[0]->id;
 
+        $name          = uniqid( date( 'HisYmd' ) );
+        $extension     = $this->medias->getClientOriginalExtension();
+        $nameImage     = "{$name}.$extension";
+
+        $upload = $this->medias->storeAs( 'posts', $nameImage  );
+
+        if ( !$upload )
+            return dd("Deu ruim!");
+
         $response = $client->request( 'POST', 'posts', [
             'multipart' => [
-                'profile_id'    => $profile_id,
-                'content'       => $this->content,
-                'medias'        => $this->medias,
-                'plans'         => $this->plans
+                [
+                    'name'     => 'profile_id',
+                    'contents' => $profile_id
+                ],
+                [
+                    'name'     => 'content',
+                    'contents' => $this->content
+                ],
+                [
+                    'name'     => 'medias',
+                    'contents' => Psr7\Utils::tryFopen( Storage::path( $upload ), 'r' ),
+                    'filename' => $upload,
+                ]
             ]
         ]);
 
-        json_decode( $response->getBody()->getContents() );
+        return json_decode( $response->getBody()->getContents() );
     }
 
     public function like( $idPost )
