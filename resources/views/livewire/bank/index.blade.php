@@ -63,63 +63,44 @@
         </div>
 
         <div class="card shadow py-4 py-lg-3 px-4">
-            @if(count($picpayBuyers))
-                <h6 class="mt-4 mb-3">Contas Picpay</h6>
+            @if(count($bankingAccounts))
+                <h6 class="mt-4 mb-3">Contas Bancárias</h6>
             @endif
-            @foreach($picpayBuyers as $key => $buyer)
+            @foreach($bankingAccounts as $key => $bankingAccount)
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-3">
                             <span class="c-pink d-block mb-2">
-                                Nome/Sobrenome:
+                                Nome:
                             </span>
-                            {{$buyer['first_name']}} {{$buyer['last_name']}}
+                            {{$bankingAccount['person_name']}}
                         </div>
                         <div class="col-3">
                             <span class="c-pink d-block mb-2">
                                 Documento:
                             </span>
-                            {{$buyer['document']}}
+                            {{$bankingAccount['person_document']}}
                         </div>
                         <div class="col-3">
                             <span class="c-pink d-block mb-2">
-                                Telefone:
+                                Banco:
                             </span>
-                            {{$buyer['phone']}}
-                        </div>
-                        <div class="col-3">
-                            <button class="btn-primary btn-edit-picpay" data-record="{{json_encode($buyer)}}">Editar</button>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-            @if(count($gerencianetBuyers))
-                <h6 class="mt-4 mb-3">Contas Gerenciament</h6>
-            @endif
-            @foreach($gerencianetBuyers as $key => $buyer)
-                <div class="mb-3">
-                    <div class="row">
-                        <div class="col-3">
-                            <span class="c-pink d-block mb-2">
-                                Nome/Sobrenome:
-                            </span>
-                            {{$buyer['first_name']}} {{$buyer['last_name']}}
+                            {{$bankingAccount['bank']->name}}
                         </div>
                         <div class="col-3">
                             <span class="c-pink d-block mb-2">
-                                Documento:
+                                Agência:
                             </span>
-                            {{$buyer['document']}}
+                            {{$bankingAccount['agency']}}
                         </div>
                         <div class="col-3">
                             <span class="c-pink d-block mb-2">
-                                Telefone:
+                                Número:
                             </span>
-                            {{$buyer['phone']}}
+                            {{$bankingAccount['number']}}
                         </div>
                         <div class="col-3">
-                            <button class="btn-primary btn-edit-gerencianet" data-record="{{json_encode($buyer)}}">Editar</button>
+                            <button class="btn-primary btn-edit-banking-account" data-record="{{json_encode($bankingAccount)}}">Editar</button>
                         </div>
                     </div>
                 </div>

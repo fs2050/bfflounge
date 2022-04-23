@@ -2097,129 +2097,78 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 $(function () {
-  $("[name=document]").mask("000.000.000-00", {
-    reverse: true
+  $("[name=agency]").mask("000000000000");
+  $("[name=number].input-account-number").mask("000000000000");
+  $("[name=person_document]").mask("000.000.000-000", {
+    onKeyPress: function onKeyPress(document, e, field, options) {
+      var masks = ["000.000.000-000", "00.000.000/0000-00"];
+      var mask = document.length > 14 ? masks[1] : masks[0];
+      $("[name=person_document]").mask(mask, options);
+    }
   });
-  $("[name=phone]").mask("+00(00)00000-0000");
   $(".btn-add-account").on("click", function () {
     $("#accountDialog").modal("show");
     resetAccountValues();
-    hideAllFields();
   });
-  $(".btn-edit-picpay").on("click", function (btn) {
+  $(".btn-edit-banking-account").on("click", function (btn) {
     resetAccountValues();
-    picPaySelected();
     var record = JSON.parse(btn.target.dataset["record"]);
     $("[name=id]").val(record.id);
-    $("[name=first_name]").val(record.first_name);
-    $("[name=last_name]").val(record.last_name);
-    $("[name=document]").val(record.document);
-    $("[name=phone]").val(record.phone);
-    $("[name=type]").val("picpay");
-    $("#accountDialog").modal("show");
-  });
-  $(".btn-edit-gerencianet").on("click", function (btn) {
-    resetAccountValues();
-    gerencianetSelected();
-    var record = JSON.parse(btn.target.dataset["record"]);
-    $("[name=id]").val(record.id);
-    $("[name=first_name]").val(record.first_name);
-    $("[name=last_name]").val(record.last_name);
-    $("[name=document]").val(record.document);
-    $("[name=phone]").val(record.phone);
-    $("[name=birth]").val(record.birth);
-    $("[name=state]").val(record.state);
-    $("[name=city]").val(record.city);
-    $("[name=street]").val(record.street);
+    $("[name=person_name]").val(record.person_name);
+    $("[name=person_document]").val(record.person_document);
+    $("[name=bank_id]").val(record.bank_id);
+    $("[name=agency]").val(record.agency);
     $("[name=number]").val(record.number);
-    $("[name=neighborhood]").val(record.neighborhood);
-    $("[name=zipcode]").val(record.zipcode);
-    $("[name=type]").val("gerencianet");
     $("#accountDialog").modal("show");
   });
   $("#accountDialog").find(".btn-close").on("click", function () {
     $("#accountDialog").modal("hide");
   });
-  $("#accountDialog").find("[name=type]").on("change", function (el) {
-    if (el.target.value === "picpay") {
-      picPaySelected();
-    } else if (el.target.value === "gerencianet") {
-      gerencianetSelected();
-    } else {
-      hideAllFields();
-    }
-  });
   $("#accountDialog").find(".btn-save").on("click", function () {
     submit();
   });
+  loadBanks();
 });
 
-function picPaySelected() {
-  $("[name=first_name]").parent().parent().show();
-  $("[name=last_name]").parent().parent().show();
-  $("[name=document]").parent().parent().show();
-  $("[name=phone]").parent().parent().show();
-  $("[name=birth]").parent().parent().hide();
-  $("[name=state]").parent().parent().hide();
-  $("[name=city]").parent().parent().hide();
-  $("[name=street]").parent().parent().hide();
-  $("[name=number]").parent().parent().hide();
-  $("[name=neighborhood]").parent().parent().hide();
-  $("[name=zipcode]").parent().parent().hide();
-}
+function loadBanks() {
+  $.ajax({
+    method: "GET",
+    url: "banks",
+    success: function success(data) {
+      $("[name=bank_id]").html("");
 
-function gerencianetSelected() {
-  $("[name=first_name]").parent().parent().show();
-  $("[name=last_name]").parent().parent().show();
-  $("[name=document]").parent().parent().show();
-  $("[name=phone]").parent().parent().show();
-  $("[name=birth]").parent().parent().show();
-  $("[name=state]").parent().parent().show();
-  $("[name=city]").parent().parent().show();
-  $("[name=street]").parent().parent().show();
-  $("[name=number]").parent().parent().show();
-  $("[name=neighborhood]").parent().parent().show();
-  $("[name=zipcode]").parent().parent().show();
-}
-
-function hideAllFields() {
-  $("[name=first_name]").parent().parent().hide();
-  $("[name=last_name]").parent().parent().hide();
-  $("[name=document]").parent().parent().hide();
-  $("[name=phone]").parent().parent().hide();
-  $("[name=birth]").parent().parent().hide();
-  $("[name=state]").parent().parent().hide();
-  $("[name=city]").parent().parent().hide();
-  $("[name=street]").parent().parent().hide();
-  $("[name=number]").parent().parent().hide();
-  $("[name=neighborhood]").parent().parent().hide();
-  $("[name=zipcode]").parent().parent().hide();
+      _.sortBy(data, "code").forEach(function (item) {
+        if (item.code !== null) {
+          var newOption = $("<option>");
+          newOption.val(item.id);
+          newOption.html("".concat(item.code, " - ").concat(item.name));
+          $("[name=bank_id]").append(newOption);
+        }
+      });
+    },
+    error: function error(err) {
+      console.log(err);
+      swal("Ocorreu um erro!", "Não foi possível realzar a operação, verifique os dados.", "error");
+    }
+  });
 }
 
 function getAccountValues() {
-  var first_name = $("[name=first_name]").val();
-  var last_name = $("[name=last_name]").val();
-  var document = $("[name=document]").val();
-  var phone = $("[name=phone]").val();
-  var birth = $("[name=birth]").val();
-  var state = $("[name=state]").val();
-  var city = $("[name=city]").val();
-  var street = $("[name=street]").val();
+  var id = $("[name=id]").val();
+  var profile_id = $("[name=profile_id]").val();
+  var person_name = $("[name=person_name]").val();
+  var person_document = $("[name=person_document]").val();
+  var bank_id = $("[name=bank_id]").val();
+  var agency = $("[name=agency]").val();
   var number = $("[name=number]").val();
-  var neighborhood = $("[name=neighborhood]").val();
-  var zipcode = $("[name=zipcode]").val();
   var accountData = {
-    first_name: first_name,
-    last_name: last_name,
-    document: document,
-    phone: phone,
-    birth: birth,
-    state: state,
-    city: city,
-    street: street,
-    number: number,
-    neighborhood: neighborhood,
-    zipcode: zipcode
+    id: id,
+    profile_id: profile_id,
+    person_name: person_name,
+    person_document: person_document,
+    bank_id: bank_id,
+    agency: agency,
+    number: number
   };
   var notNullValues = Object.entries(accountData).filter(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
@@ -2237,32 +2186,22 @@ function getAccountValues() {
 }
 
 function resetAccountValues() {
-  $("[name=type]").val("");
-  $("[name=id]").val("");
-  $("[name=first_name]").val("");
-  $("[name=last_name]").val("");
-  $("[name=document]").val("");
-  $("[name=phone]").val("");
-  $("[name=birth]").val("");
-  $("[name=state]").val("");
-  $("[name=city]").val("");
-  $("[name=street]").val("");
+  $("[name=person_name]").val("");
+  $("[name=person_document]").val("");
+  $("[name=bank_id]").val("");
+  $("[name=agency]").val("");
   $("[name=number]").val("");
-  $("[name=neighborhood]").val("");
-  $("[name=zipcode]").val("");
 }
 
 function submit() {
   var data = getAccountValues();
-  var url = "payments/picpay/buyer";
+  var url = "banking-accounts";
   var method = "POST";
-
-  if ($("[name=type]").val() === "gerencianet") {
-    url = "payments/gerencianet/buyer";
-  }
 
   if ($("[name=id]").val() !== "") {
     method = "PUT";
+    var id = $("[name=id]").val();
+    url = "banking-accounts/".concat(id);
   }
 
   $.ajax({
@@ -2347,7 +2286,7 @@ $(function () {
     reverse: true
   });
   $("[name=zipcode]").mask("00000-000");
-  $("[name=number]").mask("000000");
+  $("#addCardDialog").find("[name=number]").mask("000000");
   $(".btn-add-card").on("click", function () {
     $("#addCardDialog").modal("show");
   });
