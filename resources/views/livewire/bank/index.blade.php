@@ -46,7 +46,7 @@
 
             <div class="text-center mt-4">
                 <div class="px-4">
-                    <button class="btn-primary">Solicitar saque</button>
+                    <button class="btn-primary btn-withdraw-request">Solicitar saque</button>
                 </div>
             </div>
         </div>
@@ -116,6 +116,7 @@
 </div>
 
 @include('livewire.components.banks.account-dialog')
+@include('livewire.components.banks.withdraw-request-dialog')
 
 <!--
 Desativado temporariamente por estar causando erros
