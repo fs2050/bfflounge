@@ -9,9 +9,40 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
+use App\Client\SuggestionClient;
+use App\Client\FollowerClient;
+
+
 class Publications extends Component
 {
+
+    protected $suggestionClient;
+    protected $followerClient;
+
+    public $suggestions = [];
     public $content = '';
+
+    public function boot(
+        SuggestionClient $suggestionClient,
+        FollowerClient $followerClient
+    ) {
+        $this->suggestionClient = $suggestionClient;
+        $this->followerClient = $followerClient;
+    }
+
+    public function mount()
+    {
+        $this->loadSuggestions();
+    }
+
+    public function loadSuggestions()
+    {
+        $suggestionsData = $this->suggestionClient->index();
+
+        $this->suggestions = array_map(function ($item) {
+            return (array)$item;
+        }, $suggestionsData);
+    }
 
     public function render()
     {
@@ -58,6 +89,16 @@ class Publications extends Component
         $posts = json_decode( $response->getBody()->getContents() );
 
         $this->clientApi->userDelete(session()->get('user')->id);
+    }
+
+    public function follow($profileId)
+    {
+        try {
+            $this->followerClient->follow($profileId);
+            $this->loadSuggestions();
+        } catch (\Exception $e) {
+            $this->emit('showErrorMessage', 'Não foi possível realizar a operação, tente mais tarde.');
+        }
     }
 
 } // Home

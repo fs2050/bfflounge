@@ -21,7 +21,6 @@ use Illuminate\Support\Facades\Storage;
 class Home extends Component
 {
 
-
     protected $suggestionClient;
     protected $followerClient;
 
