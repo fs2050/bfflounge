@@ -187,14 +187,14 @@
         }
     </script>
 
-    <script type="text/javascript">
-        function chooseFile(){
-            // obter uma referência ao elemento file
-            var arquivo = document.getElementById("file");
-            // vamos disparar seu evento onclick()
-            arquivo.click();
-        }
-    </script>
+<script type="text/javascript">
+    function chooseFile(){
+        // obter uma referência ao elemento file
+        var arquivo = document.getElementById("file");
+        // vamos disparar seu evento onclick()
+        arquivo.click();
+    }
+</script>
 
 <script type="text/javascript">
     function Cancel()

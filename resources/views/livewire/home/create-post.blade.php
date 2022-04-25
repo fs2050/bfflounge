@@ -16,13 +16,13 @@
                         <div class="d-flex align-items-center justify-content-between">
 
                             <div>
-                                <input type="file" id="files" name="medias" style="display:none" wire:model="medias">
+                                <input type="file" id="file" name="medias" style="display:none" wire:model="medias">
 
                                      <a href="javascript:chooseFile()">
                                         <i class="lab la-youtube mr-1"></i>
                                     </a>
 
-                                <input type="file" id="files" name="medias" style="display:none" wire:model="medias">
+                                <input type="file" id="file" name="medias" style="display:none" wire:model="medias">
 
                                 <a href="javascript:chooseFile()">
                                     <i class="las la-camera mr-1"></i>

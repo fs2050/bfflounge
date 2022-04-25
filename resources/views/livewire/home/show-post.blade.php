@@ -36,7 +36,7 @@
             @else
                 <div class="post_info">
                     <p>{{ $post->content }}</p>
-                    <img src="{{ url("http://192.168.0.105/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
+                    <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
                 </div>
             @endif
 
