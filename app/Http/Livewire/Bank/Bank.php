@@ -4,29 +4,45 @@ namespace App\Http\Livewire\Bank;
 
 use Livewire\Component;
 
-use App\Client\PicpayClient;
+use App\Client\BankingAccountClient;
+use App\Client\UserClient;
 
 class Bank extends Component
 {
-    protected $picpayClient;
+    protected $bankingAccountClient;
+    protected $userClient;
 
-    public $picpayBuyers = [];
-    public $gerencianetBuyers = [];
+    public $bankingAccounts = [];
+    public $profile = [];
 
     public function boot(
-        PicpayClient $picpayClient,
+        BankingAccountClient $bankingAccountClient,
+        UserClient $userClient,
     )
     {
-        $this->picpayClient = $picpayClient;
+        $this->bankingAccountClient = $bankingAccountClient;
+        $this->userClient = $userClient;
     }
 
     public function mount()
     {
-        $picpayBuyers = $this->picpayClient->buyers();
+        $this->user = (array)session()->get('user');
+        $userData = $this->userClient->show(session()->get('user')->id);
 
-        $this->picpayBuyers = array_map(function($item) {
+        $profiles = array_map(function($item) {
             return (array)$item;
-        }, $picpayBuyers);
+        }, $userData->profiles);
+
+        if(is_array($profiles) && count($profiles) > 0) {
+            $this->profile = reset($profiles);
+            $bankingAccounts = $this->bankingAccountClient->index(['profile_id' => $this->profile['id']]);
+
+            if(is_array($bankingAccounts->data) && count($bankingAccounts->data) > 0) {
+                $this->bankingAccounts = array_map(function($item) {
+                    return (array)$item;
+                }, $bankingAccounts->data);
+            }
+        }
     }
 
     public function render()
