@@ -20,18 +20,16 @@ use Illuminate\Support\Facades\Storage;
 
 class Home extends Component
 {
-    use WithFileUploads;
+
 
     protected $suggestionClient;
     protected $followerClient;
 
-    public $content = '';
-    public $medias;
     public $suggestions = [];
 
     public function boot(
         SuggestionClient $suggestionClient,
-        FollowerClient $followerClient,
+        FollowerClient $followerClient
     ) {
         $this->suggestionClient = $suggestionClient;
         $this->followerClient = $followerClient;
@@ -51,120 +49,13 @@ class Home extends Component
         }, $suggestionsData);
     }
 
+
+
     public function render()
     {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'GET', 'posts' );
-
-        $posts = json_decode( $response->getBody()->getContents() );
-
-        return view( 'livewire.home.index', [
-            'posts'         => $posts->data
-        ]);
+        return view('livewire.home.index');
     }
 
-    public function createPost( Request $request )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $userID = Session::get( 'user' )->id;
-
-        $user = $client->request( 'GET', "users/$userID" );
-
-        $profile = json_decode( $user->getBody()->getContents() );
-
-        $profile_id = $profile->profiles[0]->id;
-
-        $name          = uniqid( date( 'HisYmd' ) );
-        $extension     = $this->medias->getClientOriginalExtension();
-        $nameImage     = "{$name}.$extension";
-
-        $upload = $this->medias->storeAs( 'posts', $nameImage  );
-
-        if ( !$upload )
-            return dd("Deu ruim!");
-
-        $response = $client->request( 'POST', 'posts', [
-            'multipart' => [
-                [
-                    'name'     => 'profile_id',
-                    'contents' => $profile_id
-                ],
-                [
-                    'name'     => 'content',
-                    'contents' => $this->content
-                ],
-                [
-                    'name'     => 'medias',
-                    'contents' => Psr7\Utils::tryFopen( Storage::path( $upload ), 'r' ),
-                    'filename' => $upload,
-                ]
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function like( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    =>  'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function unlike( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'DELETE', 'interactions', [
-            'form_params' => [
-                'type'                  => 'comment',
-                'content'               =>  'dfdf',
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    => 'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function commentPost( $idPost )
-    {
-        dd("Chegou aqui!");
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  => 'comment',
-                'content'               =>  $this->content,
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    => 'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function confirmDeletePost()
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'posts' );
-
-        $posts = json_decode( $response->getBody()->getContents() );
-
-        return $this->clientApi->userDelete( session()->get( 'user' )->id );
-    }
 
     public function follow($profileId)
     {

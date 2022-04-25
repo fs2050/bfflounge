@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Profile;
 
+
 use Livewire\Component;
 use App\Client\UserClient;
 use App\Client\ProfileClient;
-
+use App\Http\Livewire\Home\CreatePost;
 use App\Client\SuggestionClient;
 use App\Client\FollowerClient;
 
@@ -30,7 +31,7 @@ class Profile extends Component
         UserClient $userClient,
         ProfileClient $profileClient,
         SuggestionClient $suggestionClient,
-        FollowerClient $followerClient,
+        FollowerClient $followerClient
     )
     {
         $this->userClient = $userClient;

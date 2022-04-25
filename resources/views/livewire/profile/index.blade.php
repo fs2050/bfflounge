@@ -26,7 +26,10 @@
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <button class="btn-primary btn_new_post">Nova publicação</button>
+                        <button class="btn-primary w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
+
+                       
+
                         <div class="header_actions">
                             <i class="fas fa-newspaper"></i>
                             <i class="far fa-bell"></i>
