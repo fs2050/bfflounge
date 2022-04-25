@@ -74,7 +74,9 @@
 
             <div class="post_user">
 
-                <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
+                <div class="user_photo" style="background-image:url(assets/images/users/01.png);">
+                </div>
+
 
                 <div class="user_name">
                     <h5>{{ $post->author->name }}</h5>
@@ -83,18 +85,64 @@
 
                 <div class="post_options">
 
-                    <div class="post_action">
-                        <i class="fas fa-ellipsis-h"></i>
-                    </div>
 
                     <div class="post_date">
                         <span class="d-none d-lg-inline-block">Publicado</span>
+
                         {{ date( 'd/m/Y' ), $post->created_at }}
                     </div>
 
+
                 </div>
 
+                    <div class="post_action">
+                        <div class="dropdown">
+                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar" >Editar</a>
+
+                            <form wire:submit.prevent="destroyPost">
+                                <button type="submit" class="dropdown-item" >
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
+
+                        </div>
+                    </div>
+
+
+
             </div>
+             <!-- Modal Editar-->
+
+             <form wire:submit.prevent="editPost">
+
+                <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Atualizar Post</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="X">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <textarea name="contentEditPost" id="contentEditPost" cols="30" rows="10">{{ $post->content }}</textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">
+                        Salvar
+                    </button>
+                      <a href="#" class="btn btn-secondary" data-dismiss="modal">
+                        Fechar
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
 
             @if( empty( $post->medias ) )
                 <div class="post_info">
@@ -103,7 +151,7 @@
             @else
                 <div class="post_info">
                     <p>{{ $post->content }}</p>
-                    <img src="{{ url("http://192.168.0.105/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
+                    <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
                 </div>
             @endif
 
@@ -151,9 +199,9 @@
 
                 <div class="post_comment">
 
-                    <form wire:click.prevent="commentPost">
+                    <form wire:submit.prevent="commentPost">
 
-                        <input type="text" class="form-control" placeholder="Escreva um comentário" wire:model="content">
+                        <input type="text" class="form-control" placeholder="Escreva um comentário" wire:model="contentComment">
 
                         <button type="submit" class="btn btn-primary">
                             Comentar
@@ -234,7 +282,7 @@
     </div>
     @empty
         <h1 class="text-center">
-            Ops... Você ainda não segue ninguém!
+            Ops... Você não possui nennhum post cadastrado até o momento!
         </h1>
     @endforelse
     <!-- Fim Posts Show -->

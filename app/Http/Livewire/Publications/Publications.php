@@ -20,7 +20,8 @@ class Publications extends Component
     protected $followerClient;
 
     public $suggestions = [];
-    public $content = '';
+    public $contentEditPost = '';
+    public $contentComment = '';
 
     public function boot(
         SuggestionClient $suggestionClient,
@@ -48,47 +49,77 @@ class Publications extends Component
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'GET', 'posts' );
-
-        $posts = json_decode( $response->getBody()->getContents() );
-
-       return view( 'livewire.publications.index', [
-            'posts' => $posts->data
-        ]);
-    }
-
-    public function addPost()
-    {
-        $client = new ClientGuzzle( new Client );
-
         $userID = Session::get( 'user' )->id;
 
         $user = $client->request( 'GET', "users/$userID" );
 
         $profile = json_decode( $user->getBody()->getContents() );
 
-        $profile_id = $profile->profiles[0]->id;
+        // $profileID = $profile->profiles[0]->id;
 
-        $response = $client->request( 'POST', 'posts', [
-            'form_params' => [
-                'profile_id'    => $profile_id,
-                'content'       => $this->content,
-            ]
-        ]);
+        // $response = $client->request( 'GET', "posts/?filter[profile_id]=$profileID" );
+        $response = $client->request( 'GET', "posts" );
 
         $posts = json_decode( $response->getBody()->getContents() );
 
+        return view( 'livewire.publications.index', [
+            'posts'     => $posts->data
+        ]);
     }
 
-    public function confirmDeletePost()
+    public function editPost()
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'POST', 'posts' );
+        $response = $client->request( 'HEAD', 'posts', [
+            'form_params' => [
+                'id'                    =>  $this->id,
+                'content'               =>  $this->contentEditPost
+            ]
+        ]);
 
-        $posts = json_decode( $response->getBody()->getContents() );
+        json_decode( $response->getBody()->getContents() );
+    }
 
-        $this->clientApi->userDelete(session()->get('user')->id);
+    public function destroyPost()
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', "interactions/$this->id/destroy" );
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function commentPost()
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'comment',
+                'content'               =>  $this->contentComment,
+                'interactable[id]'      =>  $this->id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function commentCommentPost()
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'comment',
+                'content'               =>  $this->contentComment,
+                'interactable[id]'      =>  $this->id,
+                'interactable[type]'    =>  'comment'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
     }
 
     public function follow($profileId)
