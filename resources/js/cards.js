@@ -7,7 +7,7 @@ $(() => {
     $("[name=phone]").mask("+00(00)00000-0000");
     $("[name=document]").mask("000.000.000-00", { reverse: true });
     $("[name=zipcode]").mask("00000-000");
-    $("[name=number]").mask("000000");
+    $("#addCardDialog").find("[name=number]").mask("000000");
 
     $(".btn-add-card").on("click", () => {
         $("#addCardDialog").modal("show");

@@ -6,81 +6,38 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" name="id" />
+                @if(isset($profile['id']))
+                    <input type="hidden" name="profile_id" value="{{$profile['id']}}" />
+                @endif
                 <div class="row">
                     <div class="col-12">
                         <div class="form-group">
-                            <label>Tipo de Conta</label>
-                            <select class="form-control" name="type">
-                                <option value="">Selecione o tipo</option>
-                                <option value="picpay">PicPay</option>
-                                <option value="gerencianet">Gerenciament</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
                             <label>Nome</label>
-                            <input type="text" class="form-control" name="first_name" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label>Sobrenome</label>
-                            <input type="text" class="form-control" name="last_name" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label>Data de Nascimento</label>
-                            <input type="date" class="form-control" name="birth" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label>Documento</label>
-                            <input type="text" class="form-control" name="document" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label>Telefone</label>
-                            <input type="text" class="form-control" name="phone" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label>Estado</label>
-                            <input type="text" class="form-control" name="state" />
+                            <input type="text" class="form-control" name="person_name" />
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                            <label>Cidade</label>
-                            <input type="text" class="form-control" name="city" />
+                            <label>Documento</label>
+                            <input type="text" class="form-control" name="person_document" />
                         </div>
                     </div>
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <div class="form-group">
-                            <label>Rua</label>
-                            <input type="text" class="form-control" name="street" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <div class="form-group">
-                            <label>Número</label>
-                            <input type="text" class="form-control" name="number" />
+                            <label>Banco</label>
+                            <select class="form-control" name="bank_id"></select>
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Bairro</label>
-                            <input type="text" class="form-control" name="neighborhood" />
+                            <label>Agencia</label>
+                            <input type="text" class="form-control" name="agency" />
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>CEP</label>
-                            <input type="text" class="form-control" name="zipcode" />
+                            <label>Número da Conta</label>
+                            <input type="text" class="form-control input-account-number" name="number" />
                         </div>
                     </div>
                 </div>

@@ -71,9 +71,9 @@
                                         </div>
                                         <div class="col-6 col-md-3">
                                             <div class="form-group">
-                                                <label for="name">Celular</label>
+                                                <label for="name">Número</label>
                                                 <input class="form-control" name="number" type="text"
-                                                    placeholder="Digite o número com dígito 9 após o DDD">
+                                                    placeholder="Número da casa">
                                             </div>
                                         </div>
                                         <div class="col-6 col-md-3">
