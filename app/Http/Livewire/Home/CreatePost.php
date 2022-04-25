@@ -45,7 +45,7 @@ class CreatePost extends Component
         $upload = $this->medias->storeAs( 'posts', $nameImage  );
 
         if ( !$upload )
-            return dd("Deu ruim!");
+            return redirect()->back();
 
         $response = $client->request( 'POST', 'posts', [
             'multipart' => [

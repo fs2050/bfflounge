@@ -37,7 +37,7 @@
 
                                 <input type="reset"  value="Cancelar" class="btn-primary" onClick="Cancel()">
 
-                                <button class="btn-primary">Publicarr</button>
+                                <button class="btn-primary">Publicar</button>
 
 
                             </div>
