@@ -85,7 +85,7 @@ class Publications extends Component
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
+        $response = $client->request( "DELETE", "interactions/$id/destroy" );
 
         json_decode( $response->getBody()->getContents() );
 

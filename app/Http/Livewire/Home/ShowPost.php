@@ -22,7 +22,7 @@ class ShowPost extends Component
         $posts = json_decode( $response->getBody()->getContents() );
 
         return view( 'livewire.home.show-post', [
-            'posts'         => $posts->data
+            'posts' => $posts->data
         ]);
     }
 
@@ -46,14 +46,7 @@ class ShowPost extends Component
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'DELETE', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
-                'interactable[id]'      =>  $id,
-                'interactable[type]'    =>  'post'
-            ]
-        ]);
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
 
         return json_decode( $response->getBody()->getContents() );
     }
@@ -78,14 +71,7 @@ class ShowPost extends Component
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'DELETE', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
-                'interactable[id]'      =>  $id,
-                'interactable[type]'    =>  'comment'
-            ]
-        ]);
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
 
         return json_decode( $response->getBody()->getContents() );
     }

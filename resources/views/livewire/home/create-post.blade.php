@@ -14,7 +14,7 @@
 
                     <form wire:submit.prevent="createPost">
 
-                        <textarea class="mb-2" name="content" wire:model.defer="content"></textarea>
+                        <textarea class="mb-2" name="content" wire:model="content"></textarea>
 
                         <div class="d-flex align-items-center justify-content-between">
 

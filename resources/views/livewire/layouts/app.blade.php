@@ -95,7 +95,10 @@
                         </a>
                     </div>
 
-                    <button class="btn-primary w-100 btn_new_post"><i class="fas fa-plus"></i> Nova Publicação</button>
+                    <button class="btn-primary w-100 btn_new_post">
+                        <i class="fas fa-plus"></i>
+                        Nova Publicação
+                    </button>
 
                     <ul class="menu">
                         <li><a href="{{ route( 'home.index' ) }}"><i class="las la-home"></i>Home</a></li>

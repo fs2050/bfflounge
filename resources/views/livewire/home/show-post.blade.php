@@ -21,8 +21,8 @@
                     </div>
 
                     <div class="post_date">
-                        <span class="d-none d-lg-inline-block">Publicado</span>
-                        {{ date( 'd/m/Y' ), $post->created_at }}
+                        <span class="d-none d-lg-inline-block">Publicado em</span>
+                        {{ date( 'd/m/Y' ), $post->created_at }} às {{ date( 'H:i' ), $post->created_at }}
                     </div>
 
                 </div>
@@ -51,7 +51,7 @@
                                 <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
                             </a>
                         @else
-                            <a href="#" wire:click.prevent="unlikePost('{{ $post->id }}')">
+                            <a href="#" wire:click.prevent="unlikePost('{{ $post->interactions->user->reactions->likes[0]->id }}')">
                                 <i class="fa-heart ml-2 fas"></i>
                             </a>
                         @endif
@@ -115,7 +115,7 @@
                                         <div class="comment_reactions">
 
                                             <div class="comment_date">
-                                                14min
+                                                {{ date( 'd/m/Y' ), $post->interactions->user->comments[0]->created_at }} às {{ date( 'H:i' ), $post->interactions->user->comments[0]->created_at }}
                                             </div>
 
                                             <div class="comment_like mx-2 mx-lg-4">
@@ -125,7 +125,7 @@
                                                         <i class="far fa-heart ml-2"></i>
                                                     </a>
                                                 @else
-                                                    <a href="#" wire:click.prevent="unlikeComment('{{ $comment->id }}')">
+                                                    <a href="#" wire:click.prevent="unlikeComment('{{ $comment->interactions->reactions->likes[0]->id }}')">
                                                         <i class="far fa-heart ml-2"></i>
                                                     </a>
                                                 @endif

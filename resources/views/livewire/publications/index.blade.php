@@ -57,7 +57,9 @@
                                 </div>
                             </div>
                         </form>
+
                     </div>
+
                 </div>
 
             </div>
@@ -65,7 +67,6 @@
 
     </div>
 
-    <!-- Posts Show -->
     @forelse( $posts as $post )
 
     <div class="timeline">
@@ -74,9 +75,7 @@
 
             <div class="post_user">
 
-                <div class="user_photo" style="background-image:url(assets/images/users/01.png);">
-                </div>
-
+                <div class="user_photo" style="background-image:url(assets/images/users/01.png);"></div>
 
                 <div class="user_name">
                     <h5>{{ $post->author->name }}</h5>
@@ -85,13 +84,12 @@
 
                 <div class="post_options">
 
-
                     <div class="post_date">
                         <span class="d-none d-lg-inline-block">Publicado</span>
                         {{ date( 'd/m/Y' ), $post->created_at }}
                     </div>
 
-                </div>
+                </div> <!-- -->
 
                 <div class="post_action">
 
@@ -107,7 +105,7 @@
                                 Editar
                             </a>
 
-                            <a href="#" class="dropdown-item" wire:click.prevent="destroyPost(' {{ $post->id }} ')">
+                            <a href="#" class="dropdown-item" wire:click.prevent="destroyPost('{{ $post->id }}')">
                                 Excluir
                             </a>
 
@@ -117,8 +115,7 @@
 
                 </div> <!-- -->
 
-            </div>
-            <!-- Modal Editar-->
+            </div> <!-- -->
 
             <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -128,19 +125,28 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h5 class="modal-title">Atualizar Post</h5>
+
+                            <h5 class="modal-title">
+                                Atualizar Post
+                            </h5>
+
                             <button type="button" class="close" data-dismiss="modal" aria-label="X">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                        </div>
+
+                        </div> <!-- -->
 
                         <div class="modal-body">
-                            <textarea wire:model.defer="content">{{ $post->content }}</textarea>
-                        </div>
+
+                            <textarea>
+                                {{ $post->content }}
+                            </textarea>
+
+                        </div> <!-- -->
 
                         <div class="modal-footer">
 
-                            <a href="#" class="btn btn-primary" wire:click.prevent="editPost(' {{ $post->id }} ')">
+                            <a href="#" class="btn btn-primary" wire:click.prevent="editPost('{{ $post->id }}')">
                                 Salvar
                             </a>
 
@@ -148,22 +154,23 @@
                                 Fechar
                             </a>
 
-                        </div>
+                        </div> <!-- -->
 
-                    </div>
-                </div>
-            </div>
+                    </div> <!-- -->
 
+                </div> <!-- -->
+
+            </div> <!-- -->
 
             @if( empty( $post->medias ) )
-            <div class="post_info">
-                <p>{{ $post->content }}</p>
-            </div>
+                <div class="post_info">
+                    <p>{{ $post->content }}</p>
+                </div>
             @else
-            <div class="post_info">
-                <p>{{ $post->content }}</p>
-                <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
-            </div>
+                <div class="post_info">
+                    <p>{{ $post->content }}</p>
+                    <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
+                </div>
             @endif
 
             <div class="post_reactions">
@@ -173,13 +180,13 @@
                     <div>
 
                         @if ( empty( $post->interactions->reactions->likes ) )
-                        <a href="#" wire:click.prevent="like({{ $post->id }})">
-                            <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
-                        </a>
+                            <a href="#" wire:click.prevent="like({{ $post->id }})">
+                                <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
+                            </a>
                         @else
-                        <a href="#" wire:click.prevent="unlike({{ $post->id }})">
-                            <i class="fa-heart ml-2 fas"></i>
-                        </a>
+                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
+                                <i class="fa-heart ml-2 fas"></i>
+                            </a>
                         @endif
 
                         <span class="post_comment_icon">
@@ -265,24 +272,26 @@
 
                             </div> <!-- d-flex justify-content-between w-100 -->
 
-                            <br>
-                            <hr>
+                            <br> <hr>
 
                             @endforeach
 
                         </div> <!-- comment_info -->
 
-                    </div>
+                    </div> <!-- -->
 
-                </div>
+                </div> <!-- -->
 
-            </div>
+            </div> <!-- -->
 
             <div class="new_comment">
+
                 <div class="d-flex w-100 align-items-center">
+
                     <div class="new_comment_user">
                         <div class="new_comment_photo" style="background-image:url(assets/images/users/01.png);"></div>
                     </div>
+
                     <div class="new_comment_text flex-1">
                         <textarea placeholder="Comentar como Júlia Padilha..."></textarea>
                     </div>
@@ -290,22 +299,27 @@
                     <div class="new_comment_button">
                         <button class="btn-primary">Publicar</button>
                     </div>
-                </div>
-            </div>
 
-        </div>
-    </div>
+                </div> <!-- -->
+
+            </div> <!-- -->
+
+        </div> <!-- -->
+
+    </div> <!-- -->
+
+
     @empty
-    <h1 class="text-center">
-        Ops... Você não possui nennhum post cadastrado até o momento!
-    </h1>
+        <h1 class="text-center">
+            Ops... Você não possui nennhum post cadastrado até o momento!
+        </h1>
     @endforelse
-    <!-- Fim Posts Show -->
-</div>
+
+</div> <!-- -->
 
 <div class="container_right h-100">
     @include('livewire.components.profiles.home-suggestions')
-</div>
+</div> <!-- -->
 
 @include('livewire.components.posts.send-tip-dialog')
 @include('livewire.components.posts.select-card-dialog')
