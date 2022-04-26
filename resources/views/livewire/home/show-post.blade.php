@@ -46,12 +46,12 @@
 
                     <div>
 
-                        @if ( empty( $post->interactions->reactions->likes ) )
-                            <a href="#" wire:click.prevent="like({{ $post->id }})">
+                        @if ( empty( $post->interactions->user->reactions->likes ) )
+                            <a href="#" wire:click.prevent="like(' {{ $post->id }} ')">
                                 <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
                             </a>
                         @else
-                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
+                            <a href="#" wire:click.prevent="like(' {{ $post->id }} ')">
                                 <i class="fa-heart ml-2 fas"></i>
                             </a>
                         @endif
@@ -84,7 +84,7 @@
 
                 <div class="post_comment">
 
-                    <form wire:click.prevent="commentPost">
+                    <form wire:submit.prevent="commentPost(' {{ $post->id }} ')">
 
                         <input type="text" class="form-control" placeholder="Escreva um comentário" wire:model="content">
 
@@ -117,13 +117,27 @@
                                             </div>
 
                                             <div class="comment_like mx-2 mx-lg-4">
-                                                <i class="far fa-heart ml-2"></i> <span class="num">{{ count( $comment->interactions->reactions->likes ) }}</span> <span
-                                                    class="d-none d-lg-inline-block">curtidas</span>
+
+                                                @if ( empty( $comment->interactions->user->reactions ->likes ) )
+                                                    <a href="#" wire:click.prevent="likeComment(' {{ $post->id }} ')">
+                                                        <i class="far fa-heart ml-2"></i>
+                                                    </a>
+                                                @else
+                                                    <a href="#" wire:click.prevent="unlikeComment(' {{ $post->id }} ')">
+                                                        <i class="far fa-heart ml-2"></i>
+                                                    </a>
+                                                @endif
+
+                                                <span class="num">
+                                                    {{ count( $comment->interactions->reactions->likes ) }}
+                                                </span>
+
+                                                <span class="d-none d-lg-inline-block">curtidas</span>
+
                                             </div>
 
                                             <div class="comment_answer flex-1 text-right">
                                                 <span>Responder</span>
-
                                             </div>
 
                                         </div>

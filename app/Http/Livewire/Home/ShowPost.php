@@ -8,21 +8,12 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\ClientException;
 
-use Livewire\WithFileUploads;
-use Illuminate\Http\Request;
-use GuzzleHttp\Psr7;
-
-use App\Client\SuggestionClient;
-use App\Client\FollowerClient;
-
-use Illuminate\Support\Facades\Storage;
-
 class ShowPost extends Component
 {
+    public $content = '';
+
     public function render()
     {
-
-
         $client = new ClientGuzzle( new Client );
 
         $response = $client->request( 'GET', 'posts' );
@@ -32,6 +23,86 @@ class ShowPost extends Component
         return view( 'livewire.home.show-post', [
             'posts'         => $posts->data
         ]);
-
     }
-}
+
+    public function like( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlike( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function commentPost( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  => 'comment',
+                'content'               =>  $this->content,
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    => 'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function likeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+} // ShowPost

@@ -25,6 +25,10 @@ class CreatePost extends Component
     public $content = '';
     public $medias;
 
+    public function render()
+    {
+        return view( 'livewire.home.create-post' );
+    }
 
     public function createPost( Request $request )
     {
@@ -68,55 +72,6 @@ class CreatePost extends Component
         return json_decode( $response->getBody()->getContents() );
     }
 
-    public function like( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    =>  'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function unlike( $idPost )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'DELETE', 'interactions', [
-            'form_params' => [
-                'type'                  => 'comment',
-                'content'               =>  'dfdf',
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    => 'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function commentPost( $idPost )
-    {
-        dd("Chegou aqui!");
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  => 'comment',
-                'content'               =>  $this->content,
-                'interactable[id]'      =>  $idPost,
-                'interactable[type]'    => 'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
     public function confirmDeletePost()
     {
         $client = new ClientGuzzle( new Client );
@@ -127,10 +82,5 @@ class CreatePost extends Component
 
         return $this->clientApi->userDelete( session()->get( 'user' )->id );
     }
-    public function render()
-    {
-        return view('livewire.home.create-post');
-    }
 
-
-}
+} // CreatePost

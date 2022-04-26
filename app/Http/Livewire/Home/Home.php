@@ -34,6 +34,11 @@ class Home extends Component
         $this->followerClient = $followerClient;
     }
 
+    public function render()
+    {
+        return view( 'livewire.home.index' );
+    }
+
     public function mount()
     {
         $this->loadSuggestions();
@@ -47,14 +52,6 @@ class Home extends Component
             return (array)$item;
         }, $suggestionsData);
     }
-
-
-
-    public function render()
-    {
-        return view('livewire.home.index');
-    }
-
 
     public function follow($profileId)
     {
