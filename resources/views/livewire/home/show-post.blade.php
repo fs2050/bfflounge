@@ -47,11 +47,11 @@
                     <div>
 
                         @if ( empty( $post->interactions->user->reactions->likes ) )
-                            <a href="#" wire:click.prevent="like(' {{ $post->id }} ')">
+                            <a href="#" wire:click.prevent="likePost('{{ $post->id }}')">
                                 <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
                             </a>
                         @else
-                            <a href="#" wire:click.prevent="like(' {{ $post->id }} ')">
+                            <a href="#" wire:click.prevent="unlikePost('{{ $post->id }}')">
                                 <i class="fa-heart ml-2 fas"></i>
                             </a>
                         @endif
@@ -76,7 +76,7 @@
                         <i class="lar la-bookmark mx-1 mx-lg-2 ml-lg-4"></i>
                     </div>
 
-                </div>
+                </div> <!-- -->
 
             </div>
 
@@ -84,15 +84,17 @@
 
                 <div class="post_comment">
 
-                    <form wire:submit.prevent="commentPost(' {{ $post->id }} ')">
+                    <form wire:submit.prevent="commentPost('{{ $post->id }}')">
 
                         <input type="text" class="form-control" placeholder="Escreva um comentário" wire:model="content">
+
+                        <br>
 
                         <button type="submit" class="btn btn-primary">
                             Comentar
                         </button>
 
-                    </form>
+                    </form> <!-- -->
 
                     <div class="comment_user">
 
@@ -119,11 +121,11 @@
                                             <div class="comment_like mx-2 mx-lg-4">
 
                                                 @if ( empty( $comment->interactions->user->reactions ->likes ) )
-                                                    <a href="#" wire:click.prevent="likeComment(' {{ $post->id }} ')">
+                                                    <a href="#" wire:click.prevent="likeComment('{{ $comment->id }}')">
                                                         <i class="far fa-heart ml-2"></i>
                                                     </a>
                                                 @else
-                                                    <a href="#" wire:click.prevent="unlikeComment(' {{ $post->id }} ')">
+                                                    <a href="#" wire:click.prevent="unlikeComment('{{ $comment->id }}')">
                                                         <i class="far fa-heart ml-2"></i>
                                                     </a>
                                                 @endif
@@ -132,7 +134,9 @@
                                                     {{ count( $comment->interactions->reactions->likes ) }}
                                                 </span>
 
-                                                <span class="d-none d-lg-inline-block">curtidas</span>
+                                                <span class="d-none d-lg-inline-block">
+                                                    curtidas
+                                                </span>
 
                                             </div>
 
@@ -142,7 +146,7 @@
 
                                         </div>
 
-                                    </div>
+                                    </div> <!-- -->
 
                                     <div class="comment_action ml-4">
                                         <i class="fas fa-ellipsis-h"></i>
@@ -156,32 +160,48 @@
 
                         </div> <!-- comment_info -->
 
-                    </div>
+                    </div> <!-- -->
 
-                </div>
+                </div> <!-- -->
 
-            </div>
+            </div> <!-- -->
 
             <div class="new_comment">
+
                 <div class="d-flex w-100 align-items-center">
+
                     <div class="new_comment_user">
                         <div class="new_comment_photo" style="background-image:url(assets/images/users/01.png);"></div>
                     </div>
-                    <div class="new_comment_text flex-1">
-                        <textarea placeholder="Comentar como Júlia Padilha..."></textarea>
-                    </div>
 
-                    <div class="new_comment_button">
-                        <button class="btn-primary">Publicar</button>
-                    </div>
+                    <form>
+
+                        <div class="new_comment_text flex-1">
+                            <textarea placeholder="Comentar como {{ session( 'user' )->name }}"></textarea>
+                        </div>
+
+                        <div class="new_comment_button">
+                            <button type="submit" class="btn-primary">
+                                Publicar
+                            </button>
+                        </div>
+
+                    </form> <!-- -->
+
                 </div>
+
             </div>
 
         </div>
+
     </div>
+
     @empty
+
         <h1 class="text-center">
             Ops... Você ainda não segue ninguém!
         </h1>
+
     @endforelse
+
 </div>

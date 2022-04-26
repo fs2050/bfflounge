@@ -24,11 +24,12 @@
                             <div class="d-flex align-items-center justify-content-between">
 
                                 <div>
-                                    {{-- <input type="file" id="file" name="file" style="display:none" wire:model="medias"> --}}
+                                    {{-- <input type="file" id="file" name="file" style="display:none"
+                                        wire:model="medias"> --}}
 
-                                        {{-- <a href="javascript:chooseFile()">
-                                            <i class="lab la-youtube mr-1"></i>
-                                        </a> --}}
+                                    {{-- <a href="javascript:chooseFile()">
+                                        <i class="lab la-youtube mr-1"></i>
+                                    </a> --}}
 
                                     <input type="file" id="file" name="medias" style="display:none" wire:model="medias">
 
@@ -43,13 +44,12 @@
 
                                 <div>
 
-                                 <!--   <input type="button"  value="Cancelar"
+                                    <!--   <input type="button"  value="Cancelar"
                                     class="btn-primary"  onClick="Cancel()">  -->
 
 
 
-                                    <input type="reset"  value="Cancelar"
-                                    class="btn-primary" onClick="Cancel()">
+                                    <input type="reset" value="Cancelar" class="btn-primary" onClick="Cancel()">
 
                                     <button class="btn-primary">Publicar</button>
 
@@ -88,71 +88,82 @@
 
                     <div class="post_date">
                         <span class="d-none d-lg-inline-block">Publicado</span>
-
                         {{ date( 'd/m/Y' ), $post->created_at }}
                     </div>
 
-
                 </div>
 
-                    <div class="post_action">
-                        <div class="dropdown">
-                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-h"></i></a>
+                <div class="post_action">
+
+                    <div class="dropdown">
+
+                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </a>
+
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar" >Editar</a>
 
-                            <form wire:submit.prevent="destroyPost">
-                                <button type="submit" class="dropdown-item" >
-                                    Excluir
-                                </button>
-                            </form>
-                        </div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalEditar">
+                                Editar
+                            </a>
 
-                        </div>
-                    </div>
+                            <a href="#" class="dropdown-item" wire:click.prevent="destroyPost(' {{ $post->id }} ')">
+                                Excluir
+                            </a>
 
+                        </div> <!-- -->
 
+                    </div> <!-- -->
+
+                </div> <!-- -->
 
             </div>
-             <!-- Modal Editar-->
+            <!-- Modal Editar-->
 
-             <form wire:submit.prevent="editPost">
+            <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
 
-                <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title">Atualizar Post</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="X">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Atualizar Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="X">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <textarea wire:model.defer="content">{{ $post->content }}</textarea>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <a href="#" class="btn btn-primary" wire:click.prevent="editPost(' {{ $post->id }} ')">
+                                Salvar
+                            </a>
+
+                            <a href="#" class="btn btn-secondary" data-dismiss="modal">
+                                Fechar
+                            </a>
+
+                        </div>
+
                     </div>
-                    <div class="modal-body">
-                      <textarea name="contentEditPost" id="contentEditPost" cols="30" rows="10">{{ $post->content }}</textarea>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary">
-                        Salvar
-                    </button>
-                      <a href="#" class="btn btn-secondary" data-dismiss="modal">
-                        Fechar
-                      </a>
-                    </div>
-                  </div>
                 </div>
-              </div>
-            </form>
+            </div>
 
 
             @if( empty( $post->medias ) )
-                <div class="post_info">
-                    <p>{{ $post->content }}</p>
-                </div>
+            <div class="post_info">
+                <p>{{ $post->content }}</p>
+            </div>
             @else
-                <div class="post_info">
-                    <p>{{ $post->content }}</p>
-                    <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
-                </div>
+            <div class="post_info">
+                <p>{{ $post->content }}</p>
+                <img src="{{ url("http://192.168.0.3/storage/post/{$post->medias[0]->file}") }}" class="w-100" />
+            </div>
             @endif
 
             <div class="post_reactions">
@@ -162,13 +173,13 @@
                     <div>
 
                         @if ( empty( $post->interactions->reactions->likes ) )
-                            <a href="#" wire:click.prevent="like({{ $post->id }})">
-                                <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
-                            </a>
+                        <a href="#" wire:click.prevent="like({{ $post->id }})">
+                            <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
+                        </a>
                         @else
-                            <a href="#" wire:click.prevent="unlike({{ $post->id }})">
-                                <i class="fa-heart ml-2 fas"></i>
-                            </a>
+                        <a href="#" wire:click.prevent="unlike({{ $post->id }})">
+                            <i class="fa-heart ml-2 fas"></i>
+                        </a>
                         @endif
 
                         <span class="post_comment_icon">
@@ -182,7 +193,8 @@
 
                     <div>
                         <i class="fas fa-dollar-sign mx-1 mx-lg-0"></i>
-                        <span class="d-none d-lg-inline-block mr-1 position-relative fw-500 btn-send-tip cursor-pointer" style="top:-4px;" data-profile_id="{{$post->profile_id}}">Send Tip</span>
+                        <span class="d-none d-lg-inline-block mr-1 position-relative fw-500 btn-send-tip cursor-pointer"
+                            style="top:-4px;" data-profile_id="{{$post->profile_id}}">Send Tip</span>
                         <i class="las la-eye mx-1 mx-lg-2">
                             {{ $post->views }}
                         </i>
@@ -201,7 +213,8 @@
 
                     <form wire:submit.prevent="commentPost">
 
-                        <input type="text" class="form-control" placeholder="Escreva um comentário" wire:model="contentComment">
+                        <input type="text" class="form-control" placeholder="Escreva um comentário"
+                            wire:model="contentComment">
 
                         <button type="submit" class="btn btn-primary">
                             Comentar
@@ -217,41 +230,43 @@
 
                             @foreach ( $post->interactions->comments as $comment )
 
-                                <div class="d-flex justify-content-between w-100">
+                            <div class="d-flex justify-content-between w-100">
 
-                                    <div class="flex-1">
+                                <div class="flex-1">
 
-                                        <h5>{{ $comment->author->name }}</h5>
+                                    <h5>{{ $comment->author->name }}</h5>
 
-                                        <p>{{ $comment->content }}</p>
+                                    <p>{{ $comment->content }}</p>
 
-                                        <div class="comment_reactions">
+                                    <div class="comment_reactions">
 
-                                            <div class="comment_date">
-                                                14min
-                                            </div>
+                                        <div class="comment_date">
+                                            14min
+                                        </div>
 
-                                            <div class="comment_like mx-2 mx-lg-4">
-                                                <i class="far fa-heart ml-2"></i> <span class="num">{{ count( $comment->interactions->reactions->likes ) }}</span> <span
-                                                    class="d-none d-lg-inline-block">curtidas</span>
-                                            </div>
+                                        <div class="comment_like mx-2 mx-lg-4">
+                                            <i class="far fa-heart ml-2"></i> <span class="num">{{ count(
+                                                $comment->interactions->reactions->likes ) }}</span> <span
+                                                class="d-none d-lg-inline-block">curtidas</span>
+                                        </div>
 
-                                            <div class="comment_answer flex-1 text-right">
-                                                <span>Responder</span>
-
-                                            </div>
+                                        <div class="comment_answer flex-1 text-right">
+                                            <span>Responder</span>
 
                                         </div>
 
                                     </div>
 
-                                    <div class="comment_action ml-4">
-                                        <i class="fas fa-ellipsis-h"></i>
-                                    </div>
+                                </div>
 
-                                </div> <!-- d-flex justify-content-between w-100 -->
+                                <div class="comment_action ml-4">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
 
-                                <br> <hr>
+                            </div> <!-- d-flex justify-content-between w-100 -->
+
+                            <br>
+                            <hr>
 
                             @endforeach
 
@@ -281,9 +296,9 @@
         </div>
     </div>
     @empty
-        <h1 class="text-center">
-            Ops... Você não possui nennhum post cadastrado até o momento!
-        </h1>
+    <h1 class="text-center">
+        Ops... Você não possui nennhum post cadastrado até o momento!
+    </h1>
     @endforelse
     <!-- Fim Posts Show -->
 </div>

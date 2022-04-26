@@ -20,8 +20,7 @@ class Publications extends Component
     protected $followerClient;
 
     public $suggestions = [];
-    public $contentEditPost = '';
-    public $contentComment = '';
+    public $content = '';
 
     public function boot(
         SuggestionClient $suggestionClient,
@@ -67,27 +66,31 @@ class Publications extends Component
         ]);
     }
 
-    public function editPost()
+    public function editPost( $id )
     {
         $client = new ClientGuzzle( new Client );
 
         $response = $client->request( 'HEAD', 'posts', [
             'form_params' => [
-                'id'                    =>  $this->id,
-                'content'               =>  $this->contentEditPost
+                'id'                    =>  $id,
+                'content'               =>  $this->content
             ]
         ]);
 
         json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'publications.index' );
     }
 
-    public function destroyPost()
+    public function destroyPost( $id )
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( 'DELETE', "interactions/$this->id/destroy" );
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
 
-        return json_decode( $response->getBody()->getContents() );
+        json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'publications.index' );
     }
 
     public function commentPost()

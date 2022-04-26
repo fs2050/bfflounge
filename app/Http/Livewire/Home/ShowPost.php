@@ -11,6 +11,7 @@ use GuzzleHttp\Exception\ClientException;
 class ShowPost extends Component
 {
     public $content = '';
+    public $contetCommentComment = '';
 
     public function render()
     {
@@ -25,7 +26,7 @@ class ShowPost extends Component
         ]);
     }
 
-    public function like( $id )
+    public function likePost( $id )
     {
         $client = new ClientGuzzle( new Client );
 
@@ -41,7 +42,7 @@ class ShowPost extends Component
         return json_decode( $response->getBody()->getContents() );
     }
 
-    public function unlike( $id )
+    public function unlikePost( $id )
     {
         $client = new ClientGuzzle( new Client );
 
@@ -51,6 +52,38 @@ class ShowPost extends Component
                 'content'               =>  'like',
                 'interactable[id]'      =>  $id,
                 'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function likeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'comment'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'comment'
             ]
         ]);
 
@@ -70,39 +103,27 @@ class ShowPost extends Component
             ]
         ]);
 
-        return json_decode( $response->getBody()->getContents() );
+        json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'home.index' );
     }
 
-    public function likeComment( $id )
+    public function commentComment( $id )
     {
         $client = new ClientGuzzle( new Client );
 
         $response = $client->request( 'POST', 'interactions', [
             'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
+                'type'                  => 'comment',
+                'content'               =>  $this->contetCommentComment,
                 'interactable[id]'      =>  $id,
-                'interactable[type]'    =>  'post'
+                'interactable[type]'    => 'comment'
             ]
         ]);
 
-        return json_decode( $response->getBody()->getContents() );
-    }
+        json_decode( $response->getBody()->getContents() );
 
-    public function unlikeComment( $id )
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'DELETE', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'reaction',
-                'content'               =>  'like',
-                'interactable[id]'      =>  $id,
-                'interactable[type]'    =>  'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
+        return redirect()->route( 'home.index' );
     }
 
 } // ShowPost
