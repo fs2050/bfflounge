@@ -12,7 +12,6 @@ use GuzzleHttp\Exception\ClientException;
 use App\Client\SuggestionClient;
 use App\Client\FollowerClient;
 
-
 class Publications extends Component
 {
 

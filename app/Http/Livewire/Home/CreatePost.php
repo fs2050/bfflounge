@@ -30,7 +30,7 @@ class CreatePost extends Component
         return view( 'livewire.home.create-post' );
     }
 
-    public function createPost( Request $request )
+    public function createPost()
     {
         $client = new ClientGuzzle( new Client );
 
@@ -69,7 +69,9 @@ class CreatePost extends Component
             ]
         ]);
 
-        return json_decode( $response->getBody()->getContents() );
+        json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'home.index' );
     }
 
     public function confirmDeletePost()
