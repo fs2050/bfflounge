@@ -13,6 +13,7 @@ use App\Http\Livewire\{
     Auth\Login\Login, ## Login
     Auth\Forgot\Forgot, ## Forgot
     Auth\Reset\Reset, ## Reset
+    Likes\Likes, ## Likes
 
     /* Livewire
     ================================================== */
@@ -53,6 +54,7 @@ Route::group( [ 'middleware' => 'auth.api', 'verify' ], function() {
     Route::get( '/profile', Profile::class )->name( 'profile.index' ); ## Profile
     Route::get( '/cards', Cards::class )->name( 'cards.index' ); ## Cards
     Route::get( '/bank', Bank::class )->name( 'bank.index' ); ## Bank
+    Route::get( '/likes', Likes::class )->name( 'likes.index' ); ## Bank
     Route::get( '/settings', Settings::class )->name( 'settings.index' ); ## Settings
     Route::get( '/support', Support::class )->name( 'support.index' ); ## Support
     Route::get( '/chargebacks', Chargebacks::class )->name( 'chargebacks.index' ); ## Chargebacks
