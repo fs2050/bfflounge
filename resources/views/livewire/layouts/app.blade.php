@@ -112,7 +112,7 @@
                         </li>
                         <li><a href="{{ route( 'bank.index' ) }}"><i class="las la-dollar-sign"></i>Banco</a></li>
                         <li><a href="{{ route( 'likes.index' ) }}"><i class="lar la-heart"></i>Curtidos</a></li>
-                        <li><a href="#"><i class="las la-bookmark"></i>Salvos</a></li>
+                        <li><a href="{{ route( 'saved.index' ) }}"><i class="las la-bookmark"></i>Salvos</a></li>
                         <li class="mt-5 active"><a href="{{ route( 'settings.index' ) }}"><i class="las la-cog"></i>Configurações</a>
                         </li>
                         <li class="mt-5"><a href="{{ route( 'support.index' ) }}"><i class="las la-question-circle"></i>Ajuda
