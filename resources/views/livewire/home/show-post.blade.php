@@ -126,7 +126,7 @@
                                                     </a>
                                                 @else
                                                     <a href="#" wire:click.prevent="unlikeComment('{{ $comment->interactions->reactions->likes[0]->id }}')">
-                                                        <i class="far fa-heart ml-2"></i>
+                                                        <i class="fa-heart ml-2 fas"></i>
                                                     </a>
                                                 @endif
 
@@ -138,13 +138,13 @@
                                                     curtidas
                                                 </span>
 
-                                            </div>
+                                            </div> <!-- -->
 
                                             <div class="comment_answer flex-1 text-right">
                                                 <span>Responder</span>
                                             </div>
 
-                                        </div>
+                                        </div> <!-- -->
 
                                     </div> <!-- -->
 
