@@ -32,6 +32,9 @@
                                     <i class="las la-camera mr-1"></i>
                                 </a>
 
+
+                            <input type="file" wire:model="photo">
+
                                 <i class="las la-comment"></i>
 
                             </div> <!-- -->

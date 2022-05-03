@@ -56,6 +56,7 @@ class Publications extends Component
         // $profileID = $profile->profiles[0]->id;
 
         // $response = $client->request( 'GET', "posts/?filter[profile_id]=$profileID" );
+
         $response = $client->request( 'GET', "posts" );
 
         $posts = json_decode( $response->getBody()->getContents() );
@@ -63,19 +64,19 @@ class Publications extends Component
         return view( 'livewire.publications.index', [
             'posts'     => $posts->data
         ]);
+
     }
 
-    public function editPost( $id )
+    public function editPost( $id, $content)
     {
         $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'HEAD', 'posts', [
-            'form_params' => [
-                'id'                    =>  $id,
-                'content'               =>  $this->content
-            ]
-        ]);
-
+        $response = $client->request( 'PUT', "posts/$id", [
+                    'form_params' => [
+                        'id'                    =>  $this->id,
+                        'content'               =>  $this->content
+                    ]
+                ]);
+                
         json_decode( $response->getBody()->getContents() );
 
         return redirect()->route( 'publications.index' );
@@ -85,7 +86,7 @@ class Publications extends Component
     {
         $client = new ClientGuzzle( new Client );
 
-        $response = $client->request( "DELETE", "interactions/$id/destroy" );
+        $response = $client->request( 'POST', "posts/$id/destroy" );
 
         json_decode( $response->getBody()->getContents() );
 

@@ -142,9 +142,12 @@
                       </div>
 
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary" wire:click.prevent="editPost('{{ $post->id }}')">
+                      <button type="submit" class="btn btn-primary" wire:click.prevent="editPost('{{ $post->content }}')">
                         Editar
                     </button>
+                    <a href="#" class="dropdown-item" wire:click.prevent="editPost('{{ $post->id }}')">
+                        Excluir
+                    </a>
 
 
 
