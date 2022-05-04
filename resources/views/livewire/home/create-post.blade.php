@@ -33,10 +33,6 @@
                                 </a>
 
 
-                            <input type="file" wire:model="photo">
-
-                                <i class="las la-comment"></i>
-
                             </div> <!-- -->
 
                             <div>

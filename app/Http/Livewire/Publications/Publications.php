@@ -19,7 +19,9 @@ class Publications extends Component
     protected $followerClient;
 
     public $suggestions = [];
-    public $content = '';
+
+    public $content                 = '';
+    public $contentCommentComment   = '';
 
     public function boot(
         SuggestionClient $suggestionClient,
@@ -67,16 +69,128 @@ class Publications extends Component
 
     }
 
-    public function editPost( $id, $content)
+    public function likePost( $id )
     {
         $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikePost( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function likeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'comment'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikeComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function likeCommentComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'comment'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikeCommentComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function commentPost( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  => 'comment',
+                'content'               =>  $this->content,
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    => 'post'
+            ]
+        ]);
+
+        json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'home.index' );
+    }
+
+    public function commentComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  => 'comment',
+                'content'               =>  $this->contentCommentComment,
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    => 'comment'
+            ]
+        ]);
+
+        json_decode( $response->getBody()->getContents() );
+
+        return redirect()->route( 'home.index' );
+    }
+
+    public function editPost( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
         $response = $client->request( 'PUT', "posts/$id", [
-                    'form_params' => [
-                        'id'                    =>  $this->id,
-                        'content'               =>  $this->content
-                    ]
-                ]);
-                
+            'form_params' => [
+                'id'                    =>  $this->id,
+                'content'               =>  $this->content
+            ]
+        ]);
+
         json_decode( $response->getBody()->getContents() );
 
         return redirect()->route( 'publications.index' );
@@ -91,38 +205,6 @@ class Publications extends Component
         json_decode( $response->getBody()->getContents() );
 
         return redirect()->route( 'publications.index' );
-    }
-
-    public function commentPost()
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'comment',
-                'content'               =>  $this->contentComment,
-                'interactable[id]'      =>  $this->id,
-                'interactable[type]'    =>  'post'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
-    }
-
-    public function commentCommentPost()
-    {
-        $client = new ClientGuzzle( new Client );
-
-        $response = $client->request( 'POST', 'interactions', [
-            'form_params' => [
-                'type'                  =>  'comment',
-                'content'               =>  $this->contentComment,
-                'interactable[id]'      =>  $this->id,
-                'interactable[type]'    =>  'comment'
-            ]
-        ]);
-
-        return json_decode( $response->getBody()->getContents() );
     }
 
     public function follow($profileId)

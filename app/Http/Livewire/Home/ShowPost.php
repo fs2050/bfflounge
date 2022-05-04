@@ -10,19 +10,26 @@ use GuzzleHttp\Exception\ClientException;
 
 class ShowPost extends Component
 {
-    public $content = '';
-    public $contetCommentComment = '';
+    public $content                 = '';
+    public $contentCommentComment   = '';
 
     public function render()
     {
         $client = new ClientGuzzle( new Client );
+
+        $userID = Session::get( 'user' )->id;
+
+        $user = $client->request( 'GET', "users/$userID" );
+
+        $profile = json_decode( $user->getBody()->getContents() );
 
         $response = $client->request( 'GET', 'posts' );
 
         $posts = json_decode( $response->getBody()->getContents() );
 
         return view( 'livewire.home.show-post', [
-            'posts' => $posts->data
+            'profile'   => $profile,
+            'posts'     => $posts->data
         ]);
     }
 
@@ -76,6 +83,31 @@ class ShowPost extends Component
         return json_decode( $response->getBody()->getContents() );
     }
 
+    public function likeCommentComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'like',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'comment'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
+    public function unlikeCommentComment( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'DELETE', "interactions/$id/destroy" );
+
+        return json_decode( $response->getBody()->getContents() );
+    }
+
     public function commentPost( $id )
     {
         $client = new ClientGuzzle( new Client );
@@ -101,7 +133,7 @@ class ShowPost extends Component
         $response = $client->request( 'POST', 'interactions', [
             'form_params' => [
                 'type'                  => 'comment',
-                'content'               =>  $this->contetCommentComment,
+                'content'               =>  $this->contentCommentComment,
                 'interactable[id]'      =>  $id,
                 'interactable[type]'    => 'comment'
             ]
@@ -110,6 +142,22 @@ class ShowPost extends Component
         json_decode( $response->getBody()->getContents() );
 
         return redirect()->route( 'home.index' );
+    }
+
+    public function savePost( $id )
+    {
+        $client = new ClientGuzzle( new Client );
+
+        $response = $client->request( 'POST', 'interactions', [
+            'form_params' => [
+                'type'                  =>  'reaction',
+                'content'               =>  'save',
+                'interactable[id]'      =>  $id,
+                'interactable[type]'    =>  'post'
+            ]
+        ]);
+
+        return json_decode( $response->getBody()->getContents() );
     }
 
 } // ShowPost
