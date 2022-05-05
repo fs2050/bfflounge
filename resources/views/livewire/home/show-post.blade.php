@@ -1,9 +1,14 @@
+
+
 <div>
+    
+
     @forelse( $posts as $post )
 
         <div class="timeline">
 
             <div class="post">
+
 
                 <div class="post_user">
 
@@ -47,16 +52,22 @@
 
                         <div>
 
-                            @if (empty($post->interactions->user->reactions->likes))
-                                <a href="#" wire:click.prevent="likePost('{{ $post->id }}')">
+                            @if ( empty( $post->interactions->reactions->likes ) )
+                                <a href="#" wire:click.prevent="like({{ $post->id }})">
                                     <i class="far fa-heart mx-1 mx-lg-2 btn_curtir"></i>
                                 </a>
                             @else
-                                <a href="#"
-                                    wire:click.prevent="unlikePost('{{ $post->interactions->user->reactions->likes[0]->id }}')">
+                                <a href="#" wire:click.prevent="unlike({{ $post->id }})">
                                     <i class="fa-heart ml-2 fas"></i>
                                 </a>
                             @endif
+
+                            <span class="post_comment_icon">
+                                <span class="num">{{ count( $post->interactions->comments ) }}</span>
+                                <i class="las la-sms mx-1 mx-lg-2"></i>
+                            </span>
+
+                            <i class="far fa-paper-plane mx-1 mx-lg-2"></i>
 
                         </div> <!-- -->
 

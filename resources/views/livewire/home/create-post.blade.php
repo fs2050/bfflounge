@@ -1,6 +1,6 @@
 <div>
 
-    <div class="modal_default" data-modal="post">
+    <div class="modal_default" data-modal="post" >
 
         <div class="d-flex w-100 h-100 position-relative align-items-center justify-content-center">
 
@@ -20,17 +20,19 @@
 
                             <div>
 
-                                <input type="file" id="file" style="display:none" wire:model="medias">
-
-                                <a href="javascript:chooseFile()">
-                                    <i class="lab la-youtube mr-1"></i>
-                                </a>
 
                                 <input type="file" id="file" style="display:none" wire:model="medias">
 
                                 <a href="javascript:chooseFile()">
                                     <i class="las la-camera mr-1"></i>
                                 </a>
+
+                                <input type="file" id="file" style="display:none" wire:model="medias">
+
+                                <a href="javascript:chooseFile()">
+                                    <i class="lab la-youtube mr-1"></i>
+                                </a>
+
 
 
                             </div> <!-- -->
@@ -58,3 +60,4 @@
     </div> <!-- -->
 
 </div> <!-- -->
+
