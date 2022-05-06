@@ -1,7 +1,7 @@
 
 
 <div>
-    
+
 
     @forelse( $posts as $post )
 
@@ -20,19 +20,97 @@
                     </div>
 
                     <div class="post_options">
+                        <div class="post_options">
 
-                        <div class="post_action">
-                            <i class="fas fa-ellipsis-h"></i>
+                            <div class="post_action">
+
+                                <div class="dropdown">
+
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalEditar">
+                                            Editar('{{ $post->id }}')
+                                        </a>
+
+
+                                        <a href="#" class="dropdown-item"
+                                            wire:click.prevent="destroyPost('{{ $post->id }}')">
+                                            Excluir
+                                        </a>
+
+                                    </div> <!-- -->
+
+                                </div> <!-- -->
+
+                            </div> <!-- -->
+
+                            <div class="post_date">
+                                <span class="d-none d-lg-inline-block">Publicado em</span>
+                                {{ date('d/m/Y'), $post->created_at }} às {{ date('H:i'), $post->created_at }}
+                            </div>
+
                         </div>
 
-                        <div class="post_date">
-                            <span class="d-none d-lg-inline-block">Publicado em</span>
-                            {{ date('d/m/Y'), $post->created_at }} às {{ date('H:i'), $post->created_at }}
-                        </div>
+
+
 
                     </div>
 
                 </div>
+                <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Atualizar Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="X">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="form-floating">
+                            @if (empty($post->medias))
+                                <textarea class="form-control" id="contentEditPost" style="height: 100px">{{ $post->content }}</textarea>
+                            @else
+                                <form wire:submit.prevent="editPost('{{ $post->id }}')">
+
+                                    {{ $post->id }}
+
+
+                                    <textarea class="form-control border border-5 border-danger" style="height: 100px" wire:model.defer="content"
+                                        placeholder="Texto"></textarea>
+
+
+                                    <img src="{{ url("http://192.168.0.105/storage/post/{$post->medias[0]->file}") }}"
+                                        class="w-100" />
+
+
+
+                                    <div class="mr-3 pt-2 text-center">
+                                        <button type="submit" class="btn btn-danger ml-3">
+                                            Editar Texto
+                                        </button>
+                                        <a href="#" class="btn btn-secondary" data-dismiss="modal">
+                                            Fechar
+                                        </a>
+                                    </div>
+
+
+                                </form>
+                            @endif
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
+
+
+
 
                 @if (empty($post->medias))
                     <div class="post_info">
@@ -175,17 +253,65 @@
 
                                         </div> <!-- -->
 
-                                        <div class="comment_action ml-4">
-                                            <i class="fas fa-ellipsis-h"></i>
-                                        </div>
+                                        <div class="post_action">
+
+                                            <div class="dropdown">
+
+                                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalEditar">
+                                                        Editar('{{ $post->id }}')
+                                                    </a>
+
+
+                                                    <a href="#" class="dropdown-item"
+                                                        wire:click.prevent="destroyPost('{{ $post->id }}')">
+                                                        Excluir
+                                                    </a>
+
+                                                </div> <!-- -->
+
+                                            </div> <!-- -->
+
+                                        </div> <!-- -->
 
                                     </div> <!-- d-flex justify-content-between w-100 -->
 
                                     <form wire:submit.prevent="commentComment('{{ $comment->id }}')">
 
                                         <div class="new_comment">
+                                            <div class="post_action">
+
+                                                <div class="dropdown">
+
+                                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalEditar">
+                                                            Editar('{{ $post->id }}')
+                                                        </a>
+
+
+                                                        <a href="#" class="dropdown-item"
+                                                            wire:click.prevent="destroyPost('{{ $post->id }}')">
+                                                            Excluir
+                                                        </a>
+
+                                                    </div> <!-- -->
+
+                                                </div> <!-- -->
+
+                                            </div> <!-- -->
 
                                             <div class="d-flex w-100 align-items-center">
+
 
                                                 <div class="new_comment_photo" style="background-image:url(assets/images/users/01.png);"></div>
 
@@ -256,9 +382,31 @@
 
                                             </div> <!-- -->
 
-                                            <div class="comment_action ml-4">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </div>
+                                            <div class="post_action">
+
+                                                <div class="dropdown">
+
+                                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-h"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#modalEditar">
+                                                            Editar('{{ $post->id }}')
+                                                        </a>
+
+
+                                                        <a href="#" class="dropdown-item"
+                                                            wire:click.prevent="destroyPost('{{ $post->id }}')">
+                                                            Excluir
+                                                        </a>
+
+                                                    </div> <!-- -->
+
+                                                </div> <!-- -->
+
+                                            </div> <!-- -->
 
                                         </div> <!-- d-flex justify-content-between w-100 -->
 
