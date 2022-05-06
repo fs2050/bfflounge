@@ -4,8 +4,7 @@
 
 Clonar Projeto
 ```sh
-git clone https://github.com/luispaulotoniettefranca/bff-front
-```
+git clone https://github.com/fs2050/bfflounge
 
 Acessar o projeto
 ```sh
